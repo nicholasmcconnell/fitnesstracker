@@ -1,4 +1,4 @@
-const db = require("../models/models.js");
+const db = require("../models/models");
 
 module.exports = function (app) {
 
@@ -39,12 +39,12 @@ module.exports = function (app) {
 
     app.get("/api/workouts/range", (req, res) => {
         db.find({})
-        .then(dbWorkout => {
-          console.log("workout " + dbWorkout);
-          res.json(dbWorkout);
-        })
-        .catch(err => {
-          res.json(err);
-        });
-      })
+            .then(dbWorkout => {
+                console.log("workout " + dbWorkout);
+                res.json(dbWorkout);
+            })
+            .catch(err => {
+                res.json(err);
+            });
+    })
 }
