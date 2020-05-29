@@ -2,7 +2,7 @@
 
 ## Overview
 
-Fitness Tracker is a full stack, MongoDB application to view and track daily workouts. It is able to log multiple exercises in a workout on a given day and  able to track stats for each exercise.  The NoSQL database will keep track of their daily details such as: number of reps, sets, distance,  and elapsed time. The data sets vary depending on whether the exercise is cardio or weight training. The dashboard uses charts and graphs to help users monitor their progress.  This app is built using a Mongo database with a Mongoose schema, Express route handling, and Vanilla Javascript.
+Fitness Tracker is a full stack, MongoDB application to view and track daily workouts. It's able to log multiple exercises in a workout on a given day and track stats for each exercise.  The NoSQL database stores daily details such as: number of reps, sets, distance,  and elapsed time. The data sets vary depending on whether the exercise is cardio or weight training. The dashboard uses charts and graphs to help users monitor their progress.  This app is built using a Mongo database with a Mongoose schema, Express route handling, Canvas.js, and Vanilla Javascript.
 
 ## Utilizing the App
 
@@ -31,4 +31,4 @@ Fitness Tracker is a full stack, MongoDB application to view and track daily wor
 
 ## Contributers
 
-- Nicholas McConnell
+- Nick McConnell
