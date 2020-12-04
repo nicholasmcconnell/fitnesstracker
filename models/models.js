@@ -4,9 +4,14 @@ let mongoose = require("mongoose");
 //   useNewUrlParser: true,
 //   useFindAndModify: false
 // });
+
+
 const Schema = mongoose.Schema;
 const workoutSchema = new Schema({
       day: {type: Date, default: () => new Date()},
+      dayNumber: {
+        type: Number, default: new Date().getDay()
+      },
       exercises: [{
           type: {
             type: String,  

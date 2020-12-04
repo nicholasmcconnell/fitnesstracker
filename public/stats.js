@@ -46,6 +46,8 @@ function populateChart(data) {
   let pie = document.querySelector("#canvas3").getContext("2d");
   let pie2 = document.querySelector("#canvas4").getContext("2d");
 
+  
+
   let lineChart = new Chart(line, {
     type: "line",
     data: {
