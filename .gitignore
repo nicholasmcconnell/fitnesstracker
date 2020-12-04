@@ -1,0 +1,10 @@
+node_modules/
+./client/node_modules
+.vscode
+.idea/
+.DS_Store
+.env
+client/package-lock.json
+package-lock.json
+.client/build
+/client/package-lock.json
