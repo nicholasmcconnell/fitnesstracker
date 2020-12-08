@@ -17,13 +17,13 @@ app.use(express.json());
 
 app.use(express.static("./public"));
 
-mongoose.connect((process.env.MONGODB_URI || "mongodb://localhost/fitnesstracker"),{
-  useMongoClient: true,
+mongoose.connect((process.env.MONGODB_URI || "mongodb://localhost/fitnesstracker"), {
+  useUnifiedTopology: true,
   useNewUrlParser: true,
   useFindAndModify: false //may be needed for an indexDB option.   revisit this later.
 },
-).then(() => {console.log('Connection to database established.')})
-    .catch(  err => {console.log(err)});
+).then(() => { console.log('Connection to database established.') })
+  .catch(err => { console.log(err) });
 
 require("./routes/api")(app);
 require("./routes/html.js")(app);
