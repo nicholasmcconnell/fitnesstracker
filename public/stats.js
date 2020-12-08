@@ -37,6 +37,7 @@ API.getWorkoutsInRange()
   return arr;
   }
 function populateChart(data) {
+  //need time based function to link dates to labels
   let durations = duration(data);
   console.log(durations)
   let pounds = calculateTotalWeight(data);
@@ -48,20 +49,20 @@ function populateChart(data) {
   let pie = document.querySelector("#canvas3").getContext("2d");
   let pie2 = document.querySelector("#canvas4").getContext("2d");
 
-  
+  let arr =  [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ]
 
   let lineChart = new Chart(line, {
     type: "line",
     data: {
-      labels: [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ],
+      labels: arr,
       datasets: [
         {
           label: "Workout Duration In Minutes",

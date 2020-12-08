@@ -5,10 +5,10 @@ let mongoose = require("mongoose");
 //   useFindAndModify: false
 // });
 
-
+const date
 const Schema = mongoose.Schema;
 const workoutSchema = new Schema({
-      day: {type: Date, default: () => new Date()},
+      date: {type: Date, default: () => new Date()},
       dayNumber: {
         type: Number, default: new Date().getDay()
       },
