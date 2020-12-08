@@ -92,6 +92,7 @@ function validateInputs() {
   } else {
     completeButton.setAttribute("disabled", true);
     addButton.setAttribute("disabled", true);
+    //through error toast here
   }
 }
 
@@ -151,6 +152,7 @@ if (addButton) {
 }
 toast.addEventListener("animationend", handleToastAnimationEnd);
 
+//this isn't doing anything really, it runs when page loads and that's about it - doesn't validate form on submit and then empty forms are being submitted
 document
   .querySelectorAll("input")
   .forEach(element => element.addEventListener("input", validateInputs));

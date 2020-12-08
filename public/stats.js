@@ -7,6 +7,7 @@ fetch("/api/workouts/range")
     return response.json();
   })
   .then(data => {
+    console.log('data', data)
     populateChart(data);
   });
 
@@ -37,6 +38,7 @@ API.getWorkoutsInRange()
   }
 function populateChart(data) {
   let durations = duration(data);
+  console.log(durations)
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
   const colors = generatePalette();
@@ -195,6 +197,7 @@ function duration(data) {
 
   data.forEach(workout => {
     workout.exercises.forEach(exercise => {
+      //Make key hash map where same day exercises are added together
       durations.push(exercise.duration);
     });
   });
