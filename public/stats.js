@@ -37,6 +37,7 @@ function generatePalette() {
 }
 function populateChart(data) {
   //need time based function to link dates to labels
+  let datesArr = formatDate();
   let durations = duration(data);
   console.log(durations)
   let pounds = calculateTotalWeight(data);
@@ -47,26 +48,12 @@ function populateChart(data) {
   let bar = document.querySelector("#canvas2").getContext("2d");
   let pie = document.querySelector("#canvas3").getContext("2d");
   let pie2 = document.querySelector("#canvas4").getContext("2d");
-  const formatDate = () => {
-    //shows only the dates for the current week
-
-    let d = new Date();
-
-    let datesArr = [];
-
-    for (let i = 0; i <= 6; i++) {
-      let date = i - d.getDay();
-      let day = new Date(d.setDate(d.getDate() + date))
-
-      datesArr.push(`${d.getMonth() + 1}/${day.getDate()}/${d.getFullYear()}`)
-    }
-    return datesArr;
-  }
+  
 
   let lineChart = new Chart(line, {
     type: "line",
     data: {
-      labels: formatDate(),
+      labels: datesArr,
       datasets: [
         {
           label: "Workout Duration In Minutes",
@@ -189,19 +176,40 @@ function populateChart(data) {
   });
 }
 
-function duration(data) {
-  console.log('data', data)
+const formatDate = () => {
+  //shows only the dates for the current week
 
-  let durations = [];
+  let d = new Date();
+
+  let datesArr = new Array();
+
+  for (let i = 0; i <= 6; i++) {
+    let date = i - d.getDay();
+    let day = new Date(d.setDate(d.getDate() + date))
+
+    datesArr.push(`${d.getMonth() + 1}/${day.getDate()}/${d.getFullYear()}`)
+  }
+  return datesArr;
+}
+
+function duration(data) {
+
+  let totalsArr = new Array(7).fill(0);
+  let dateArr = formatDate()
+  let durations = {}
 
   data.forEach(workout => {
     workout.exercises.forEach(exercise => {
-      //Make key hash map where same day exercises are added together
-      durations.push(exercise.duration);
+      !durations[workout.day] ? durations[workout.day] = exercise.duration : durations[workout.day] += exercise.duration
     });
   });
 
-  return durations;
+  for(const [key, value]  of Object.entries(durations)){
+    let index = dateArr.indexOf(key);
+    totalsArr[index] = value;
+  }
+
+  return(totalsArr);
 }
 
 function calculateTotalWeight(data) {
