@@ -2,8 +2,6 @@
 
 fetch("/api/workouts/range")
   .then(response => {
-    console.log("fetch respone ");
-    console.log(response);
     return response.json();
   })
   .then(data => {
@@ -39,7 +37,6 @@ function populateChart(data) {
   //need time based function to link dates to labels
   let datesArr = formatDate();
   let durations = duration(data);
-  console.log(durations)
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
   const colors = generatePalette();
@@ -208,20 +205,27 @@ function duration(data) {
     let index = dateArr.indexOf(key);
     totalsArr[index] = value;
   }
-
   return(totalsArr);
 }
 
 function calculateTotalWeight(data) {
-  let total = [];
+  console.log('data', data)
+  let totalsArr = new Array(7).fill(0);
+  let dateArr = formatDate();
+  let durations = {}
 
   data.forEach(workout => {
     workout.exercises.forEach(exercise => {
-      total.push(exercise.weight);
+      !durations[workout.day] ? durations[workout.day] = exercise.weight : durations[workout.day] += exercise.weight;
     });
   });
 
-  return total;
+  for(const [key, value] of Object.entries(durations)){
+    let index = dateArr.indexOf(key);
+    totalsArr[index] = value;
+  }
+
+  return totalsArr;
 }
 
 function workoutNames(data) {
