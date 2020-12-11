@@ -14,8 +14,8 @@ fetch("/api/workouts/range")
 
 API.getWorkoutsInRange()
 
-  function generatePalette() {
-    const arr = [
+function generatePalette() {
+  const arr = [
     "#003f5c",
     "#2f4b7c",
     "#665191",
@@ -35,7 +35,7 @@ API.getWorkoutsInRange()
   ]
 
   return arr;
-  }
+}
 function populateChart(data) {
   //need time based function to link dates to labels
   let durations = duration(data);
@@ -49,7 +49,7 @@ function populateChart(data) {
   let pie = document.querySelector("#canvas3").getContext("2d");
   let pie2 = document.querySelector("#canvas4").getContext("2d");
 
-  let arr =  [
+  let arr = [
     "Sunday",
     "Monday",
     "Tuesday",
@@ -58,11 +58,23 @@ function populateChart(data) {
     "Friday",
     "Saturday"
   ]
+  const formatDate = () => {
+
+    let d = new Date();
+    
+    let datesArr = [];
+
+    for (let i = 0; i <= 6; i++) {
+      let date = i - d.getDay();
+      datesArr.push(`${d.getMonth() + 1}.${d.getDate() + date}.${d.getFullYear()}`)
+  }
+    return datesArr;
+  }
 
   let lineChart = new Chart(line, {
     type: "line",
     data: {
-      labels: arr,
+      labels: formatDate(),
       datasets: [
         {
           label: "Workout Duration In Minutes",
@@ -226,6 +238,6 @@ function workoutNames(data) {
       workouts.push(exercise.name);
     });
   });
-  
+
   return workouts;
 }

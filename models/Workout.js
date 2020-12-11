@@ -5,7 +5,7 @@ let mongoose = require("mongoose");
 //   useFindAndModify: false
 // });
 
-const date
+// const date
 const Schema = mongoose.Schema;
 const workoutSchema = new Schema({
       date: {type: Date, default: () => new Date()},
