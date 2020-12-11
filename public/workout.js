@@ -1,19 +1,23 @@
 async function initWorkout() {
   const lastWorkout = await API.getLastWorkout();
-  console.log("Last workout:", lastWorkout);
   // console.log(lastWorkout.exercises[duration]);
   if (lastWorkout) {
     document
       .querySelector("a[href='/exercise?']")
       .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
 
+    const lastWorkoutSpecs = lastWorkout.exercises[lastWorkout.exercises.length-1];
+    // date, name, type, reps, sets, weight  type, duration
     const workoutSummary = {
       date: formatDate(lastWorkout.day),
-      totalDuration: lastWorkout.totalDuration,
+      name: lastWorkoutSpecs.name,
+      type: lastWorkoutSpecs.type,
+      durationToday: lastWorkoutSpecs.duration,
+      totalDayDuration: lastWorkout.totalDuration,
       numExercises: lastWorkout.exercises.length,
       ...tallyExercises(lastWorkout.exercises)
     };
-
+    console.log(workoutSummary);
 
     renderWorkoutSummary(workoutSummary);
   } else {
@@ -22,6 +26,7 @@ async function initWorkout() {
 }
 
 function tallyExercises(exercises) {
+  console.log(exercises);
   const tallied = exercises.reduce((acc, curr) => {
     if (curr.type === "resistance") {
       acc.totalDuration = (acc.totalDuration || 0) + curr.duration;
@@ -50,14 +55,19 @@ function formatDate(date) {
 
 function renderWorkoutSummary(summary) {
 
-  console.log(summary)
+  console.log(summary);
+
   const container = document.querySelector(".workout-stats");
 
   const workoutKeyMap = {
     date: "Date",
-    totalDuration: "Total Workout Duration",
-    numExercises: "Exercises Performed",
-    totalWeight: "Total Weight Lifted",
+    name: "Name",
+    type: "Type",
+    durationToday: "Last Workout Duration",
+    totalDayDuration: "Today's Total Duration",
+    numExercises: "Exercise's Performed",
+    totatotalWeightlWeight: "Total Weight Lifted",
+    lastExercise: "Last ExerciseCompleted",
     totalSets: "Total Sets Performed",
     totalReps: "Total Reps Performed",
     totalDistance: "Total Distance Covered"

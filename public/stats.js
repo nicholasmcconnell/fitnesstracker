@@ -209,7 +209,6 @@ function duration(data) {
 }
 
 function calculateTotalWeight(data) {
-  console.log('data', data)
   let totalsArr = new Array(7).fill(0);
   let dateArr = formatDate();
   let durations = {}

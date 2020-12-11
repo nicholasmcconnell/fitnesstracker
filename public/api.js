@@ -7,7 +7,6 @@ const API = {
       console.log(err)
     }
     const json = await res.json();
-    console.log('json', json)
 
     return json[json.length - 1];
   },
