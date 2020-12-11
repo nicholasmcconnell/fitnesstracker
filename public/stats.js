@@ -48,25 +48,18 @@ function populateChart(data) {
   let bar = document.querySelector("#canvas2").getContext("2d");
   let pie = document.querySelector("#canvas3").getContext("2d");
   let pie2 = document.querySelector("#canvas4").getContext("2d");
-
-  let arr = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-  ]
   const formatDate = () => {
+    //shows only the dates for the current week
 
     let d = new Date();
     
     let datesArr = [];
-
+    
     for (let i = 0; i <= 6; i++) {
       let date = i - d.getDay();
-      datesArr.push(`${d.getMonth() + 1}.${d.getDate() + date}.${d.getFullYear()}`)
+      let day = new Date(d.setDate(d.getDate() + date))
+      
+      datesArr.push(`${d.getMonth() + 1}.${day.getDate()}.${d.getFullYear()}`)
   }
     return datesArr;
   }
@@ -114,15 +107,7 @@ function populateChart(data) {
   let barChart = new Chart(bar, {
     type: "bar",
     data: {
-      labels: [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ],
+      labels: formatDate(),
       datasets: [
         {
           label: "Pounds",
