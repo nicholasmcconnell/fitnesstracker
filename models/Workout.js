@@ -5,12 +5,16 @@ let mongoose = require("mongoose");
 //   useFindAndModify: false
 // });
 
-// const date
+const d = new Date();
 const Schema = mongoose.Schema;
 const workoutSchema = new Schema({
       date: {type: Date, default: () => new Date()},
       dayNumber: {
         type: Number, default: new Date().getDay()
+      },
+      day: {
+        type: String,
+        default: `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
       },
       exercises: [{
           type: {

@@ -7,7 +7,6 @@ fetch("/api/workouts/range")
     return response.json();
   })
   .then(data => {
-    console.log('data', data)
     populateChart(data);
   });
 
@@ -52,15 +51,15 @@ function populateChart(data) {
     //shows only the dates for the current week
 
     let d = new Date();
-    
+
     let datesArr = [];
-    
+
     for (let i = 0; i <= 6; i++) {
       let date = i - d.getDay();
       let day = new Date(d.setDate(d.getDate() + date))
-      
-      datesArr.push(`${d.getMonth() + 1}.${day.getDate()}.${d.getFullYear()}`)
-  }
+
+      datesArr.push(`${d.getMonth() + 1}/${day.getDate()}/${d.getFullYear()}`)
+    }
     return datesArr;
   }
 
@@ -191,6 +190,8 @@ function populateChart(data) {
 }
 
 function duration(data) {
+  console.log('data', data)
+
   let durations = [];
 
   data.forEach(workout => {
