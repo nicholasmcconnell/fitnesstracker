@@ -13,7 +13,7 @@ async function initWorkout() {
       name: lastWorkoutSpecs.name,
       type: lastWorkoutSpecs.type,
       durationToday: lastWorkoutSpecs.duration,
-      totalDayDuration: lastWorkout.totalDuration,
+      // totalDayDuration: lastWorkout.totalDuration,
       numExercises: lastWorkout.exercises.length,
       ...tallyExercises(lastWorkout.exercises)
     };
@@ -26,7 +26,7 @@ async function initWorkout() {
 }
 
 function tallyExercises(exercises) {
-  console.log(exercises);
+  console.log(exercises[0].type);
   const tallied = exercises.reduce((acc, curr) => {
     if (curr.type === "resistance") {
       acc.totalDuration = (acc.totalDuration || 0) + curr.duration;
@@ -39,6 +39,7 @@ function tallyExercises(exercises) {
     }
     return acc;
   }, {});
+  console.log(tallied)
   return tallied;
 }
 
@@ -64,10 +65,11 @@ function renderWorkoutSummary(summary) {
     name: "Name",
     type: "Type",
     durationToday: "Last Workout Duration",
-    totalDayDuration: "Today's Total Duration",
     numExercises: "Exercise's Performed",
+    totalDuration: "Today's Total Duration",
     totatotalWeightlWeight: "Total Weight Lifted",
-    lastExercise: "Last ExerciseCompleted",
+    lastExercise: "Last Exercise Completed",
+    totalWeight: "Total Weight",
     totalSets: "Total Sets Performed",
     totalReps: "Total Reps Performed",
     totalDistance: "Total Distance Covered"
