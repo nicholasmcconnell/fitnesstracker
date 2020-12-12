@@ -95,22 +95,20 @@ function renderWorkoutSummary(summary) {
         totalSets: "Total Sets Performed",
         totalReps: "Total Reps Performed",
       }
-    }
-
-    ;
+    };
   console.log(workoutKeyMap)
 
 
 
   for (const [k, v] of Object.entries(summary)) {
-    console.log(v)
+    console.log(k, v)
     for (const [key, value] of Object.entries(v)) {
-      console.log(key, value, v)
+      console.log(key, value)
       const p = document.createElement("p");
       const strong = document.createElement("strong");
-
-      strong.textContent = workoutKeyMap[key];
-      const textNode = document.createTextNode(`: ${summary[key]}`);
+      console.log(summary[k][key])
+      strong.textContent = workoutKeyMap[k][key];
+      const textNode = document.createTextNode(`: ${summary[k][key]}`);
 
       p.appendChild(strong);
       p.appendChild(textNode);
