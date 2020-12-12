@@ -60,22 +60,28 @@ function renderWorkoutSummary(summary) {
 
   const container = document.querySelector(".workout-stats");
 
-  const workoutKeyMap = {
+  const workoutKeyMap = summary.type === "cardio" ? {
     date: "Date",
     name: "Name",
     type: "Type",
     durationToday: "Last Workout Duration",
     numExercises: "Exercise's Performed",
     totalDuration: "Today's Total Duration",
-    totatotalWeightlWeight: "Total Weight Lifted",
-    lastExercise: "Last Exercise Completed",
+    totalDistance: "Total Distance Covered"
+  } :
+  {
+    date: "Date",
+    name: "Name",
+    type: "Type",
+    durationToday: "Last Workout Duration",
+    numExercises: "Exercise's Performed",
+    totalDuration: "Today's Total Duration",
     totalWeight: "Total Weight",
     totalSets: "Total Sets Performed",
     totalReps: "Total Reps Performed",
-    totalDistance: "Total Distance Covered"
   };
 
-  Object.keys(summary).forEach(key => {
+  Object.keys(workoutKeyMap).forEach(key => {
     const p = document.createElement("p");
     const strong = document.createElement("strong");
 
