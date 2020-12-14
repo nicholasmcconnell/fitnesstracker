@@ -6,8 +6,8 @@ async function initWorkout() {
       .querySelector("a[href='/exercise?']")
       .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
 
-      const lastWorkoutSpecs = lastWorkout.exercises[lastWorkout.exercises.length - 1];
-      console.log(lastWorkoutSpecs)
+    const lastWorkoutSpecs = lastWorkout.exercises[lastWorkout.exercises.length - 1];
+    console.log(lastWorkoutSpecs)
     // date, name, type, reps, sets, weight  type, duration
     const workoutSummary = {
       sharedStats: {
@@ -29,17 +29,38 @@ async function initWorkout() {
 }
 
 function tallyExercises(exercises) {
+
   console.log(exercises)
-  const tallied = Object.values(exercises).reduce((acc, curr) => {
-    console.log(curr.type)
-    if (curr.type === "resistance") {
-      acc.totalDuration = (acc.totalDuration || 0) + curr.duration;
-      acc.totalWeight = (acc.totalWeight || 0) + curr.weight;
-      acc.totalSets = (acc.totalSets || 0) + curr.sets;
-      acc.totalReps = (acc.totalReps || 0) + curr.reps;
-    } else if (curr.type === "cardio") {
-      acc.totalDistance = (acc.totalDistance || 0) + curr.distance;
-      acc.totalDuration = (acc.totalDuration || 0) + curr.duration;
+  const tallied = Object.entries(exercises).reduce((acc, curr) => {
+    if (exercises.type === "resistance" && typeof curr[1] === 'number') {
+
+      switch (curr[0]) {
+        case 'duration':
+          acc.totalDuration = (acc.totalDuration || 0) + curr[1];
+          break;
+        case 'weight':
+          acc.totalWeight = (acc.totalWeight || 0) + curr[1];
+          break;
+        case 'sets':
+          acc.totalSets = (acc.totalSets || 0) + curr[1];
+          break;
+        case 'reps':
+          acc.totalReps = (acc.totalReps || 0) + curr[1];
+          break;
+        default:
+          break;
+      }
+    } else if (exercises.type === "cardio" && typeof curr[1] === 'number') {
+      switch (curr[0]) {
+        case 'distance':
+          acc.totalDistance = (acc.totalDistance || 0) + curr[1];
+          break;
+        case 'duration':
+          acc.totalDuration = (acc.totalDuration || 0) + curr[1];
+          break;      
+        default:
+          break;
+      }
     }
     return acc;
   }, {});
