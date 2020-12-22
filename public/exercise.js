@@ -30,7 +30,6 @@ async function initExercise() {
 
 }
 
-initExercise();
 
 function handleWorkoutTypeChange(event) {
   workoutType = event.target.value;
@@ -45,8 +44,6 @@ function handleWorkoutTypeChange(event) {
     cardioForm.classList.add("d-none");
     resistanceForm.classList.add("d-none");
   }
-
-  validateInputs();
 }
 
 function validateInputs() {
@@ -88,15 +85,22 @@ function validateInputs() {
 
   if (isValid) {
     completeButton.removeAttribute("disabled");
-    addButton.removeAttribute("disabled");
+    // addButton.removeAttribute("disabled");
+    return true;
   } else {
     completeButton.setAttribute("disabled", true);
-    addButton.setAttribute("disabled", true);
+    // addButton.setAttribute("disabled", true);
+    return false;
     //through error toast here
   }
 }
 
 async function handleFormSubmit(event) {
+  if (validateInputs()) {
+    initExercise()
+  } else {
+    alert('exercise not iniciated')
+  };
   event.preventDefault();
 
   let workoutData = {};
@@ -114,6 +118,7 @@ async function handleFormSubmit(event) {
     workoutData.reps = Number(repsInput.value.trim());
     workoutData.duration = Number(resistanceDurationInput.value.trim());
   }
+  console.log(workoutData)
 
   await API.addExercise(workoutData);
   clearInputs();
@@ -147,9 +152,10 @@ if (completeButton) {
     handleFormSubmit(event);
   });
 }
-if (addButton) {
-  addButton.addEventListener("click", handleFormSubmit);
-}
+// if (addButton) {
+
+//   addButton.addEventListener("click", handleFormSubmit);
+// }
 toast.addEventListener("animationend", handleToastAnimationEnd);
 
 //this isn't doing anything really, it runs when page loads and that's about it - doesn't validate form on submit and then empty forms are being submitted
