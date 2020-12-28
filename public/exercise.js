@@ -30,7 +30,7 @@ async function initExercise() {
 
 }
 
-
+initExercise()
 function handleWorkoutTypeChange(event) {
   workoutType = event.target.value;
 
@@ -100,7 +100,7 @@ async function handleFormSubmit(event) {
   // } else {
   //   alert('exercise not iniciated')
   // };
-  await initExercise()
+  // await initExercise()
   event.preventDefault();
 
   let workoutData = {};
@@ -121,7 +121,7 @@ async function handleFormSubmit(event) {
   console.log(workoutData)
 
   await API.addExercise(workoutData);
-  // clearInputs();
+  // clearInputßs();
   toast.classList.add("success");
 }
 
@@ -148,7 +148,7 @@ if (workoutTypeSelect) {
 }
 if (completeButton) {
   completeButton.addEventListener("click", function (event) {
-    // shouldNavigateAway = true;
+    shouldNavigateAway = true;
     handleFormSubmit(event);
   });
 }
