@@ -27,6 +27,7 @@ const API = {
     return json;
   },
   async createWorkout(data = {}) {
+    console.log('in createWorkout')
     const res = await fetch("/api/workouts", {
       method: "POST",
       body: JSON.stringify(data),
@@ -34,7 +35,7 @@ const API = {
     });
 
     const json = await res.json();
-    console.log(json);
+    console.log('create workout', json);
 
     return json;
   },
