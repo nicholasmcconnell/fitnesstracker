@@ -1,4 +1,6 @@
 // get all workout data from back-end
+const API = require('./utils/api');
+const utilFunctions = require('./utils/utilFunctions');
 
 fetch("/api/workouts/range")
   .then(response => {
@@ -210,7 +212,7 @@ function duration(data) {
 
 function calculateTotalWeight(data) {
   let totalsArr = new Array(7).fill(0);
-  let dateArr = formatDate();
+  let dateArr = utilFunctions.formatDate();
   let durations = {}
 
   data.forEach(workout => {

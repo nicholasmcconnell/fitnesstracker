@@ -1,3 +1,5 @@
+import API from './utils/api';
+
 init();
 
 async function init() {
