@@ -1,4 +1,4 @@
-import API from './utils/api.js';
+import API from './utils/API.js';
 
 async function initWorkout() {
   const lastWorkout = await API.getLastWorkout();

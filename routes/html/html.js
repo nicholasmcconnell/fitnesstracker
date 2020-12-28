@@ -1,5 +1,7 @@
 var path = require("path");
 
+console.log('in html routes file thing duh')
+
 module.exports = function(router) {
 
     router.get("/stats", (req, res) => {
@@ -7,7 +9,8 @@ module.exports = function(router) {
     });
     
     router.get("/", (req, res) => {
-        res.sendFile(path.join(__dirname, "../public/index.html"));
+        console.log('route hitsdfadsfd')
+        res.sendFile(path.join(__dirname, "../"));
     });
     
     router.get("/exercise", (req, res) => {
