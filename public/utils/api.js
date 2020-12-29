@@ -15,16 +15,16 @@ export default {
   addExercise: async function(data) {
     console.log('in addExercise api')
     const id = location.search.split("=")[1];
-    // console.log('id', id)
+    console.log('data', JSON.stringify(data))
 
     const res = await fetch("/api/workouts/" + id, {
       method: "PUT",
+      body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
     });
 
     const json = await res.json();
-    console.log(json)
+    // console.log(json)
 
     return json;
   },

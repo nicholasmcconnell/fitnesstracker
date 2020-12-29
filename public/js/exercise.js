@@ -22,15 +22,17 @@ let workoutType = null;
 let shouldNavigateAway = false;
 
 async function initExercise() {
-  let workout = workout = await API.createWorkout();
-  console.log('workout', workout)
+  let workout;
+  // console.log('workout', workout)
 
 
-  // if (location.search.split("=")[1] === undefined) {
-  // workout = await API.createWorkout()
-  // }
+  if (location.search.split("=")[1] === undefined) {
+    workout = await API.createWorkout();
+  }
+
   if (workout) {
     location.search = "?id=" + workout._id;
+    return;
   }
 
 }

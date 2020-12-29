@@ -3,13 +3,15 @@ const db = require('../models');
 console.log('in workout controller')
 module.exports = {
     updateOne: function (req, res) {
+        console.log('s', req.params)
         // app.put("/api/workouts/:id", ({ body, params }, res) => {
             db.Workout
                 .updateOne(
-                    { _id: params.id },
-                    { $push: { exercises: body } }
+                    { _id: req.params.id },
+                    { $push: { exercises: req.body } }
                 )
                 .then(workout => {
+                    console.log('workout', res.json(workout))
                     res.json(workout);
                 })
                 .catch(err => {
