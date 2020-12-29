@@ -2,10 +2,17 @@
 
 const router = require('express').Router();
 const workoutController = require('../../controllers/workoutController');
+const { find } = require('../../models/Workout');
 
 router.route('/')
-    .put(workoutController.updateOne)
     .get(workoutController.findAll)
+    .post(workoutController.create)
+
+router.route('/:id')
+    .put(workoutController.updateOne)
+
+router.route('/range')
+    .get(workoutController.find)
 
 console.log('in workout.js')
 
