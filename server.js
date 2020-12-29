@@ -19,6 +19,7 @@ app.use(cors());
 
 app.use(express.static("./public"));
 
+require("./routes/html")(app);
 app.use(routes);
 
 mongoose.connect((process.env.MONGODB_URI || "mongodb://localhost/fitnesstracker"), {

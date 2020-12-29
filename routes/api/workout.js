@@ -1,8 +1,8 @@
 // const workout = require("../../models/Workout");
+// const { find } = require('../../models/Workout');
 
 const router = require('express').Router();
 const workoutController = require('../../controllers/workoutController');
-const { find } = require('../../models/Workout');
 
 router.route('/')
     .get(workoutController.findAll)

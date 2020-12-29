@@ -16,17 +16,19 @@ const toast = document.querySelector("#toast");
 const newWorkout = document.querySelector(".new-workout");
 
 import API from './utils/API.js';
-
+console.log(' in exercise.js')
 
 let workoutType = null;
 let shouldNavigateAway = false;
 
 async function initExercise() {
-  let workout;
+  let workout = workout = await API.createWorkout();
+  console.log('workout', workout)
 
-  if (location.search.split("=")[1] === undefined) {
-    workout = await API.createWorkout()
-  }
+
+  // if (location.search.split("=")[1] === undefined) {
+  // workout = await API.createWorkout()
+  // }
   if (workout) {
     location.search = "?id=" + workout._id;
   }
