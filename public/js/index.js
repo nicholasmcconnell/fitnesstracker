@@ -1,4 +1,4 @@
-import API from './utils/API.js';
+import API from '../utils/API.js';
 
 init();
 

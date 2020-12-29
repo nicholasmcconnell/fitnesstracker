@@ -1,6 +1,6 @@
 // get all workout data from back-end
-const API = require('./utils/api');
-const utilFunctions = require('./utils/utilFunctions');
+const API = require('../utils/api');
+const utilFunctions = require('../utils/utilFunctions');
 
 fetch("/api/workouts/range")
   .then(response => {
