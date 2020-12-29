@@ -1,9 +1,21 @@
-const workout = require("../../models/Workout");
+// const workout = require("../../models/Workout");
+
+const router = require('express').Router();
+const workoutController = require('../../controllers/workoutController');
+
+router.route('/')
+    .put(workoutController.updateOne)
+    .get(workoutController.findAll)
 
 console.log('in workout.js')
 
+module.exports = router;
 
-module.exports = function (app) {
+
+
+
+
+// module.exports = function (app) {
 
     // app.put("/api/workouts/:id", ({ body, params }, res) => {
     //     workout.updateOne(
@@ -19,17 +31,17 @@ module.exports = function (app) {
     //         });
     // });
 
-    app.get("/workouts", (req, res) => {
-        console.log('inworkout.js hi')
-        workout.find({})
-            .then(dbWorkout => {
-                console.log("workout " + dbWorkout);
-                res.json(dbWorkout);
-            })
-            .catch(err => {
-                res.json(err);
-            });
-    });
+    // app.get("/", (req, res) => {
+    //     console.log('inworkout.js hi')
+    //     workout.find({})
+    //         .then(dbWorkout => {
+    //             console.log("workout " + dbWorkout);
+    //             res.json(dbWorkout);
+    //         })
+    //         .catch(err => {
+    //             res.json(err);
+    //         });
+    // });
 
     // app.post("/api/workouts", (req, res) => {
     //     workout.create({})
@@ -51,4 +63,4 @@ module.exports = function (app) {
     //             res.json(err);
     //         });
     // })
-}
+// }

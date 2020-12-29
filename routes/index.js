@@ -1,7 +1,7 @@
 const path = require('path');
-const router = require('express').Router();
+const router = require("express").Router();
 const apiRoutes = require('./api');
-const htmlRoutes = require('./html');
+// const htmlRoutes = require('./html');
 
 console.log('in index.js of routes')
 
