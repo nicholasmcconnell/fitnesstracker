@@ -1,14 +1,13 @@
 // get all workout data from back-end
-console.log('in stats.js')
+// console.log(API)
 
 // import API from '../utils/api';
 // const utilFunctions = require('../utils/utilFunctions');
 // import utilFunctions from '../utils/utilFunctions';
 
-fetch("/api/workouts/range")
+API.getWorkoutsInRange()
   .then(response => {
-    console.log(response);
-    return response.json();
+    return response;
   })
   .then(data => {
     console.log(data)
@@ -16,7 +15,10 @@ fetch("/api/workouts/range")
   });
 
 
-console.log(API.getWorkoutsInRange());
+// console.log(API.getWorkoutsInRange()
+// .then(res => {
+//   console.log(res)
+// }));
 
 function generatePalette() {
   const arr = [

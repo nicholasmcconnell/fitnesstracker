@@ -38,6 +38,7 @@ module.exports = {
     },
 
     findRange: function (req, res) {
+        console.log('constorller range')
         // app.get("/api/workouts/range", (req, res) => {
         db.Workout.find({})
             .then(dbWorkout => {

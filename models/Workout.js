@@ -13,7 +13,7 @@ const Schema = mongoose.Schema;
 const workoutSchema = new Schema({
       date: {type: Date, default: () => new Date()},
       weekOf: {
-        // type: String, default: 
+        type: String, default: utilFunctions.formatDate
       },
       day: {
         type: String,
