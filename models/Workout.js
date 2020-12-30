@@ -1,5 +1,7 @@
 let mongoose = require("mongoose");
 let utilFunctions = require('../public/utils/utilFunctions')
+// import utilFunctions from ('../public/utils/utilFunctions')
+
 // let db = require("../models");
 // mongoose.connect("mongodb://localhost/workout", {
 //   useNewUrlParser: true,
