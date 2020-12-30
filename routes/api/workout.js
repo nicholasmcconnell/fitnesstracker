@@ -5,14 +5,14 @@ const router = require('express').Router();
 const workoutController = require('../../controllers/workoutController');
 
 router.route('/')
-    .get(workoutController.findAll)
-    .post(workoutController.create)
+    .get(workoutController.findAllWorkouts)
+    .post(workoutController.createWorkout)
 
 router.route('/:id')
-    .put(workoutController.updateOne)
+    .put(workoutController.updateOneWorkout)
 
 router.route('/range')
-    .get(workoutController.find)
+    .get(workoutController.findRange)
 
 console.log('in workout.js')
 

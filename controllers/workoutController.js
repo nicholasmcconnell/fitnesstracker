@@ -2,25 +2,7 @@ const db = require('../models');
 
 console.log('in workout controller')
 module.exports = {
-    updateOne: function (req, res) {
-        console.log('s', req.params)
-        // app.put("/api/workouts/:id", ({ body, params }, res) => {
-            db.Workout
-                .updateOne(
-                    { _id: req.params.id },
-                    { $push: { exercises: req.body } }
-                )
-                .then(workout => {
-                    console.log('workout', res.json(workout))
-                    res.json(workout);
-                })
-                .catch(err => {
-                    res.json(err);
-                });
-        // });
-    },
-
-    findAll: function (req, res) {
+    findAllWorkouts: function (req, res) {
         db.Workout
             .find({})
             .then(dbWorkout => {
@@ -30,8 +12,20 @@ module.exports = {
                 res.json(err);
             });
     },
-
-    create: function(req, res){
+    updateOneWorkout: function (req, res) {
+        db.Workout
+            .updateOne(
+                { _id: req.params.id },
+                { $push: { exercises: req.body } }
+            )
+            .then(workout => {
+                res.json(workout);
+            })
+            .catch(err => {
+                res.json(err);
+            });
+    },
+    createWorkout: function (req, res) {
         // app.post("/api/workouts", (req, res) => {
         db.Workout.create({})
             .then(dbWorkout => {
@@ -40,10 +34,10 @@ module.exports = {
             .catch(err => {
                 res.json(err);
             });
-    // });
+        // });
     },
 
-    find: function(req, res){
+    findRange: function (req, res) {
         // app.get("/api/workouts/range", (req, res) => {
         db.Workout.find({})
             .then(dbWorkout => {
@@ -52,7 +46,7 @@ module.exports = {
             .catch(err => {
                 res.json(err);
             });
-    // })
+        // })
     }
 }
 

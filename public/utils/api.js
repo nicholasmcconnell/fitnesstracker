@@ -24,7 +24,6 @@ export default {
     });
 
     const json = await res.json();
-    // console.log(json)
 
     return json;
   },
@@ -45,6 +44,7 @@ export default {
   getWorkoutsInRange: async function() {
     const res = await fetch(`/api/workouts/range`);
     const json = await res.json();
+    console.log('in get range')
     console.log(json);
     return json;
   },
