@@ -1,8 +1,9 @@
 // get all workout data from back-end
 console.log('in stats.js')
 
-import API from '../utils/api';
-const utilFunctions = require('../utils/utilFunctions');
+// import API from '../utils/api';
+// const utilFunctions = require('../utils/utilFunctions');
+// import utilFunctions from '../utils/utilFunctions';
 
 fetch("/api/workouts/range")
   .then(response => {

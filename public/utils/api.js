@@ -1,5 +1,5 @@
 
-export default {
+const API =   {
   getLastWorkout: async function() {
     let res;
     try {

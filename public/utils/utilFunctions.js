@@ -1,4 +1,4 @@
-module.exports =  {
+const utilFunctions = {
   formatDate: function () {
     //shows only the dates for the current week
     let d = new Date();
@@ -14,3 +14,5 @@ module.exports =  {
     return datesArr;
   }
 };
+
+// module.exports = utilFunctions;
