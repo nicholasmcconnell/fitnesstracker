@@ -1,5 +1,3 @@
-import API from '../utils/API.js';
-
 async function initWorkout() {
   const lastWorkout = await API.getLastWorkout();
   // console.log(lastWorkout.exercises[duration]);

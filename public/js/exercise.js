@@ -15,9 +15,6 @@ const addButton = document.querySelector("button.add-another");
 const toast = document.querySelector("#toast");
 const newWorkout = document.querySelector(".new-workout");
 
-import API from '../utils/API.js';
-console.log(' in exercise.js')
-
 let workoutType = null;
 let shouldNavigateAway = false;
 

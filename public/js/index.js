@@ -1,5 +1,3 @@
-import API from '../utils/API.js';
-
 init();
 
 async function init() {
