@@ -13,14 +13,13 @@ module.exports = {
             });
     },
     updateOneWorkout: function (req, res) {
-        console.log('req.body'. req)
         db.Workout
             .updateOne(
                 { _id: req.params.id },
                 { $push: { exercises: req.body } }
             )
             .then(workout => {
-                res.json(workout);
+                console.log(res.json(workout));
             })
             .catch(err => {
                 res.json(err);
@@ -28,6 +27,7 @@ module.exports = {
     },
     createWorkout: function (req, res) {
         // app.post("/api/workouts", (req, res) => {
+            console.log('in create')
         db.Workout.create({})
             .then(dbWorkout => {
                 res.json(dbWorkout);

@@ -16,33 +16,86 @@ const addButton = document.querySelector("button.add-another");
 const toast = document.querySelector("#toast");
 const newWorkout = document.querySelector(".new-workout");
 
+//Make Control initialization Function
+const control = async () => {
+
+  console.log(lastWorkout);
+  // if (lastWorkout.weekOf !== weekOf) {
+  //   console.log('in log')
+  //   initExercise();
+  // }
+
+
+}
+
+// control();
+
 console.log('in exercise.js')
 let workoutType = null;
 let shouldNavigateAway = false;
 
 async function initExercise() {
-  let workout;
+
   // 1. create new workout if weekOf of last workout doesnot not !== current week of
-    // - current week of is [0] of utilFunction.FormateDate
+  // - current week of is [0] of utilFunction.FormateDate
   // 2. else call get last work out and use that as id
+  let workout;
+  let lastWorkout = undefined;
+  // const lastWorkout = await API.getLastWorkout();
+  const weekOf = await utilFunctions.formatDate()[0];
+  //
+  // console.log(lastWorkout._id, weekOf, lastWorkout)
 
-  console.log(utilFunctions.formatDate()[0]);
 
-
-
-  // if (location.search.split("=")[1] === undefined) {
-  //   workout = await API.createWorkout();
-  //   console.log(workout)
-  // }
-
-  // if (workout) {
+  // if (lastWorkout.weekOf !== weekOf) {
+  //   workout = 
   //   location.search = "?id=" + workout._id;
-  //   return;
+  // } 
+
+  // if (lastWorkout.weekOf === weekOf) {
+  //   console.log(lastWorkout._id)
+  //   location.search = "?id=" + lastWorkout._id;
+  //   // return;
   // }
+  if (!lastWorkout) {
+    console.log('1', window.location.search.split("=")[1])
+      workout = await API.createWorkout();
+      console.log('1111111111111')
+    // if (window.location.search.split("=")[1] === undefined) {
+    // }
+    console.log(workout)
+    if (workout) {
+      console.log('in if workout')
+      // window.location.search = "?id=" + workout._id;
+      var myURL = window.location.href; 
+      console.log(myURL)      
+      // window.location.href = myURL + "id=" + workout._id;
+      return;
+    }
+    return;
+  } else if (lastWorkout.weekOf === weekOf) {
+    console.log('2')
+
+    location.search = "?id=" + lastWorkout._id;
+
+  } else if (lastWorkout.weekOf !== weekOf) {
+    console.log('3')
+
+    workout = await API.createWorkout();
+
+    if (workout) {
+      location.search = "?id=" + workout._id;
+      return;
+    }
+
+  }
 
 }
+// if (lastWorkout.weekOf !== weekOf) {
+//   initExercise();
+// }
+initExercise();
 
-initExercise()
 function handleWorkoutTypeChange(event) {
   workoutType = event.target.value;
 

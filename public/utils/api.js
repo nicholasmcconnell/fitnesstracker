@@ -1,21 +1,25 @@
 
-const API =   {
-  getLastWorkout: async function() {
+const API = {
+  getLastWorkout: async function () {
     let res;
     try {
       res = await fetch("/api/workouts");
-      console.log('fetch res', res)
+      // if (!res){
+      //   return
+      // }
     } catch (err) {
       console.log(err)
     }
     const json = await res.json();
+    // console.log(json[json.length - 1])
 
-    return json[json.length - 1];
+    if(!json){
+      console.log('hi')
+    }
+    // return json[json.length - 1];
   },
-  addExercise: async function(data) {
-    console.log('in addExercise api', data)
+  addExercise: async function (data) {
     const id = location.search.split("=")[1];
-    console.log('data', JSON.stringify(data))
 
     const res = await fetch("/api/workouts/" + id, {
       method: "PUT",
@@ -27,7 +31,7 @@ const API =   {
 
     return json;
   },
-  createWorkout: async function(data = {}) {
+  createWorkout: async function (data = {}) {
     const res = await fetch("/api/workouts", {
       method: "POST",
       body: JSON.stringify(data),
@@ -35,12 +39,11 @@ const API =   {
     });
 
     const json = await res.json();
-    console.log('create workout', json);
-
+    console.log(json)
     return json;
   },
 
-  getWorkoutsInRange: async function() {
+  getWorkoutsInRange: async function () {
     console.log('in api.js range')
     const res = await fetch(`/api/workouts/range`);
     const json = await res.json();

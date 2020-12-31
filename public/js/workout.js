@@ -1,7 +1,8 @@
 ///////////// THIS FILE IS FOR DISPLAYING LAST WORKOUT SUMMARY ON INDEX.JS////////////
 console.log('in workout.js')
 async function initWorkout() {
-  const lastWorkout = await API.getLastWorkout();
+  const lastWorkout = 0;
+  // = await API.getLastWorkout();
   console.log(lastWorkout);
   if (lastWorkout) {
     document

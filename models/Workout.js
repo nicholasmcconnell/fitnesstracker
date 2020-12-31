@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const utilFunctions = require('./modelFunctions');
+const utilFunctions = require('./modelUtils/modelFunctions.js');
 // import utilFunctions from ('../public/utils/utilFunctions')
 
 // let db = require("../models");
