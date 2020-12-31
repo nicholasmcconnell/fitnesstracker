@@ -1,5 +1,5 @@
-let mongoose = require("mongoose");
-let utilFunctions = require('../public/utils/utilFunctions')
+const mongoose = require("mongoose");
+const utilFunctions = require('./modelFunctions');
 // import utilFunctions from ('../public/utils/utilFunctions')
 
 // let db = require("../models");
@@ -13,7 +13,7 @@ const Schema = mongoose.Schema;
 const workoutSchema = new Schema({
       date: {type: Date, default: () => new Date()},
       weekOf: {
-        type: String, default: utilFunctions.formatDate
+        type: String, default: utilFunctions.formatDate()[0],
       },
       day: {
         type: String,

@@ -13,7 +13,7 @@ const API =   {
     return json[json.length - 1];
   },
   addExercise: async function(data) {
-    console.log('in addExercise api')
+    console.log('in addExercise api', data)
     const id = location.search.split("=")[1];
     console.log('data', JSON.stringify(data))
 

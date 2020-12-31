@@ -1,3 +1,4 @@
+////////////THIS FILE IS FOR ADDING NEW EXERCISES TO DATABASE/////////////////
 
 const workoutTypeSelect = document.querySelector("#type");
 const cardioForm = document.querySelector(".cardio-form");
@@ -15,22 +16,29 @@ const addButton = document.querySelector("button.add-another");
 const toast = document.querySelector("#toast");
 const newWorkout = document.querySelector(".new-workout");
 
+console.log('in exercise.js')
 let workoutType = null;
 let shouldNavigateAway = false;
 
 async function initExercise() {
   let workout;
-  // console.log('workout', workout)
+  // 1. create new workout if weekOf of last workout doesnot not !== current week of
+    // - current week of is [0] of utilFunction.FormateDate
+  // 2. else call get last work out and use that as id
+
+  console.log(utilFunctions.formatDate()[0]);
 
 
-  if (location.search.split("=")[1] === undefined) {
-    workout = await API.createWorkout();
-  }
 
-  if (workout) {
-    location.search = "?id=" + workout._id;
-    return;
-  }
+  // if (location.search.split("=")[1] === undefined) {
+  //   workout = await API.createWorkout();
+  //   console.log(workout)
+  // }
+
+  // if (workout) {
+  //   location.search = "?id=" + workout._id;
+  //   return;
+  // }
 
 }
 

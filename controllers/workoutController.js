@@ -13,6 +13,7 @@ module.exports = {
             });
     },
     updateOneWorkout: function (req, res) {
+        console.log('req.body'. req)
         db.Workout
             .updateOne(
                 { _id: req.params.id },

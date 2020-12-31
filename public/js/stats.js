@@ -1,9 +1,4 @@
 // get all workout data from back-end
-// console.log(API)
-
-// import API from '../utils/api';
-// const utilFunctions = require('../utils/utilFunctions');
-// import utilFunctions from '../utils/utilFunctions';
 
 API.getWorkoutsInRange()
   .then(response => {
@@ -13,12 +8,6 @@ API.getWorkoutsInRange()
     console.log(data)
     populateChart(data);
   });
-
-
-// console.log(API.getWorkoutsInRange()
-// .then(res => {
-//   console.log(res)
-// }));
 
 function generatePalette() {
   const arr = [
