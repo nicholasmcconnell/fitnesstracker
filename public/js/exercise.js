@@ -22,22 +22,25 @@ let shouldNavigateAway = false;
 
 async function initExercise() {
   let lastWorkout = await API.getLastWorkout();
-  let weekOf = utilFunctions.formatDate()[0];
-  console.log(lastWorkout)
+  let weekOf = '12/28/20'
+  // utilFunctions.formatDate()[0];
+  // console.log(lastWorkout.weekOf)
   console.log('in init of exercise.js')
-
+  console.log(window.location)
+  // needs to be coded so weekOf and lastWorkout are combared to create work out
   ////ORIGINAL CODE -> IT WORKS/////
-  if (lastWorkout === undefined) {
+  if (lastWorkout === undefined || (lastWorkout.weekOf !== weekOf)) {
     console.log('in init of exercise.js if')
 
     let workout;
 
-    if (location.search.split("=")[1] === undefined) {
-      console.log('in init exercise.js')
-      workout = await API.createWorkout()
-    }
+    // if (location.search.split("=")[1] === undefined) {
+    console.log('in init exercise.js')
+    workout = await API.createWorkout()
+    // }
     if (workout) {
-      location.search = "?id=" + workout._id;
+      window.history.pushState('page2', 'Title', '?id=' + workout._id);
+      // window.location.search = "?id=" + workout._id;
     }
   }
   //////////////////////////////////////
