@@ -16,34 +16,31 @@ const addButton = document.querySelector("button.add-another");
 const toast = document.querySelector("#toast");
 const newWorkout = document.querySelector(".new-workout");
 
-//Make Control initialization Function
-const control = async () => {
-
-  console.log(lastWorkout);
-  // if (lastWorkout.weekOf !== weekOf) {
-  //   console.log('in log')
-  //   initExercise();
-  // }
-
-
-}
-
-// control();
-
 console.log('in exercise.js')
 let workoutType = null;
 let shouldNavigateAway = false;
 
 async function initExercise() {
-  ////ORIGINAL CODE -> IT WORKS/////
-  let workout;
+  let lastWorkout = await API.getLastWorkout();
+  let weekOf = utilFunctions.formatDate()[0];
+  console.log(lastWorkout)
+  console.log('in init of exercise.js')
 
-  if (location.search.split("=")[1] === undefined) {
-    workout = await API.createWorkout()
+  ////ORIGINAL CODE -> IT WORKS/////
+  if (lastWorkout === undefined) {
+    console.log('in init of exercise.js if')
+
+    let workout;
+
+    if (location.search.split("=")[1] === undefined) {
+      console.log('in init exercise.js')
+      workout = await API.createWorkout()
+    }
+    if (workout) {
+      location.search = "?id=" + workout._id;
+    }
   }
-  if (workout) {
-    location.search = "?id=" + workout._id;
-  }
+  //////////////////////////////////////
 
   // 1. create new workout if weekOf of last workout doesnot not !== current week of
   // - current week of is [0] of utilFunction.FormateDate
@@ -68,8 +65,8 @@ async function initExercise() {
   //   console.log('1', window.location.search.split("=")[1])
   //     workout = await API.createWorkout();
   //     console.log('1111111111111')
-    // if (window.location.search.split("=")[1] === undefined) {
-    // }
+  // if (window.location.search.split("=")[1] === undefined) {
+  // }
   //   console.log(workout)
   //   if (workout) {
   //     console.log('in if workout')

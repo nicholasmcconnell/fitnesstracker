@@ -2,8 +2,9 @@
 console.log('in workout.js')
 async function initWorkout() {
   const lastWorkout = await API.getLastWorkout();
-  console.log(lastWorkout);
+  // console.log(lastWorkout._id);
   if (lastWorkout) {
+    console.log('if of workout.js')
     document
       .querySelector("a[href='/exercise?']")
       .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
