@@ -35,16 +35,23 @@ let workoutType = null;
 let shouldNavigateAway = false;
 
 async function initExercise() {
+  ////ORIGINAL CODE -> IT WORKS/////
+  let workout;
+
+  if (location.search.split("=")[1] === undefined) {
+    workout = await API.createWorkout()
+  }
+  if (workout) {
+    location.search = "?id=" + workout._id;
+  }
 
   // 1. create new workout if weekOf of last workout doesnot not !== current week of
   // - current week of is [0] of utilFunction.FormateDate
   // 2. else call get last work out and use that as id
-  let workout;
-  let lastWorkout = undefined;
+  // let workout;
+  // let lastWorkout = undefined;
   // const lastWorkout = await API.getLastWorkout();
-  const weekOf = await utilFunctions.formatDate()[0];
-  //
-  // console.log(lastWorkout._id, weekOf, lastWorkout)
+  // const weekOf = await utilFunctions.formatDate()[0];
 
 
   // if (lastWorkout.weekOf !== weekOf) {
@@ -57,38 +64,38 @@ async function initExercise() {
   //   location.search = "?id=" + lastWorkout._id;
   //   // return;
   // }
-  if (!lastWorkout) {
-    console.log('1', window.location.search.split("=")[1])
-      workout = await API.createWorkout();
-      console.log('1111111111111')
+  // if (!lastWorkout) {
+  //   console.log('1', window.location.search.split("=")[1])
+  //     workout = await API.createWorkout();
+  //     console.log('1111111111111')
     // if (window.location.search.split("=")[1] === undefined) {
     // }
-    console.log(workout)
-    if (workout) {
-      console.log('in if workout')
-      // window.location.search = "?id=" + workout._id;
-      var myURL = window.location.href; 
-      console.log(myURL)      
-      // window.location.href = myURL + "id=" + workout._id;
-      return;
-    }
-    return;
-  } else if (lastWorkout.weekOf === weekOf) {
-    console.log('2')
+  //   console.log(workout)
+  //   if (workout) {
+  //     console.log('in if workout')
+  //     window.location.search = "?id=" + workout._id;
+  //     var myURL = window.location.href; 
+  //     console.log(myURL)      
+  //     // window.location.href = myURL + "id=" + workout._id;
+  //     return;
+  //   }
+  //   return;
+  // } else if (lastWorkout.weekOf === weekOf) {
+  //   console.log('2')
 
-    location.search = "?id=" + lastWorkout._id;
+  //   location.search = "?id=" + lastWorkout._id;
 
-  } else if (lastWorkout.weekOf !== weekOf) {
-    console.log('3')
+  // } else if (lastWorkout.weekOf !== weekOf) {
+  //   console.log('3')
 
-    workout = await API.createWorkout();
+  //   workout = await API.createWorkout();
 
-    if (workout) {
-      location.search = "?id=" + workout._id;
-      return;
-    }
+  //   if (workout) {
+  //     location.search = "?id=" + workout._id;
+  //     return;
+  //   }
 
-  }
+  // }
 
 }
 // if (lastWorkout.weekOf !== weekOf) {
