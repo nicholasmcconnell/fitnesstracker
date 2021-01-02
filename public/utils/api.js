@@ -12,9 +12,6 @@ const API = {
     const json = await res.json();
     console.log(json[json.length-1])
 
-    // if (!(json[json.length - 1].exercises)) {
-    //   return [];
-    // }
     return json[json.length - 1];
   },
   addExercise: async function (data) {
