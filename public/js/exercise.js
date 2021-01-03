@@ -24,10 +24,7 @@ async function initExercise() {
   let lastWorkout = await API.getLastWorkout();
   let weekOf = utilFunctions.formatDate()[0];
 
-  console.log(lastWorkout)
-
   if (lastWorkout === undefined || (lastWorkout.weekOf !== weekOf)) {
-    console.log('in init of exercise.js if')
 
     let workout = await API.createWorkout()
     if (workout) {
@@ -36,8 +33,6 @@ async function initExercise() {
   } else {
     window.history.pushState('exercise.html', '', '?id=' + lastWorkout._id);
   }
- 
-
 }
 
 initExercise();

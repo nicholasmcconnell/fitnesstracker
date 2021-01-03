@@ -2,7 +2,7 @@
 console.log('in workout.js')
 async function initWorkout() {
   const lastWorkout = await API.getLastWorkout();
-  console.log(lastWorkout.exercises)
+
   if (!lastWorkout || !lastWorkout.exercises.length) {
     renderNoWorkoutText()
   } else if (lastWorkout.exercises.length) {
