@@ -1,3 +1,4 @@
+////////////THIS FILE IS FOR ADDING NEW EXERCISES TO DATABASE/////////////////
 
 const workoutTypeSelect = document.querySelector("#type");
 const cardioForm = document.querySelector(".cardio-form");
@@ -15,19 +16,23 @@ const addButton = document.querySelector("button.add-another");
 const toast = document.querySelector("#toast");
 const newWorkout = document.querySelector(".new-workout");
 
+console.log('in exercise.js')
 let workoutType = null;
 let shouldNavigateAway = false;
 
 async function initExercise() {
-  let workout;
+  let lastWorkout = await API.getLastWorkout();
+  let weekOf = utilFunctions.formatDate()[0];
 
-  if (location.search.split("=")[1] === undefined) {
-    workout = await API.createWorkout()
-  }
-  if (workout) {
-    location.search = "?id=" + workout._id;
-  }
+  if (lastWorkout === undefined || (lastWorkout.weekOf !== weekOf)) {
 
+    let workout = await API.createWorkout()
+    if (workout) {
+      window.history.pushState('exercise.html', '', '?id=' + workout._id);
+    }
+  } else {
+    window.history.pushState('exercise.html', '', '?id=' + lastWorkout._id);
+  }
 }
 
 initExercise();
@@ -45,8 +50,6 @@ function handleWorkoutTypeChange(event) {
     cardioForm.classList.add("d-none");
     resistanceForm.classList.add("d-none");
   }
-
-  validateInputs();
 }
 
 function validateInputs() {
@@ -88,15 +91,22 @@ function validateInputs() {
 
   if (isValid) {
     completeButton.removeAttribute("disabled");
-    addButton.removeAttribute("disabled");
+    // addButton.removeAttribute("disabled");
+    return true;
   } else {
     completeButton.setAttribute("disabled", true);
-    addButton.setAttribute("disabled", true);
+    // addButton.setAttribute("disabled", true);
+    return false;
     //through error toast here
   }
 }
 
 async function handleFormSubmit(event) {
+  // if (validateInputs()) {
+  // } else {
+  //   alert('exercise not iniciated')
+  // };
+  // await initExercise()
   event.preventDefault();
 
   let workoutData = {};
@@ -114,9 +124,10 @@ async function handleFormSubmit(event) {
     workoutData.reps = Number(repsInput.value.trim());
     workoutData.duration = Number(resistanceDurationInput.value.trim());
   }
+  console.log(workoutData)
 
   await API.addExercise(workoutData);
-  clearInputs();
+  // clearInputßs();
   toast.classList.add("success");
 }
 
@@ -143,13 +154,14 @@ if (workoutTypeSelect) {
 }
 if (completeButton) {
   completeButton.addEventListener("click", function (event) {
-    shouldNavigateAway = true;
+    // shouldNavigateAway = true;
     handleFormSubmit(event);
   });
 }
-if (addButton) {
-  addButton.addEventListener("click", handleFormSubmit);
-}
+// if (addButton) {
+
+//   addButton.addEventListener("click", handleFormSubmit);
+// }
 toast.addEventListener("animationend", handleToastAnimationEnd);
 
 //this isn't doing anything really, it runs when page loads and that's about it - doesn't validate form on submit and then empty forms are being submitted

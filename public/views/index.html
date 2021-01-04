@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style/style.css" />
   <title>Fitness Tracker</title>
 </head>
 
@@ -26,8 +26,8 @@
           <div>
             <div class="workout-stats"></div>
             <div class="buttons">
-              <a id="continue-btn" href="/exercise?" class="huge ui blue button">Continue Workout</a>
-              <a href="/exercise" class="huge positive ui button">New Workout</a>
+              <!-- <a id="continue-btn" href="/exercise?" class="huge ui blue button">Continue Workout</a> -->
+              <a href="/exercise?" class="huge positive ui button">New Workout</a>
             </div>
           </div>
         </div>
@@ -41,9 +41,10 @@
   <div id="toast">
     Workout Added Successfully!
   </div>
-  <script src="/api.js"></script>
-  <script src="/workout.js"></script>
-  <script src="/index.js"></script>
+  <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+  <script src="/utils/api.js"></script>
+  <script src="/js/index.js"></script>
+  <script src="/js/workout.js"></script>
 </body>
 
 </html>

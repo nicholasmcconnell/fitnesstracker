@@ -1,4 +1,7 @@
-let mongoose = require("mongoose");
+const mongoose = require("mongoose");
+const utilFunctions = require('./modelUtils/modelFunctions.js');
+// import utilFunctions from ('../public/utils/utilFunctions')
+
 // let db = require("../models");
 // mongoose.connect("mongodb://localhost/workout", {
 //   useNewUrlParser: true,
@@ -9,11 +12,13 @@ const d = new Date();
 const Schema = mongoose.Schema;
 const workoutSchema = new Schema({
       date: {type: Date, default: () => new Date()},
-      dayNumber: {
-        type: Number, default: new Date().getDay()
+      weekOf: {
+        type: String, default: utilFunctions.formatDate()[0],
       },
       day: {
         type: String,
+        // default: `12/29/2020`
+
         default: `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
       },
       exercises: [{

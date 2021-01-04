@@ -1,15 +1,13 @@
 // get all workout data from back-end
 
-fetch("/api/workouts/range")
+API.getWorkoutsInRange()
   .then(response => {
-    return response.json();
+    return response;
   })
   .then(data => {
+    console.log(data)
     populateChart(data);
   });
-
-
-// API.getWorkoutsInRange()
 
 function generatePalette() {
   const arr = [
@@ -210,7 +208,7 @@ function duration(data) {
 
 function calculateTotalWeight(data) {
   let totalsArr = new Array(7).fill(0);
-  let dateArr = formatDate();
+  let dateArr = utilFunctions.formatDate();
   let durations = {}
 
   data.forEach(workout => {

@@ -1,13 +1,17 @@
+///////////// THIS FILE IS FOR DISPLAYING LAST WORKOUT SUMMARY ON INDEX.JS////////////
+console.log('in workout.js')
 async function initWorkout() {
   const lastWorkout = await API.getLastWorkout();
-  // console.log(lastWorkout.exercises[duration]);
-  if (lastWorkout) {
+
+  if (!lastWorkout || !lastWorkout.exercises.length) {
+    renderNoWorkoutText()
+  } else if (lastWorkout.exercises.length) {
+    console.log('if of workout.js')
     document
       .querySelector("a[href='/exercise?']")
       .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
 
-    const lastWorkoutSpecs = lastWorkout.exercises[lastWorkout.exercises.length - 1];
-    console.log(lastWorkoutSpecs)
+    const lastWorkoutSpecs = lastWorkout.exercises[lastWorkout.exercises.length-1];
     // date, name, type, reps, sets, weight  type, duration
     const workoutSummary = {
       sharedStats: {
@@ -23,9 +27,7 @@ async function initWorkout() {
     }
 
     renderWorkoutSummary(workoutSummary);
-  } else {
-    renderNoWorkoutText()
-  }
+  } 
 }
 
 function tallyExercises(exercises) {
@@ -57,7 +59,7 @@ function tallyExercises(exercises) {
           break;
         case 'duration':
           acc.totalDuration = (acc.totalDuration || 0) + curr[1];
-          break;      
+          break;
         default:
           break;
       }

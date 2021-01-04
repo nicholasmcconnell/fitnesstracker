@@ -7,14 +7,21 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server",
     "server": "nodemon server.js",
-    "seed": "node seeders/seed.js"
+    "seed": "node seeders/seed.js",
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
+    "browserify": "^17.0.0",
+    "cors": "^2.8.5",
     "express": "^4.16.3",
+    "moment": "^2.29.1",
     "mongoose": "^5.3.16",
     "morgan": "^1.9.1",
     "nodemon": "^2.0.6"
-  }
+  },
+  "devDependencies": {}
 }
