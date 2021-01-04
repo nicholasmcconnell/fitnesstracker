@@ -14,15 +14,16 @@ async function initWorkout() {
     const lastWorkoutSpecs = lastWorkoutWeek.exercises[lastWorkoutWeek.exercises.length - 1];
     console.log(lastWorkoutSpecs)
     // const workoutSummary = {};
+
+    // const weekOfStats
     switch (lastWorkoutSpecs.type) {
       case 'Cardio':
         workoutSummary = {
-          dayOfStats: {
+          dayOfStatsCardio: {
             date: lastWorkoutSpecs.dayOf,
             name: lastWorkoutSpecs.name,
             type: lastWorkoutSpecs.type,
             duration: lastWorkoutSpecs.duration,
-            // numExercises: lastWorkoutWeek.exercises.length,
           },
           weekOfStats: {
             ...tallyExercises(lastWorkoutWeek.exercises)
@@ -31,7 +32,7 @@ async function initWorkout() {
         break;
       case 'Resistance':
         workoutSummary = {
-          dayOfStats: {
+          dayOfStatsResistance: {
             date: lastWorkoutSpecs.dayOf,
             name: lastWorkoutSpecs.name,
             type: lastWorkoutSpecs.type,
@@ -48,55 +49,17 @@ async function initWorkout() {
       default:
         break;
     }
-    // const workoutSummary = lastWorkoutSpecs.type === 'Cardio' ? {
-    //   dayOfStats: {
-    //     date: lastWorkoutSpecs.dayOf,
-    //     name: lastWorkoutSpecs.name,
-    //     type: lastWorkoutSpecs.type,
-    //     duration: lastWorkoutSpecs.duration,
-    //     // numExercises: lastWorkoutWeek.exercises.length,
-    //   },
-    //   weekOfStats: {
-    //     ...tallyExercises(lastWorkoutWeek)
-    //   }
-    // } :
-    //   {
-    //     dayOfStats: {
-    //       date: lastWorkoutSpecs.dayOf,
-    //       name: lastWorkoutSpecs.name,
-    //       type: lastWorkoutSpecs.type,
-    //       reps: lastWorkoutSpecs.reps,
-    //       sets: lastWorkoutSpecs.sets,
-    //       weight: lastWorkoutSpecs.weight,
-    //       duration: lastWorkoutSpecs.duration,
-    //     },
-    //     weekOfStats: {
-    //       ...tallyExercises(lastWorkoutWeek)
-    //     }
-    //   }
 
     renderWorkoutSummary(workoutSummary);
   }
 }
 
 function tallyExercises(exercises) {
-  //display weekOf Date
-  // tally exercises performd, distance, weight, duration
-  // loop over array of objects push and add values in hashmap
-  // if value is number and !key => hash[key] = value
-  //if value is number and key exixts => hash[key] =+ value
-  // return hashmap
-
-  //reps = sets * reps
-
-
-  console.log(exercises)
 
   const tallied = {};
 
   for (const [key, value] of Object.entries(exercises)) {
     for (const [k, v] of Object.entries(value)) {
-      // console.log(typeof v, v)
       if (typeof v === 'number' && !tallied[k]) {
         tallied[k] = v;
       } else if (typeof v === 'number' && tallied[k]) {
@@ -105,41 +68,6 @@ function tallyExercises(exercises) {
     }
   }
   return tallied;
-  // const tallied = Object.entries(exercises).reduce((acc, curr) => {
-  //   if (exercises.type === "Resistance" && typeof curr[1] === 'number') {
-
-  //     switch (curr[0]) {
-  //       case 'duration':
-  //         acc.totalDuration = (acc.totalDuration || 0) + curr[1];
-  //         break;
-  //       case 'weight':
-  //         acc.totalWeight = (acc.totalWeight || 0) + curr[1];
-  //         break;
-  //       case 'sets':
-  //         acc.totalSets = (acc.totalSets || 0) + curr[1];
-  //         break;
-  //       case 'reps':
-  //         acc.totalReps = (acc.totalReps || 0) + curr[1];
-  //         break;
-  //       default:
-  //         break;
-  //     }
-  //   } else if (exercises.type === "Cardio" && typeof curr[1] === 'number') {
-  //     switch (curr[0]) {
-  //       case 'distance':
-  //         acc.totalDistance = (acc.totalDistance || 0) + curr[1];
-  //         break;
-  //       case 'duration':
-  //         acc.totalDuration = (acc.totalDuration || 0) + curr[1];
-  //         break;
-  //       default:
-  //         break;
-  //     }
-  //   }
-  //   return acc;
-  // }, {});
-  // console.log(tallied)
-  // return tallied;
 }
 
 ///////////NOT BEING USED???///////////
@@ -155,54 +83,54 @@ function formatDate(date) {
 }
 
 function renderWorkoutSummary(summary) {
+  console.log(summary)
 
   const container = document.querySelector(".workout-stats");
 
-  switch (summary.dayOfStats.type) {
+  const { dayOfStatsCardio, dayOfStatsResistance, weekOfStats } = {
+    dayOfStatsCardio: {
+      date: "Date",
+      name: "Name",
+      type: "Type",
+      duration: "Duration",
+    },
+
+    dayOfStatsResistance: {
+      date: "Date",
+      name: "Name",
+      type: "Type",
+      reps: 'Reps',
+      sets: 'Sets',
+      weight: 'Weight',
+      duration: "Duration",
+    },
+
+    weekOfStats: {
+      distance: "Distance Covered",
+      duration: "Total Duration",
+      reps: "Reps Performed",
+      sets: "Sets Performed",
+      weight: "Weight Lifted",
+    }
+  }
+  console.log(summary[Object.keys(summary)[0]].type)
+  switch (summary[Object.keys(summary)[0]].type) {
     case 'Cardio':
       workoutKeyMap = {
-        dayOfStats: {
-          date: "Date",
-          name: "Name",
-          type: "Type",
-          duration: "Duration",
-
-        },
-
-        weekOfStats: {
-          totalDuration: "Total Duration",
-          totalDistance: "Distance Covered",
-          totalWeight: "Weight Lifted",
-          totalSets: "Sets Performed",
-          totalReps: "Reps Performed",
-        }
+        dayOfStatsCardio: dayOfStatsCardio,
+        weekOfStats: weekOfStats
       }
       break;
     case 'Resistance':
       workoutKeyMap = {
-        dayOfStats: {
-          date: "Date",
-          name: "Name",
-          type: "Type",
-          reps: 'Reps',
-          sets: 'Sets',
-          weight: 'Weight',
-          duration: "Duration",
-        },
-
-        weekOfStats: {
-          totalDuration: "Total Duration",
-          totalDistance: "Distance Covered",
-          totalWeight: "Weight Lifted",
-          totalSets: "Sets Performed",
-          totalReps: "Reps Performed",
-        }
+        dayOfStatsResistance: dayOfStatsResistance,
+        weekOfStats: weekOfStats
       }
-
+      break;
     default:
       break;
   }
-
+console.log(workoutKeyMap)
   // const workoutKeyMap = summary.dayOfStats.type === "Cardio" ? {
   //   dayOfStats: {
   //     date: "Date",
@@ -245,7 +173,8 @@ function renderWorkoutSummary(summary) {
       console.log(key, value)
       const p = document.createElement("p");
       const strong = document.createElement("strong");
-      console.log(summary[k][key])
+      // console.log(summary[k][key], )
+      // console.log(workoutKeyMap[k][k])
       strong.textContent = workoutKeyMap[k][key];
       const textNode = document.createTextNode(`: ${summary[k][key]}`);
 
