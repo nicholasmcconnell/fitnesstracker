@@ -17,8 +17,6 @@ const workoutSchema = new Schema({
       },
       day: {
         type: String,
-        // default: `12/29/2020`
-
         default: `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
       },
       exercises: [{

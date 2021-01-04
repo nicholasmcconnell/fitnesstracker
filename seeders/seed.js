@@ -9,8 +9,11 @@ mongoose.connect("mongodb://localhost/workout", {
 
 let workoutSeed = [
   {
-    day: new Date().setDate(new Date().getDate()-10),
-    exercises: [
+    date: {type: Date, default: () => new Date()},
+    weekOf: {
+      // type: String, '45',
+    },
+  exercises: [
       {
         type: "resistance",
         name: "Bicep Curl",

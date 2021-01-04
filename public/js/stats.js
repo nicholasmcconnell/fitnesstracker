@@ -1,8 +1,8 @@
 // get all workout data from back-end
 
 API.getWorkoutsInRange()
-  .then(response => {
-    return response;
+  .then(res => {
+    return res;
   })
   .then(data => {
     console.log(data)
