@@ -17,21 +17,21 @@ async function initWorkout() {
     switch (lastWorkoutSpecs.type) {
       case 'Cardio':
         workoutSummary = {
-          sharedStats: {
+          dayOfStats: {
             date: lastWorkoutSpecs.dayOf,
             name: lastWorkoutSpecs.name,
             type: lastWorkoutSpecs.type,
             duration: lastWorkoutSpecs.duration,
             // numExercises: lastWorkout.exercises.length,
           },
-          // specificStats: {
-          //   ...tallyExercises(lastWorkout)
-          // }
+          weekOfStats: {
+            ...tallyExercises(lastWorkout)
+          }
         }
         break;
       case 'Resistance':
         workoutSummary = {
-          sharedStats: {
+          dayOfStats: {
             date: lastWorkoutSpecs.dayOf,
             name: lastWorkoutSpecs.name,
             type: lastWorkoutSpecs.type,
@@ -40,7 +40,7 @@ async function initWorkout() {
             weight: lastWorkoutSpecs.weight,
             duration: lastWorkoutSpecs.duration,
           },
-          // specificStats: {
+          // weekOfStats: {
           //   ...tallyExercises(lastWorkout)
           // }
         }
@@ -49,19 +49,19 @@ async function initWorkout() {
         break;
     }
     // const workoutSummary = lastWorkoutSpecs.type === 'Cardio' ? {
-    //   sharedStats: {
+    //   dayOfStats: {
     //     date: lastWorkoutSpecs.dayOf,
     //     name: lastWorkoutSpecs.name,
     //     type: lastWorkoutSpecs.type,
     //     duration: lastWorkoutSpecs.duration,
     //     // numExercises: lastWorkout.exercises.length,
     //   },
-    //   specificStats: {
+    //   weekOfStats: {
     //     ...tallyExercises(lastWorkout)
     //   }
     // } :
     //   {
-    //     sharedStats: {
+    //     dayOfStats: {
     //       date: lastWorkoutSpecs.dayOf,
     //       name: lastWorkoutSpecs.name,
     //       type: lastWorkoutSpecs.type,
@@ -70,7 +70,7 @@ async function initWorkout() {
     //       weight: lastWorkoutSpecs.weight,
     //       duration: lastWorkoutSpecs.duration,
     //     },
-    //     specificStats: {
+    //     weekOfStats: {
     //       ...tallyExercises(lastWorkout)
     //     }
     //   }
@@ -80,6 +80,8 @@ async function initWorkout() {
 }
 
 function tallyExercises(exercises) {
+  //display weekOf Date
+  // tally exercises performd, distance, weight, duration
 
   console.log(exercises)
   const tallied = Object.entries(exercises).reduce((acc, curr) => {
@@ -136,10 +138,10 @@ function renderWorkoutSummary(summary) {
 
   const container = document.querySelector(".workout-stats");
 
-  switch (summary.sharedStats.type) {
+  switch (summary.dayOfStats.type) {
     case 'Cardio':
       workoutKeyMap = {
-        sharedStats: {
+        dayOfStats: {
           date: "Date",
           name: "Name",
           type: "Type",
@@ -147,7 +149,7 @@ function renderWorkoutSummary(summary) {
 
         },
 
-        specificStats: {
+        weekOfStats: {
           totalDuration: "Today's Total Duration",
           totalDistance: "Total Distance Covered"
         }
@@ -155,7 +157,7 @@ function renderWorkoutSummary(summary) {
       break;
       case 'Resistance':
         workoutKeyMap = {
-          sharedStats: {
+          dayOfStats: {
             date: "Date",
             name: "Name",
             type: "Type",
@@ -165,7 +167,7 @@ function renderWorkoutSummary(summary) {
             duration: "Duration",
           },
     
-          specificStats: {
+          weekOfStats: {
             totalDuration: "Today's Total Duration",
             totalWeight: "Total Weight",
             totalSets: "Total Sets Performed",
@@ -177,8 +179,8 @@ function renderWorkoutSummary(summary) {
       break;
   }
 
-  // const workoutKeyMap = summary.sharedStats.type === "Cardio" ? {
-  //   sharedStats: {
+  // const workoutKeyMap = summary.dayOfStats.type === "Cardio" ? {
+  //   dayOfStats: {
   //     date: "Date",
   //     name: "Name",
   //     type: "Type",
@@ -186,13 +188,13 @@ function renderWorkoutSummary(summary) {
 
   //   },
 
-  //   specificStats: {
+  //   weekOfStats: {
   //     totalDuration: "Today's Total Duration",
   //     totalDistance: "Total Distance Covered"
   //   }
   // } :
   //   {
-  //     sharedStats: {
+  //     dayOfStats: {
   //       date: "Date",
   //       name: "Name",
   //       type: "Type",
@@ -202,7 +204,7 @@ function renderWorkoutSummary(summary) {
   //       duration: "Duration",
   //     },
 
-  //     specificStats: {
+  //     weekOfStats: {
   //       totalDuration: "Today's Total Duration",
   //       totalWeight: "Total Weight",
   //       totalSets: "Total Sets Performed",
