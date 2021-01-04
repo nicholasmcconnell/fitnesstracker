@@ -83,49 +83,66 @@ function tallyExercises(exercises) {
   //display weekOf Date
   // tally exercises performd, distance, weight, duration
   // loop over array of objects push and add values in hashmap
-    // if value is number and !key => hash[key] = value
-    //if value is number and key exixts => hash[key] =+ value
-    // return hashmap
+  // if value is number and !key => hash[key] = value
+  //if value is number and key exixts => hash[key] =+ value
+  // return hashmap
+
+  //reps = sets * reps
 
 
   console.log(exercises)
-  const tallied = Object.entries(exercises).reduce((acc, curr) => {
-    if (exercises.type === "Resistance" && typeof curr[1] === 'number') {
 
-      switch (curr[0]) {
-        case 'duration':
-          acc.totalDuration = (acc.totalDuration || 0) + curr[1];
-          break;
-        case 'weight':
-          acc.totalWeight = (acc.totalWeight || 0) + curr[1];
-          break;
-        case 'sets':
-          acc.totalSets = (acc.totalSets || 0) + curr[1];
-          break;
-        case 'reps':
-          acc.totalReps = (acc.totalReps || 0) + curr[1];
-          break;
-        default:
-          break;
-      }
-    } else if (exercises.type === "Cardio" && typeof curr[1] === 'number') {
-      switch (curr[0]) {
-        case 'distance':
-          acc.totalDistance = (acc.totalDistance || 0) + curr[1];
-          break;
-        case 'duration':
-          acc.totalDuration = (acc.totalDuration || 0) + curr[1];
-          break;
-        default:
-          break;
+  const tallied = {};
+
+  for (const [key, value] of Object.entries(exercises)) {
+    for (const [k, v] of Object.entries(value)) {
+      // console.log(typeof v, v)
+      if (typeof v === 'number' && !tallied[k]) {
+        tallied[k] = v;
+      } else if (typeof v === 'number' && tallied[k]) {
+        tallied[k] += v;
       }
     }
-    return acc;
-  }, {});
-  console.log(tallied)
+  }
   return tallied;
+  // const tallied = Object.entries(exercises).reduce((acc, curr) => {
+  //   if (exercises.type === "Resistance" && typeof curr[1] === 'number') {
+
+  //     switch (curr[0]) {
+  //       case 'duration':
+  //         acc.totalDuration = (acc.totalDuration || 0) + curr[1];
+  //         break;
+  //       case 'weight':
+  //         acc.totalWeight = (acc.totalWeight || 0) + curr[1];
+  //         break;
+  //       case 'sets':
+  //         acc.totalSets = (acc.totalSets || 0) + curr[1];
+  //         break;
+  //       case 'reps':
+  //         acc.totalReps = (acc.totalReps || 0) + curr[1];
+  //         break;
+  //       default:
+  //         break;
+  //     }
+  //   } else if (exercises.type === "Cardio" && typeof curr[1] === 'number') {
+  //     switch (curr[0]) {
+  //       case 'distance':
+  //         acc.totalDistance = (acc.totalDistance || 0) + curr[1];
+  //         break;
+  //       case 'duration':
+  //         acc.totalDuration = (acc.totalDuration || 0) + curr[1];
+  //         break;
+  //       default:
+  //         break;
+  //     }
+  //   }
+  //   return acc;
+  // }, {});
+  // console.log(tallied)
+  // return tallied;
 }
 
+///////////NOT BEING USED???///////////
 function formatDate(date) {
   const options = {
     weekday: "long",
@@ -138,8 +155,6 @@ function formatDate(date) {
 }
 
 function renderWorkoutSummary(summary) {
-
-  console.log(summary);
 
   const container = document.querySelector(".workout-stats");
 
@@ -155,30 +170,34 @@ function renderWorkoutSummary(summary) {
         },
 
         weekOfStats: {
-          totalDuration: "Today's Total Duration",
-          totalDistance: "Total Distance Covered"
+          totalDuration: "Total Duration",
+          totalDistance: "Distance Covered",
+          totalWeight: "Weight Lifted",
+          totalSets: "Sets Performed",
+          totalReps: "Reps Performed",
         }
       }
       break;
-      case 'Resistance':
-        workoutKeyMap = {
-          dayOfStats: {
-            date: "Date",
-            name: "Name",
-            type: "Type",
-            reps: 'Reps',
-            sets: 'Sets',
-            weight: 'Weight',
-            duration: "Duration",
-          },
-    
-          weekOfStats: {
-            totalDuration: "Today's Total Duration",
-            totalWeight: "Total Weight",
-            totalSets: "Total Sets Performed",
-            totalReps: "Total Reps Performed",
-          }
+    case 'Resistance':
+      workoutKeyMap = {
+        dayOfStats: {
+          date: "Date",
+          name: "Name",
+          type: "Type",
+          reps: 'Reps',
+          sets: 'Sets',
+          weight: 'Weight',
+          duration: "Duration",
+        },
+
+        weekOfStats: {
+          totalDuration: "Total Duration",
+          totalDistance: "Distance Covered",
+          totalWeight: "Weight Lifted",
+          totalSets: "Sets Performed",
+          totalReps: "Reps Performed",
         }
+      }
 
     default:
       break;
