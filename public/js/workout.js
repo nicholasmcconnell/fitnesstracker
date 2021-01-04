@@ -13,33 +13,67 @@ async function initWorkout() {
 
     const lastWorkoutSpecs = lastWorkout.exercises[lastWorkout.exercises.length - 1];
     console.log(lastWorkoutSpecs)
-    // date, name, type, reps, sets, weight  type, duration
-    const workoutSummary = lastWorkoutSpecs.type === 'Cardio' ? {
-      sharedStats: {
-        date: lastWorkoutSpecs.dayOf,
-        name: lastWorkoutSpecs.name,
-        type: lastWorkoutSpecs.type,
-        duration: lastWorkoutSpecs.duration,
-        // numExercises: lastWorkout.exercises.length,
-      },
-      specificStats: {
-        ...tallyExercises(lastWorkout)
-      }
-    } :
-      {
-        sharedStats: {
-          date: lastWorkoutSpecs.dayOf,
-          name: lastWorkoutSpecs.name,
-          type: lastWorkoutSpecs.type,
-          reps: lastWorkoutSpecs.reps,
-          sets: lastWorkoutSpecs.sets,
-          weight: lastWorkoutSpecs.weight,
-          duration: lastWorkoutSpecs.duration,
-        },
-        specificStats: {
-          ...tallyExercises(lastWorkout)
+    // const workoutSummary = {};
+    switch (lastWorkoutSpecs.type) {
+      case 'Cardio':
+        workoutSummary = {
+          sharedStats: {
+            date: lastWorkoutSpecs.dayOf,
+            name: lastWorkoutSpecs.name,
+            type: lastWorkoutSpecs.type,
+            duration: lastWorkoutSpecs.duration,
+            // numExercises: lastWorkout.exercises.length,
+          },
+          // specificStats: {
+          //   ...tallyExercises(lastWorkout)
+          // }
         }
-      }
+        break;
+      case 'Resistance':
+        workoutSummary = {
+          sharedStats: {
+            date: lastWorkoutSpecs.dayOf,
+            name: lastWorkoutSpecs.name,
+            type: lastWorkoutSpecs.type,
+            reps: lastWorkoutSpecs.reps,
+            sets: lastWorkoutSpecs.sets,
+            weight: lastWorkoutSpecs.weight,
+            duration: lastWorkoutSpecs.duration,
+          },
+          // specificStats: {
+          //   ...tallyExercises(lastWorkout)
+          // }
+        }
+        break;
+      default:
+        break;
+    }
+    // const workoutSummary = lastWorkoutSpecs.type === 'Cardio' ? {
+    //   sharedStats: {
+    //     date: lastWorkoutSpecs.dayOf,
+    //     name: lastWorkoutSpecs.name,
+    //     type: lastWorkoutSpecs.type,
+    //     duration: lastWorkoutSpecs.duration,
+    //     // numExercises: lastWorkout.exercises.length,
+    //   },
+    //   specificStats: {
+    //     ...tallyExercises(lastWorkout)
+    //   }
+    // } :
+    //   {
+    //     sharedStats: {
+    //       date: lastWorkoutSpecs.dayOf,
+    //       name: lastWorkoutSpecs.name,
+    //       type: lastWorkoutSpecs.type,
+    //       reps: lastWorkoutSpecs.reps,
+    //       sets: lastWorkoutSpecs.sets,
+    //       weight: lastWorkoutSpecs.weight,
+    //       duration: lastWorkoutSpecs.duration,
+    //     },
+    //     specificStats: {
+    //       ...tallyExercises(lastWorkout)
+    //     }
+    //   }
 
     renderWorkoutSummary(workoutSummary);
   }
@@ -102,38 +136,79 @@ function renderWorkoutSummary(summary) {
 
   const container = document.querySelector(".workout-stats");
 
-  const workoutKeyMap = summary.sharedStats.type === "Cardio" ? {
-    sharedStats: {
-      date: "Date",
-      name: "Name",
-      type: "Type",
-      duration: "Duration",
+  switch (summary.sharedStats.type) {
+    case 'Cardio':
+      workoutKeyMap = {
+        sharedStats: {
+          date: "Date",
+          name: "Name",
+          type: "Type",
+          duration: "Duration",
 
-    },
+        },
 
-    specificStats: {
-      totalDuration: "Today's Total Duration",
-      totalDistance: "Total Distance Covered"
-    }
-  } :
-    {
-      sharedStats: {
-        date: "Date",
-        name: "Name",
-        type: "Type",
-        reps: 'Reps',
-        sets: 'Sets',
-        weight: 'Weight',
-        duration: "Duration",
-      },
-
-      specificStats: {
-        totalDuration: "Today's Total Duration",
-        totalWeight: "Total Weight",
-        totalSets: "Total Sets Performed",
-        totalReps: "Total Reps Performed",
+        specificStats: {
+          totalDuration: "Today's Total Duration",
+          totalDistance: "Total Distance Covered"
+        }
       }
-    };
+      break;
+      case 'Resistance':
+        workoutKeyMap = {
+          sharedStats: {
+            date: "Date",
+            name: "Name",
+            type: "Type",
+            reps: 'Reps',
+            sets: 'Sets',
+            weight: 'Weight',
+            duration: "Duration",
+          },
+    
+          specificStats: {
+            totalDuration: "Today's Total Duration",
+            totalWeight: "Total Weight",
+            totalSets: "Total Sets Performed",
+            totalReps: "Total Reps Performed",
+          }
+        }
+
+    default:
+      break;
+  }
+
+  // const workoutKeyMap = summary.sharedStats.type === "Cardio" ? {
+  //   sharedStats: {
+  //     date: "Date",
+  //     name: "Name",
+  //     type: "Type",
+  //     duration: "Duration",
+
+  //   },
+
+  //   specificStats: {
+  //     totalDuration: "Today's Total Duration",
+  //     totalDistance: "Total Distance Covered"
+  //   }
+  // } :
+  //   {
+  //     sharedStats: {
+  //       date: "Date",
+  //       name: "Name",
+  //       type: "Type",
+  //       reps: 'Reps',
+  //       sets: 'Sets',
+  //       weight: 'Weight',
+  //       duration: "Duration",
+  //     },
+
+  //     specificStats: {
+  //       totalDuration: "Today's Total Duration",
+  //       totalWeight: "Total Weight",
+  //       totalSets: "Total Sets Performed",
+  //       totalReps: "Total Reps Performed",
+  //     }
+  //   };
   console.log(workoutKeyMap)
 
 
