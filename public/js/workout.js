@@ -11,30 +11,45 @@ async function initWorkout() {
       .querySelector("a[href='/exercise?']")
       .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
 
-    const lastWorkoutSpecs = lastWorkout.exercises[lastWorkout.exercises.length-1];
+    const lastWorkoutSpecs = lastWorkout.exercises[lastWorkout.exercises.length - 1];
+    console.log(lastWorkoutSpecs)
     // date, name, type, reps, sets, weight  type, duration
-    const workoutSummary = {
+    const workoutSummary = lastWorkoutSpecs.type === 'Cardio' ? {
       sharedStats: {
-        date: formatDate(lastWorkout.day),
+        date: lastWorkoutSpecs.dayOf,
         name: lastWorkoutSpecs.name,
         type: lastWorkoutSpecs.type,
-        durationToday: lastWorkoutSpecs.duration,
-        numExercises: lastWorkout.exercises.length,
+        duration: lastWorkoutSpecs.duration,
+        // numExercises: lastWorkout.exercises.length,
       },
       specificStats: {
-        ...tallyExercises(lastWorkoutSpecs)
+        ...tallyExercises(lastWorkout)
       }
-    }
+    } :
+      {
+        sharedStats: {
+          date: lastWorkoutSpecs.dayOf,
+          name: lastWorkoutSpecs.name,
+          type: lastWorkoutSpecs.type,
+          reps: lastWorkoutSpecs.reps,
+          sets: lastWorkoutSpecs.sets,
+          weight: lastWorkoutSpecs.weight,
+          duration: lastWorkoutSpecs.duration,
+        },
+        specificStats: {
+          ...tallyExercises(lastWorkout)
+        }
+      }
 
     renderWorkoutSummary(workoutSummary);
-  } 
+  }
 }
 
 function tallyExercises(exercises) {
 
   console.log(exercises)
   const tallied = Object.entries(exercises).reduce((acc, curr) => {
-    if (exercises.type === "resistance" && typeof curr[1] === 'number') {
+    if (exercises.type === "Resistance" && typeof curr[1] === 'number') {
 
       switch (curr[0]) {
         case 'duration':
@@ -52,7 +67,7 @@ function tallyExercises(exercises) {
         default:
           break;
       }
-    } else if (exercises.type === "cardio" && typeof curr[1] === 'number') {
+    } else if (exercises.type === "Cardio" && typeof curr[1] === 'number') {
       switch (curr[0]) {
         case 'distance':
           acc.totalDistance = (acc.totalDistance || 0) + curr[1];
@@ -87,13 +102,12 @@ function renderWorkoutSummary(summary) {
 
   const container = document.querySelector(".workout-stats");
 
-  const workoutKeyMap = summary.sharedStats.type === "cardio" ? {
+  const workoutKeyMap = summary.sharedStats.type === "Cardio" ? {
     sharedStats: {
       date: "Date",
       name: "Name",
       type: "Type",
-      durationToday: "Last Workout Duration",
-      numExercises: "Exercise's Performed",
+      duration: "Duration",
 
     },
 
@@ -107,9 +121,10 @@ function renderWorkoutSummary(summary) {
         date: "Date",
         name: "Name",
         type: "Type",
-        durationToday: "Last Workout Duration",
-        numExercises: "Exercise's Performed",
-
+        reps: 'Reps',
+        sets: 'Sets',
+        weight: 'Weight',
+        duration: "Duration",
       },
 
       specificStats: {
