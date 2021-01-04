@@ -1,17 +1,17 @@
 ///////////// THIS FILE IS FOR DISPLAYING LAST WORKOUT SUMMARY ON INDEX.JS////////////
 console.log('in workout.js')
 async function initWorkout() {
-  const lastWorkout = await API.getLastWorkout();
+  const lastWorkoutWeek = await API.getLastWorkout();
 
-  if (!lastWorkout || !lastWorkout.exercises.length) {
+  if (!lastWorkoutWeek || !lastWorkoutWeek.exercises.length) {
     renderNoWorkoutText()
-  } else if (lastWorkout.exercises.length) {
+  } else if (lastWorkoutWeek.exercises.length) {
     console.log('if of workout.js')
     document
       .querySelector("a[href='/exercise?']")
-      .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
+      .setAttribute("href", `/exercise?id=${lastWorkoutWeek._id}`);
 
-    const lastWorkoutSpecs = lastWorkout.exercises[lastWorkout.exercises.length - 1];
+    const lastWorkoutSpecs = lastWorkoutWeek.exercises[lastWorkoutWeek.exercises.length - 1];
     console.log(lastWorkoutSpecs)
     // const workoutSummary = {};
     switch (lastWorkoutSpecs.type) {
@@ -22,10 +22,10 @@ async function initWorkout() {
             name: lastWorkoutSpecs.name,
             type: lastWorkoutSpecs.type,
             duration: lastWorkoutSpecs.duration,
-            // numExercises: lastWorkout.exercises.length,
+            // numExercises: lastWorkoutWeek.exercises.length,
           },
           weekOfStats: {
-            ...tallyExercises(lastWorkout)
+            ...tallyExercises(lastWorkoutWeek.exercises)
           }
         }
         break;
@@ -40,9 +40,9 @@ async function initWorkout() {
             weight: lastWorkoutSpecs.weight,
             duration: lastWorkoutSpecs.duration,
           },
-          // weekOfStats: {
-          //   ...tallyExercises(lastWorkout)
-          // }
+          weekOfStats: {
+            ...tallyExercises(lastWorkoutWeek.exercises)
+          }
         }
         break;
       default:
@@ -54,10 +54,10 @@ async function initWorkout() {
     //     name: lastWorkoutSpecs.name,
     //     type: lastWorkoutSpecs.type,
     //     duration: lastWorkoutSpecs.duration,
-    //     // numExercises: lastWorkout.exercises.length,
+    //     // numExercises: lastWorkoutWeek.exercises.length,
     //   },
     //   weekOfStats: {
-    //     ...tallyExercises(lastWorkout)
+    //     ...tallyExercises(lastWorkoutWeek)
     //   }
     // } :
     //   {
@@ -71,7 +71,7 @@ async function initWorkout() {
     //       duration: lastWorkoutSpecs.duration,
     //     },
     //     weekOfStats: {
-    //       ...tallyExercises(lastWorkout)
+    //       ...tallyExercises(lastWorkoutWeek)
     //     }
     //   }
 
@@ -82,6 +82,11 @@ async function initWorkout() {
 function tallyExercises(exercises) {
   //display weekOf Date
   // tally exercises performd, distance, weight, duration
+  // loop over array of objects push and add values in hashmap
+    // if value is number and !key => hash[key] = value
+    //if value is number and key exixts => hash[key] =+ value
+    // return hashmap
+
 
   console.log(exercises)
   const tallied = Object.entries(exercises).reduce((acc, curr) => {
