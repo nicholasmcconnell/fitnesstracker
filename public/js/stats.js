@@ -33,7 +33,7 @@ function generatePalette() {
 }
 function populateChart(data) {
   //need time based function to link dates to labels
-  let datesArr = formatDate();
+  let datesArr = utilFunctions.formatDate();
   let durations = duration(data);
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
@@ -43,7 +43,9 @@ function populateChart(data) {
   let bar = document.querySelector("#canvas2").getContext("2d");
   let pie = document.querySelector("#canvas3").getContext("2d");
   let pie2 = document.querySelector("#canvas4").getContext("2d");
-  
+
+  console.log(datesArr)
+  console.log(durations)
 
   let lineChart = new Chart(line, {
     type: "line",
@@ -88,7 +90,7 @@ function populateChart(data) {
   let barChart = new Chart(bar, {
     type: "bar",
     data: {
-      labels: formatDate(),
+      labels: utilFunctions.formatDate(),
       datasets: [
         {
           label: "Pounds",
@@ -170,62 +172,68 @@ function populateChart(data) {
     }
   });
 }
+//////////////NOT BEING USED -> MOVED TO UTILFUNCTIONS.JS///////////
+// const formatDate = () => {
+//   //shows only the dates for the current week
 
-const formatDate = () => {
-  //shows only the dates for the current week
+//   let d = new Date();
 
-  let d = new Date();
+//   let datesArr = new Array();
 
-  let datesArr = new Array();
+//   for (let i = 0; i <= 6; i++) {
+//     let date = i - d.getDay();
+//     let day = new Date(d.setDate(d.getDate() + date))
 
-  for (let i = 0; i <= 6; i++) {
-    let date = i - d.getDay();
-    let day = new Date(d.setDate(d.getDate() + date))
+//     datesArr.push(`${d.getMonth() + 1}/${day.getDate()}/${d.getFullYear()}`)
+//   }
+//   return datesArr;
+// }
 
-    datesArr.push(`${d.getMonth() + 1}/${day.getDate()}/${d.getFullYear()}`)
-  }
-  return datesArr;
-}
-
-function duration(data) {
+const duration = (data) => {
 
   let totalsArr = new Array(7).fill(0);
-  let dateArr = formatDate()
-  let durations = {}
+  let dateArr = utilFunctions.formatDate()
+  let duration = {}
+  let weekOfExercises = data[data.length - 1].exercises;
 
-  data.forEach(workout => {
-    workout.exercises.forEach(exercise => {
-      !durations[workout.day] ? durations[workout.day] = exercise.duration : durations[workout.day] += exercise.duration
-    });
-  });
 
-  for(const [key, value]  of Object.entries(durations)){
+  for (const [key, value] of Object.entries(weekOfExercises)) {
+    !duration[value.dayOf] ? duration[value.dayOf] = value.duration : duration[value.dayOf] += value.duration;
+  }
+
+  for (const [key, value] of Object.entries(duration)) {
     let index = dateArr.indexOf(key);
+    console.log(index)
     totalsArr[index] = value;
   }
-  return(totalsArr);
+  return (totalsArr);
 }
 
-function calculateTotalWeight(data) {
+const calculateTotalWeight = (data) => {
   let totalsArr = new Array(7).fill(0);
   let dateArr = utilFunctions.formatDate();
-  let durations = {}
+  let duration = {};
+  let weekOfExercises = data[data.length - 1].exercises;
 
+console.log(weekOfExercises)
+  // for(const [key, value] of Object.entries(weekOfExercises)){
+  //   !duration[value.dayOf] ? duration[value.dayOf] = value.weight
+  // }
   data.forEach(workout => {
     workout.exercises.forEach(exercise => {
       !durations[workout.day] ? durations[workout.day] = exercise.weight : durations[workout.day] += exercise.weight;
     });
   });
 
-  for(const [key, value] of Object.entries(durations)){
-    let index = dateArr.indexOf(key);
-    totalsArr[index] = value;
-  }
+  for (const [key, value] of Object.entries(durations)) {
+      let index = dateArr.indexOf(key);
+      totalsArr[index] = value;
+    }
 
   return totalsArr;
 }
 
-function workoutNames(data) {
+const workoutNames = (data) => {
   let workouts = [];
 
   data.forEach(workout => {
