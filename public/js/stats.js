@@ -217,18 +217,11 @@ const calculateTotalWeight = (data) => {
 
 console.log(weekOfExercises)
   for(const [key, value] of Object.entries(weekOfExercises)){
-    // console.log(value._id, value.dayOf)
     if(value.type === 'Resistance'){
 
       !weight[value.dayOf] ? weight[value.dayOf] = value.weight : weight[value.dayOf] += value.weight;
     }
   }
-  console.log(weight)
-  // data.forEach(workout => {
-  //   workout.exercises.forEach(exercise => {
-  //     !durations[workout.day] ? durations[workout.day] = exercise.weight : durations[workout.day] += exercise.weight;
-  //   });
-  // });
 
   for (const [key, value] of Object.entries(weight)) {
       let index = dateArr.indexOf(key);
