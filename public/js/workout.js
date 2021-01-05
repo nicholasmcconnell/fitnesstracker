@@ -21,8 +21,8 @@ async function initWorkout() {
         workoutSummary = {
           dayOfStatsCardio: {
             date: lastWorkoutSpecs.dayOf,
-            name: lastWorkoutSpecs.name,
             type: lastWorkoutSpecs.type,
+            name: lastWorkoutSpecs.name,
             duration: lastWorkoutSpecs.duration,
           },
           weekOfStats: {
@@ -34,8 +34,8 @@ async function initWorkout() {
         workoutSummary = {
           dayOfStatsResistance: {
             date: lastWorkoutSpecs.dayOf,
-            name: lastWorkoutSpecs.name,
             type: lastWorkoutSpecs.type,
+            name: lastWorkoutSpecs.name,
             reps: lastWorkoutSpecs.reps,
             sets: lastWorkoutSpecs.sets,
             weight: lastWorkoutSpecs.weight,
@@ -85,20 +85,20 @@ function formatDate(date) {
 function renderWorkoutSummary(summary) {
   console.log(summary)
 
-  const container = document.querySelector(".workout-stats");
+  // const container = document.querySelector(".workout-stats");
 
   const { dayOfStatsCardio, dayOfStatsResistance, weekOfStats } = {
     dayOfStatsCardio: {
       date: "Date",
-      name: "Name",
       type: "Type",
+      name: "Name",
       duration: "Duration",
     },
 
     dayOfStatsResistance: {
       date: "Date",
-      name: "Name",
       type: "Type",
+      name: "Name",
       reps: 'Reps',
       sets: 'Sets',
       weight: 'Weight',
@@ -130,7 +130,7 @@ function renderWorkoutSummary(summary) {
     default:
       break;
   }
-console.log(workoutKeyMap)
+  console.log(workoutKeyMap)
   // const workoutKeyMap = summary.dayOfStats.type === "Cardio" ? {
   //   dayOfStats: {
   //     date: "Date",
@@ -163,25 +163,38 @@ console.log(workoutKeyMap)
   //       totalReps: "Total Reps Performed",
   //     }
   //   };
-  console.log(workoutKeyMap)
+  console.log(summary)
+
+  const container = document.querySelector(".dayOfStats");
+  const container2 = document.querySelector(".weekOfStats");
 
 
 
   for (const [k, v] of Object.entries(summary)) {
-    console.log(k, v)
+    console.log(k)
+    // if (k === 'weekOfStats') {
+    //   console.log('in if')
+    //   const p = document.createElement("p");
+    //   const h3 = document.createElement('h3')
+    //   h3.textContent = 'This Weeks Stats';
+    //   console.log(h3)
+    //   p.appendChild(h3)
+    // }
+
     for (const [key, value] of Object.entries(v)) {
       console.log(key, value)
       const p = document.createElement("p");
       const strong = document.createElement("strong");
+      // const h3 = document.createElement('h3')
+      // h3.textContent = 'This Weeks Stats';
       // console.log(summary[k][key], )
       // console.log(workoutKeyMap[k][k])
       strong.textContent = workoutKeyMap[k][key];
       const textNode = document.createTextNode(`: ${summary[k][key]}`);
-
       p.appendChild(strong);
       p.appendChild(textNode);
-
-      container.appendChild(p);
+     
+      k === 'dayOfStatsCardio'|| k === 'dayOfStatsResistance' ? container.appendChild(p) : container2.appendChild(p);
     }
   };
 }
