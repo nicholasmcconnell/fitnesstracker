@@ -12,7 +12,7 @@ const utilFunctions = {
       datesArr.push(`${d.getMonth() + 1}/${day.getDate()}/${d.getFullYear()}`);
     }
     return datesArr;
-  }
+  },
 };
 
 // module.exports = utilFunctions;

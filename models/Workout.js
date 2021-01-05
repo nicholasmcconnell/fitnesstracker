@@ -15,13 +15,19 @@ const workoutSchema = new Schema({
       weekOf: {
         type: String, default: utilFunctions.formatDate()[0],
       },
-      day: {
-        type: String,
-        // default: `12/29/2020`
+      // day: {
+      //   type: String,
+      //   default: `12/29/2020`
 
-        default: `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
-      },
+      //   // default: `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
+      // },
       exercises: [{
+        dayOf: {
+          type: String,
+          // default: `12/29/2020`
+  
+          default: `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
+        },
           type: {
             type: String,  
           },

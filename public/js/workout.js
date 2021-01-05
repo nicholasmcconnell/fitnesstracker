@@ -1,75 +1,72 @@
 ///////////// THIS FILE IS FOR DISPLAYING LAST WORKOUT SUMMARY ON INDEX.JS////////////
-console.log('in workout.js')
 async function initWorkout() {
-  const lastWorkout = await API.getLastWorkout();
+  const lastWorkoutWeek = await API.getLastWorkout();
 
-  if (!lastWorkout || !lastWorkout.exercises.length) {
+  if (!lastWorkoutWeek || !lastWorkoutWeek.exercises.length) {
     renderNoWorkoutText()
-  } else if (lastWorkout.exercises.length) {
+  } else if (lastWorkoutWeek.exercises.length) {
     console.log('if of workout.js')
     document
       .querySelector("a[href='/exercise?']")
-      .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
+      .setAttribute("href", `/exercise?id=${lastWorkoutWeek._id}`);
 
-    const lastWorkoutSpecs = lastWorkout.exercises[lastWorkout.exercises.length-1];
-    // date, name, type, reps, sets, weight  type, duration
-    const workoutSummary = {
-      sharedStats: {
-        date: formatDate(lastWorkout.day),
-        name: lastWorkoutSpecs.name,
-        type: lastWorkoutSpecs.type,
-        durationToday: lastWorkoutSpecs.duration,
-        numExercises: lastWorkout.exercises.length,
-      },
-      specificStats: {
-        ...tallyExercises(lastWorkoutSpecs)
-      }
+    const lastWorkoutSpecs = lastWorkoutWeek.exercises[lastWorkoutWeek.exercises.length - 1];
+
+    switch (lastWorkoutSpecs.type) {
+      case 'Cardio':
+        workoutSummary = {
+          dayOfStatsCardio: {
+            date: lastWorkoutSpecs.dayOf,
+            type: lastWorkoutSpecs.type,
+            name: lastWorkoutSpecs.name,
+            duration: lastWorkoutSpecs.duration,
+          },
+          weekOfStats: {
+            ...tallyExercises(lastWorkoutWeek.exercises)
+          }
+        }
+        break;
+      case 'Resistance':
+        workoutSummary = {
+          dayOfStatsResistance: {
+            date: lastWorkoutSpecs.dayOf,
+            type: lastWorkoutSpecs.type,
+            name: lastWorkoutSpecs.name,
+            reps: lastWorkoutSpecs.reps,
+            sets: lastWorkoutSpecs.sets,
+            weight: lastWorkoutSpecs.weight,
+            duration: lastWorkoutSpecs.duration,
+          },
+          weekOfStats: {
+            ...tallyExercises(lastWorkoutWeek.exercises)
+          }
+        }
+        break;
+      default:
+        break;
     }
 
     renderWorkoutSummary(workoutSummary);
-  } 
+  }
 }
 
 function tallyExercises(exercises) {
 
-  console.log(exercises)
-  const tallied = Object.entries(exercises).reduce((acc, curr) => {
-    if (exercises.type === "resistance" && typeof curr[1] === 'number') {
+  const tallied = {};
 
-      switch (curr[0]) {
-        case 'duration':
-          acc.totalDuration = (acc.totalDuration || 0) + curr[1];
-          break;
-        case 'weight':
-          acc.totalWeight = (acc.totalWeight || 0) + curr[1];
-          break;
-        case 'sets':
-          acc.totalSets = (acc.totalSets || 0) + curr[1];
-          break;
-        case 'reps':
-          acc.totalReps = (acc.totalReps || 0) + curr[1];
-          break;
-        default:
-          break;
-      }
-    } else if (exercises.type === "cardio" && typeof curr[1] === 'number') {
-      switch (curr[0]) {
-        case 'distance':
-          acc.totalDistance = (acc.totalDistance || 0) + curr[1];
-          break;
-        case 'duration':
-          acc.totalDuration = (acc.totalDuration || 0) + curr[1];
-          break;
-        default:
-          break;
+  for (const [key, value] of Object.entries(exercises)) {
+    for (const [k, v] of Object.entries(value)) {
+      if (typeof v === 'number' && !tallied[k]) {
+        tallied[k] = v;
+      } else if (typeof v === 'number' && tallied[k]) {
+        tallied[k] += v;
       }
     }
-    return acc;
-  }, {});
-  console.log(tallied)
+  }
   return tallied;
 }
 
+///////////NOT BEING USED???///////////
 function formatDate(date) {
   const options = {
     weekday: "long",
@@ -82,61 +79,67 @@ function formatDate(date) {
 }
 
 function renderWorkoutSummary(summary) {
-
-  console.log(summary);
-
-  const container = document.querySelector(".workout-stats");
-
-  const workoutKeyMap = summary.sharedStats.type === "cardio" ? {
-    sharedStats: {
+  
+  const { dayOfStatsCardio, dayOfStatsResistance, weekOfStats } = {
+    dayOfStatsCardio: {
       date: "Date",
-      name: "Name",
       type: "Type",
-      durationToday: "Last Workout Duration",
-      numExercises: "Exercise's Performed",
-
+      name: "Name",
+      duration: "Duration",
     },
 
-    specificStats: {
-      totalDuration: "Today's Total Duration",
-      totalDistance: "Total Distance Covered"
+    dayOfStatsResistance: {
+      date: "Date",
+      type: "Type",
+      name: "Name",
+      reps: 'Reps',
+      sets: 'Sets',
+      weight: 'Weight',
+      duration: "Duration",
+    },
+
+    weekOfStats: {
+      distance: "Distance Covered",
+      duration: "Total Duration",
+      reps: "Reps Performed",
+      sets: "Sets Performed",
+      weight: "Weight Lifted",
     }
-  } :
-    {
-      sharedStats: {
-        date: "Date",
-        name: "Name",
-        type: "Type",
-        durationToday: "Last Workout Duration",
-        numExercises: "Exercise's Performed",
+  }
 
-      },
-
-      specificStats: {
-        totalDuration: "Today's Total Duration",
-        totalWeight: "Total Weight",
-        totalSets: "Total Sets Performed",
-        totalReps: "Total Reps Performed",
+  switch (summary[Object.keys(summary)[0]].type) {
+    case 'Cardio':
+      workoutKeyMap = {
+        dayOfStatsCardio: dayOfStatsCardio,
+        weekOfStats: weekOfStats
       }
-    };
-  console.log(workoutKeyMap)
+      break;
+    case 'Resistance':
+      workoutKeyMap = {
+        dayOfStatsResistance: dayOfStatsResistance,
+        weekOfStats: weekOfStats
+      }
+      break;
+    default:
+      break;
+  }
+
+  const container = document.querySelector(".dayOfStats");
+  const container2 = document.querySelector(".weekOfStats");
 
 
 
   for (const [k, v] of Object.entries(summary)) {
-    console.log(k, v)
     for (const [key, value] of Object.entries(v)) {
-      console.log(key, value)
       const p = document.createElement("p");
       const strong = document.createElement("strong");
-      console.log(summary[k][key])
+    
       strong.textContent = workoutKeyMap[k][key];
       const textNode = document.createTextNode(`: ${summary[k][key]}`);
-
       p.appendChild(strong);
       p.appendChild(textNode);
-
-      container.appendChild(p);
+     
+      k === 'dayOfStatsCardio'|| k === 'dayOfStatsResistance' ? container.appendChild(p) : container2.appendChild(p);
     }
   };
 }
