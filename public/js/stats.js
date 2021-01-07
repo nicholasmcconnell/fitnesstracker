@@ -5,7 +5,6 @@ API.getWorkoutsInRange()
     return res;
   })
   .then(data => {
-    console.log(data)
     populateChart(data);
   });
 
@@ -31,6 +30,11 @@ function generatePalette() {
 
   return arr;
 }
+//1. random color generator function
+  // Have variable the holds last value
+    //check to make sure values aren't the same
+    //make value empty new color after its verified
+//
 function populateChart(data) {
   //need time based function to link dates to labels
   let datesArr = utilFunctions.formatDate();
@@ -44,8 +48,9 @@ function populateChart(data) {
   let pie = document.querySelector("#canvas3").getContext("2d");
   let pie2 = document.querySelector("#canvas4").getContext("2d");
 
-  console.log(datesArr)
+  console.log(workouts)
   console.log(durations)
+  console.log(pounds)
 
   let lineChart = new Chart(line, {
     type: "line",
@@ -54,8 +59,8 @@ function populateChart(data) {
       datasets: [
         {
           label: "Workout Duration In Minutes",
-          backgroundColor: "red",
-          borderColor: "red",
+          // backgroundColor: '',
+          borderColor: "violet",
           data: durations,
           fill: true
         }
@@ -64,7 +69,8 @@ function populateChart(data) {
     options: {
       responsive: true,
       title: {
-        display: true
+        display: true,
+        text: "Workout Duration",
       },
       scales: {
         xAxes: [
@@ -93,7 +99,7 @@ function populateChart(data) {
       labels: utilFunctions.formatDate(),
       datasets: [
         {
-          label: "Pounds",
+          label: `Week of ${utilFunctions.formatDate()[0]}`,
           data: pounds,
           backgroundColor: [
             "rgba(255, 99, 132, 0.2)",
@@ -187,7 +193,6 @@ const duration = (data) => {
 
   for (const [key, value] of Object.entries(duration)) {
     let index = dateArr.indexOf(key);
-    console.log(index)
     totalsArr[index] = value;
   }
   return (totalsArr);
@@ -199,10 +204,8 @@ const calculateTotalWeight = (data) => {
   let weight = {};
   let weekOfExercises = data[data.length - 1].exercises;
 
-console.log(weekOfExercises)
   for(const [key, value] of Object.entries(weekOfExercises)){
     if(value.type === 'Resistance'){
-
       !weight[value.dayOf] ? weight[value.dayOf] = value.weight : weight[value.dayOf] += value.weight;
     }
   }
@@ -223,6 +226,6 @@ const workoutNames = (data) => {
       workouts.push(exercise.name);
     });
   });
-
+  console.log(workouts)
   return workouts;
 }
