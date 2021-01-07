@@ -6,9 +6,14 @@ API.getWorkoutsInRange()
   })
   .then(data => {
     populateChart(data);
+    chartHashToArray(data)
   });
 
 function generatePalette() {
+  //1. random color generator function
+  // Have variable the holds last value
+  //check to make sure values aren't the same
+  //make value empty new color after its verified
   const arr = [
     "#003f5c",
     "#2f4b7c",
@@ -30,11 +35,40 @@ function generatePalette() {
 
   return arr;
 }
-//1. random color generator function
-  // Have variable the holds last value
-    //check to make sure values aren't the same
-    //make value empty new color after its verified
-//
+
+
+
+let chartHashToArray = (data) => {
+  //Make function that hashes together workout types with values - remove redundant exercises
+  //push keys and values of hash to separate arrays in function when finding un added exercises
+  //push values to seperate array after compling is complete
+  //labeles gets the keys - data gets the values
+
+  let exercises = data[data.length - 1].exercises;
+  let nameDurationHash = {};
+  let namesArr = [];
+  let durationArr = [];
+  let arrHash = {};
+
+  console.log(typeof exercises)
+
+  
+    for (let [key, value] of Object.entries(exercises)) {
+
+      if (!nameDurationHash[value.name]) {
+        nameDurationHash[value.name] = value.duration;
+      } else {
+        nameDurationHash[value.name] += value.duration;
+      }
+    }
+
+    for(let [key, value] of Object.entries(nameDurationHash)){
+      namesArr.push(key)
+      durationArr.push(value)
+    }
+
+  console.log(namesArr, durationArr, nameDurationHash)
+}
 function populateChart(data) {
   //need time based function to link dates to labels
   let datesArr = utilFunctions.formatDate();
@@ -48,9 +82,9 @@ function populateChart(data) {
   let pie = document.querySelector("#canvas3").getContext("2d");
   let pie2 = document.querySelector("#canvas4").getContext("2d");
 
-  console.log(workouts)
-  console.log(durations)
-  console.log(pounds)
+  // console.log(workouts)
+  // console.log(durations)
+  // console.log(data)
 
   let lineChart = new Chart(line, {
     type: "line",
@@ -204,16 +238,16 @@ const calculateTotalWeight = (data) => {
   let weight = {};
   let weekOfExercises = data[data.length - 1].exercises;
 
-  for(const [key, value] of Object.entries(weekOfExercises)){
-    if(value.type === 'Resistance'){
+  for (const [key, value] of Object.entries(weekOfExercises)) {
+    if (value.type === 'Resistance') {
       !weight[value.dayOf] ? weight[value.dayOf] = value.weight : weight[value.dayOf] += value.weight;
     }
   }
 
   for (const [key, value] of Object.entries(weight)) {
-      let index = dateArr.indexOf(key);
-      totalsArr[index] = value;
-    }
+    let index = dateArr.indexOf(key);
+    totalsArr[index] = value;
+  }
 
   return totalsArr;
 }
