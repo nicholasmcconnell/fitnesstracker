@@ -44,8 +44,7 @@ let chartHashToArray = (data) => {
 
   let exercises = data[data.length - 1].exercises;
   let nameDurationHash = {};
-  let namesArr = [];
-  let durationArr = [];
+
   let arrHash = {
     'names': [],
     'durations': []
@@ -76,8 +75,7 @@ function populateChart(data) {
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
   let colors = generatePalette();
-  let chartArrays = chartHashToArray(data)
-  console.log(chartArrays)
+  let chartArraysHash = chartHashToArray(data)
 
 
   let line = document.querySelector("#canvas").getContext("2d");
@@ -178,12 +176,12 @@ function populateChart(data) {
   let pieChart = new Chart(pie, {
     type: "pie",
     data: {
-      labels: workouts,
+      labels: chartArraysHash['names'],
       datasets: [
         {
           label: "Excercises Performed",
           backgroundColor: colors,
-          data: durations
+          data: chartArraysHash['durations']
         }
       ]
     },
@@ -198,7 +196,7 @@ function populateChart(data) {
   let donutChart = new Chart(pie2, {
     type: "doughnut",
     data: {
-      labels: workouts,
+      labels: chartArraysHash['names'],
       datasets: [
         {
           label: "Excercises Performed",
