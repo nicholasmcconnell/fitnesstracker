@@ -6,7 +6,7 @@ API.getWorkoutsInRange()
   })
   .then(data => {
     populateChart(data);
-    chartHashToArray(data)
+    // chartHashToArray(data)
   });
 
 function generatePalette() {
@@ -39,35 +39,35 @@ function generatePalette() {
 
 
 let chartHashToArray = (data) => {
-  //Make function that hashes together workout types with values - remove redundant exercises
-  //push keys and values of hash to separate arrays in function when finding un added exercises
-  //push values to seperate array after compling is complete
-  //labeles gets the keys - data gets the values
+  /////////FUCNTION WORKS BUT NEEDS TO BE SCALEABLE TO ACCOMODATE FUTURE IMPLIMENTATION OF EXERCISES ////
+
 
   let exercises = data[data.length - 1].exercises;
   let nameDurationHash = {};
   let namesArr = [];
   let durationArr = [];
-  let arrHash = {};
+  let arrHash = {
+    'names': [],
+    'durations': []
+  };
 
   console.log(typeof exercises)
 
-  
-    for (let [key, value] of Object.entries(exercises)) {
 
-      if (!nameDurationHash[value.name]) {
-        nameDurationHash[value.name] = value.duration;
-      } else {
-        nameDurationHash[value.name] += value.duration;
-      }
+  for (let [key, value] of Object.entries(exercises)) {
+
+    if (!nameDurationHash[value.name]) {
+      nameDurationHash[value.name] = value.duration;
+    } else {
+      nameDurationHash[value.name] += value.duration;
     }
+  }
 
-    for(let [key, value] of Object.entries(nameDurationHash)){
-      namesArr.push(key)
-      durationArr.push(value)
-    }
-
-  console.log(namesArr, durationArr, nameDurationHash)
+  for (let [key, value] of Object.entries(nameDurationHash)) {
+    arrHash['names'].push(key)
+    arrHash['durations'].push(value)
+  }
+ return arrHash
 }
 function populateChart(data) {
   //need time based function to link dates to labels
@@ -75,7 +75,10 @@ function populateChart(data) {
   let durations = duration(data);
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
-  const colors = generatePalette();
+  let colors = generatePalette();
+  let chartArrays = chartHashToArray(data)
+  console.log(chartArrays)
+
 
   let line = document.querySelector("#canvas").getContext("2d");
   let bar = document.querySelector("#canvas2").getContext("2d");
