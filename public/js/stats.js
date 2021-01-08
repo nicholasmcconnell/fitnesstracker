@@ -41,12 +41,9 @@ function generatePalette() {
 
 
 let pieChartData = (data) => {
-  /////////FUCNTION WORKS BUT NEEDS TO BE SCALEABLE TO ACCOMODATE FUTURE IMPLIMENTATION OF EXERCISES ////
-
 
   let exercises = data[data.length - 1].exercises;
   let nameDurationHash = {};
-  let nameDurationHash2 = {};
 
   let arrHash = {
     'Cardio': {
@@ -59,12 +56,7 @@ let pieChartData = (data) => {
     }
   };
 
-  console.log(arrHash['names'])
-  //use type to make object i arrhash
-
-
   for (let [key, value] of Object.entries(exercises)) {
-    // console.log(value)
     switch (value.type) {
       case 'Cardio':
         console.log('in cardio case')
@@ -91,45 +83,26 @@ let pieChartData = (data) => {
         break;
     }
   }
-  console.log(nameDurationHash)
 
   for (let [k, v] of Object.entries(nameDurationHash)) {
     for (let [key, value] of Object.entries(v)) {
-      console.log(k, key, value)
-      // if (!arrHash[key]) {
-      //   arrHash[key] = {};
-      //   arrHash[key].value = [];
-      //   // console.log(arrHash, value)
-
-      // }
+   
       arrHash[k]['names'].push(key);
       arrHash[k]['durations'].push(value);
-
-      // arrHash2['names'].push(key)
-      // arrHash2['durations'].push(value)
     }
-    // if (!nameDurationHash2[value.name]) {
-    //   nameDurationHash2[value.name] = value.duration;
-    // } else {
-    //   nameDurationHash2[value.name] += value.duration;
-    // }
+
   } 
 
-  // for (let [key, value] of Object.entries(nameDurationHash2)) {
-  //   arrHash2['names'].push(key)
-  //   arrHash2['durations'].push(value)
-  // }
-  console.log(nameDurationHash, nameDurationHash2, arrHash)
    return arrHash;
 }
 function populateChart(data) {
-  //need time based function to link dates to labels
   let datesArr = utilFunctions.formatDate();
   let durations = duration(data);
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
   let colors = generatePalette();
-  let chartArraysHash = pieChartData(data)
+  let chartArraysHash = pieChartData(data);
+  console.log(chartArraysHash)
 
 
   let line = document.querySelector("#canvas").getContext("2d");
@@ -137,17 +110,13 @@ function populateChart(data) {
   let pie = document.querySelector("#canvas3").getContext("2d");
   let pie2 = document.querySelector("#canvas4").getContext("2d");
 
-  // console.log(workouts)
-  // console.log(durations)
-  // console.log(data)
-
   let lineChart = new Chart(line, {
     type: "line",
     data: {
       labels: datesArr,
       datasets: [
         {
-          label: "Workout Duration In Minutes",
+          label: "Workout Distance (miles)",
           // backgroundColor: '',
           borderColor: "violet",
           data: durations,
@@ -159,7 +128,7 @@ function populateChart(data) {
       responsive: true,
       title: {
         display: true,
-        text: "Workout Duration",
+        text: "Distance Covered",
       },
       scales: {
         xAxes: [
@@ -230,39 +199,39 @@ function populateChart(data) {
   let pieChart = new Chart(pie, {
     type: "pie",
     data: {
-      labels: chartArraysHash['names'],
+      labels: chartArraysHash.Cardio.names,
       datasets: [
         {
           label: 'Cardio Performed',
           backgroundColor: colors,
-          data: chartArraysHash['durations']
+          data: chartArraysHash.Cardio.durations
         }
       ]
     },
     options: {
       title: {
         display: true,
-        text: "Cardio Performed"
+        text: "Cardio Performed (minutes)"
       }
     }
   });
 
   let donutChart = new Chart(pie2, {
-    type: "doughnut",
+    type: "pie",
     data: {
-      labels: chartArraysHash['names'],
+      labels: chartArraysHash.Resistance.names,
       datasets: [
         {
           label: "Resistance Performed",
           backgroundColor: colors,
-          data: pounds
+          data: chartArraysHash.Resistance.durations
         }
       ]
     },
     options: {
       title: {
         display: true,
-        text: "Resistance Performed"
+        text: "Resistance Performed (minutes)"
       }
     }
   });
@@ -272,15 +241,16 @@ const duration = (data) => {
 
   let totalsArr = new Array(7).fill(0);
   let dateArr = utilFunctions.formatDate()
-  let duration = {}
+  let distance = {}
   let weekOfExercises = data[data.length - 1].exercises;
 
-
   for (const [key, value] of Object.entries(weekOfExercises)) {
-    !duration[value.dayOf] ? duration[value.dayOf] = value.duration : duration[value.dayOf] += value.duration;
+    if(value.type === 'Cardio'){
+      !distance[value.dayOf] ? distance[value.dayOf] = value.distance : distance[value.dayOf] += value.distance;
+    }
   }
 
-  for (const [key, value] of Object.entries(duration)) {
+  for (const [key, value] of Object.entries(distance)) {
     let index = dateArr.indexOf(key);
     totalsArr[index] = value;
   }
