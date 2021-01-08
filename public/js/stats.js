@@ -5,47 +5,25 @@ API.getWorkoutsInRange()
     return res;
   })
   .then(data => {
-    console.log(data)
-    populateChart(data);
+    control(data)
   });
 
-function generatePalette() {
-  const arr = [
-    "#003f5c",
-    "#2f4b7c",
-    "#665191",
-    "#a05195",
-    "#d45087",
-    "#f95d6a",
-    "#ff7c43",
-    "ffa600",
-    "#003f5c",
-    "#2f4b7c",
-    "#665191",
-    "#a05195",
-    "#d45087",
-    "#f95d6a",
-    "#ff7c43",
-    "ffa600"
-  ]
-
-  return arr;
+const control = (data) => {
+  populateChart(data);
 }
-function populateChart(data) {
-  //need time based function to link dates to labels
+
+const populateChart = (data) => {
   let datesArr = utilFunctions.formatDate();
-  let durations = duration(data);
-  let pounds = calculateTotalWeight(data);
-  let workouts = workoutNames(data);
-  const colors = generatePalette();
+  let durations = utilStats.duration(data);
+  let pounds = utilStats.calculateTotalWeight(data);
+  let chartArraysHash = utilStats.pieChartData(data);
+  let colors = utilStats.generatePalette(chartArraysHash);
+  let workouts = utilStats.workoutNames(data);
 
   let line = document.querySelector("#canvas").getContext("2d");
   let bar = document.querySelector("#canvas2").getContext("2d");
   let pie = document.querySelector("#canvas3").getContext("2d");
   let pie2 = document.querySelector("#canvas4").getContext("2d");
-
-  console.log(datesArr)
-  console.log(durations)
 
   let lineChart = new Chart(line, {
     type: "line",
@@ -53,9 +31,9 @@ function populateChart(data) {
       labels: datesArr,
       datasets: [
         {
-          label: "Workout Duration In Minutes",
-          backgroundColor: "red",
-          borderColor: "red",
+          label: "Workout Distance (miles)",
+          // backgroundColor: '',
+          borderColor: "rgba(147,112,219, 0.5)",
           data: durations,
           fill: true
         }
@@ -64,7 +42,8 @@ function populateChart(data) {
     options: {
       responsive: true,
       title: {
-        display: true
+        display: true,
+        text: "Distance Covered",
       },
       scales: {
         xAxes: [
@@ -93,7 +72,7 @@ function populateChart(data) {
       labels: utilFunctions.formatDate(),
       datasets: [
         {
-          label: "Pounds",
+          label: `Week of ${utilFunctions.formatDate()[0]}`,
           data: pounds,
           backgroundColor: [
             "rgba(255, 99, 132, 0.2)",
@@ -135,94 +114,42 @@ function populateChart(data) {
   let pieChart = new Chart(pie, {
     type: "pie",
     data: {
-      labels: workouts,
+      labels: chartArraysHash.Cardio.names,
       datasets: [
         {
-          label: "Excercises Performed",
-          backgroundColor: colors,
-          data: durations
+          label: 'Cardio Performed',
+          backgroundColor: colors.Cardio,
+          data: chartArraysHash.Cardio.durations
         }
       ]
     },
     options: {
       title: {
         display: true,
-        text: "Excercises Performed"
+        text: "Cardio Performed (minutes)"
       }
     }
   });
 
   let donutChart = new Chart(pie2, {
-    type: "doughnut",
+    type: "pie",
     data: {
-      labels: workouts,
+      labels: chartArraysHash.Resistance.names,
       datasets: [
         {
-          label: "Excercises Performed",
-          backgroundColor: colors,
-          data: pounds
+          label: "Resistance Performed",
+          backgroundColor: colors.Resistance,
+          data: chartArraysHash.Resistance.durations
         }
       ]
     },
     options: {
       title: {
         display: true,
-        text: "Excercises Performed"
+        text: "Resistance Performed (minutes)"
       }
     }
   });
 }
 
-const duration = (data) => {
 
-  let totalsArr = new Array(7).fill(0);
-  let dateArr = utilFunctions.formatDate()
-  let duration = {}
-  let weekOfExercises = data[data.length - 1].exercises;
-
-
-  for (const [key, value] of Object.entries(weekOfExercises)) {
-    !duration[value.dayOf] ? duration[value.dayOf] = value.duration : duration[value.dayOf] += value.duration;
-  }
-
-  for (const [key, value] of Object.entries(duration)) {
-    let index = dateArr.indexOf(key);
-    console.log(index)
-    totalsArr[index] = value;
-  }
-  return (totalsArr);
-}
-
-const calculateTotalWeight = (data) => {
-  let totalsArr = new Array(7).fill(0);
-  let dateArr = utilFunctions.formatDate();
-  let weight = {};
-  let weekOfExercises = data[data.length - 1].exercises;
-
-console.log(weekOfExercises)
-  for(const [key, value] of Object.entries(weekOfExercises)){
-    if(value.type === 'Resistance'){
-
-      !weight[value.dayOf] ? weight[value.dayOf] = value.weight : weight[value.dayOf] += value.weight;
-    }
-  }
-
-  for (const [key, value] of Object.entries(weight)) {
-      let index = dateArr.indexOf(key);
-      totalsArr[index] = value;
-    }
-
-  return totalsArr;
-}
-
-const workoutNames = (data) => {
-  let workouts = [];
-
-  data.forEach(workout => {
-    workout.exercises.forEach(exercise => {
-      workouts.push(exercise.name);
-    });
-  });
-
-  return workouts;
-}
