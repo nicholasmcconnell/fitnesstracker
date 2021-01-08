@@ -14,6 +14,8 @@ function generatePalette() {
   // Have variable the holds last value
   //check to make sure values aren't the same
   //make value empty new color after its verified
+
+  //Should return array same length as names and values object
   const arr = [
     "#003f5c",
     "#2f4b7c",
@@ -38,35 +40,87 @@ function generatePalette() {
 
 
 
-let chartHashToArray = (data) => {
+let pieChartData = (data) => {
   /////////FUCNTION WORKS BUT NEEDS TO BE SCALEABLE TO ACCOMODATE FUTURE IMPLIMENTATION OF EXERCISES ////
 
 
   let exercises = data[data.length - 1].exercises;
   let nameDurationHash = {};
+  let nameDurationHash2 = {};
 
   let arrHash = {
+    'Cardio': {
     'names': [],
     'durations': []
+    },
+    'Resistance': {
+      'names': [],
+      'durations': []
+    }
   };
 
-  console.log(typeof exercises)
+  console.log(arrHash['names'])
+  //use type to make object i arrhash
 
 
   for (let [key, value] of Object.entries(exercises)) {
-
-    if (!nameDurationHash[value.name]) {
-      nameDurationHash[value.name] = value.duration;
-    } else {
-      nameDurationHash[value.name] += value.duration;
+    // console.log(value)
+    switch (value.type) {
+      case 'Cardio':
+        console.log('in cardio case')
+        if (!nameDurationHash[value.type]) {
+          nameDurationHash[value.type] = {};
+        }
+        if (!nameDurationHash[value.type][value.name]) {
+          nameDurationHash[value.type][value.name] = value.duration;
+        } else {
+          nameDurationHash[value.type][value.name] += value.duration;
+        }
+        break;
+      case 'Resistance':
+        if (!nameDurationHash[value.type]) {
+          nameDurationHash[value.type] = {};
+        }
+        if (!nameDurationHash[value.type][value.name]) {
+          nameDurationHash[value.type][value.name] = value.duration;
+        } else {
+          nameDurationHash[value.type][value.name] += value.duration;
+        }
+        break;
+      default:
+        break;
     }
   }
+  console.log(nameDurationHash)
 
-  for (let [key, value] of Object.entries(nameDurationHash)) {
-    arrHash['names'].push(key)
-    arrHash['durations'].push(value)
-  }
- return arrHash
+  for (let [k, v] of Object.entries(nameDurationHash)) {
+    for (let [key, value] of Object.entries(v)) {
+      console.log(k, key, value)
+      // if (!arrHash[key]) {
+      //   arrHash[key] = {};
+      //   arrHash[key].value = [];
+      //   // console.log(arrHash, value)
+
+      // }
+      arrHash[k]['names'].push(key);
+      arrHash[k]['durations'].push(value);
+
+      // arrHash2['names'].push(key)
+      // arrHash2['durations'].push(value)
+    }
+    // if (!nameDurationHash2[value.name]) {
+    //   nameDurationHash2[value.name] = value.duration;
+    // } else {
+    //   nameDurationHash2[value.name] += value.duration;
+    // }
+  } 
+
+  // for (let [key, value] of Object.entries(nameDurationHash2)) {
+  //   arrHash2['names'].push(key)
+  //   arrHash2['durations'].push(value)
+  // }
+  console.log(nameDurationHash, nameDurationHash2, arrHash)
+   return arrHash;
 }
 function populateChart(data) {
   //need time based function to link dates to labels
@@ -75,7 +129,7 @@ function populateChart(data) {
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
   let colors = generatePalette();
-  let chartArraysHash = chartHashToArray(data)
+  let chartArraysHash = pieChartData(data)
 
 
   let line = document.querySelector("#canvas").getContext("2d");
@@ -179,7 +233,7 @@ function populateChart(data) {
       labels: chartArraysHash['names'],
       datasets: [
         {
-          label: "Excercises Performed",
+          label: 'Cardio Performed',
           backgroundColor: colors,
           data: chartArraysHash['durations']
         }
@@ -188,7 +242,7 @@ function populateChart(data) {
     options: {
       title: {
         display: true,
-        text: "Excercises Performed"
+        text: "Cardio Performed"
       }
     }
   });
@@ -199,7 +253,7 @@ function populateChart(data) {
       labels: chartArraysHash['names'],
       datasets: [
         {
-          label: "Excercises Performed",
+          label: "Resistance Performed",
           backgroundColor: colors,
           data: pounds
         }
@@ -208,7 +262,7 @@ function populateChart(data) {
     options: {
       title: {
         display: true,
-        text: "Excercises Performed"
+        text: "Resistance Performed"
       }
     }
   });
