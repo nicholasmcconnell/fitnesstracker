@@ -3,8 +3,6 @@ const router = require("express").Router();
 const apiRoutes = require('./api');
 const htmlRoutes = require('./html');
 
-console.log('in index.js of routes')
-
 //API Routes
 router.use('/api', apiRoutes);
 

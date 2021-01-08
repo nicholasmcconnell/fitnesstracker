@@ -14,11 +14,10 @@ const control = (data) => {
 
 const populateChart = (data) => {
   let datesArr = utilFunctions.formatDate();
-  let durations = utilStats.duration(data);
-  let pounds = utilStats.calculateTotalWeight(data);
-  let chartArraysHash = utilStats.pieChartData(data);
+  let distance = utilStats.distancePerDay(data);
+  let pounds = utilStats.weightPerDay(data);
+  let chartArraysHash = utilStats.durations(data);
   let colors = utilStats.generatePalette(chartArraysHash);
-  let workouts = utilStats.workoutNames(data);
 
   let line = document.querySelector("#canvas").getContext("2d");
   let bar = document.querySelector("#canvas2").getContext("2d");
@@ -34,7 +33,7 @@ const populateChart = (data) => {
           label: "Workout Distance (miles)",
           // backgroundColor: '',
           borderColor: "rgba(147,112,219, 0.5)",
-          data: durations,
+          data: distance,
           fill: true
         }
       ]

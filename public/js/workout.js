@@ -1,11 +1,19 @@
 ///////////// THIS FILE IS FOR DISPLAYING LAST WORKOUT SUMMARY ON INDEX.JS////////////
-async function initWorkout() {
+
+
+const control = async () => {
+  const workoutSummary = await initLastWorkout();
+  renderWorkoutSummary(workoutSummary);
+}
+
+control();
+
+async function initLastWorkout() {
   const lastWorkoutWeek = await API.getLastWorkout();
 
   if (!lastWorkoutWeek || !lastWorkoutWeek.exercises.length) {
     renderNoWorkoutText()
   } else if (lastWorkoutWeek.exercises.length) {
-    console.log('if of workout.js')
     document
       .querySelector("a[href='/exercise?']")
       .setAttribute("href", `/exercise?id=${lastWorkoutWeek._id}`);
@@ -22,7 +30,7 @@ async function initWorkout() {
             duration: lastWorkoutSpecs.duration,
           },
           weekOfStats: {
-            ...tallyExercises(lastWorkoutWeek.exercises)
+            ...utilWorkout.tallyExercises(lastWorkoutWeek.exercises)
           }
         }
         break;
@@ -46,38 +54,9 @@ async function initWorkout() {
         break;
     }
 
-    renderWorkoutSummary(workoutSummary);
+    return workoutSummary;
   }
 }
-
-function tallyExercises(exercises) {
-
-  const tallied = {};
-
-  for (const [key, value] of Object.entries(exercises)) {
-    for (const [k, v] of Object.entries(value)) {
-      if (typeof v === 'number' && !tallied[k]) {
-        tallied[k] = v;
-      } else if (typeof v === 'number' && tallied[k]) {
-        tallied[k] += v;
-      }
-    }
-  }
-  return tallied;
-}
-
-///////////NOT BEING USED???///////////
-function formatDate(date) {
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  };
-
-  return new Date(date).toLocaleDateString(options);
-}
-
 function renderWorkoutSummary(summary) {
   
   const { dayOfStatsCardio, dayOfStatsResistance, weekOfStats } = {
@@ -144,14 +123,3 @@ function renderWorkoutSummary(summary) {
   };
 }
 
-function renderNoWorkoutText() {
-  const container = document.querySelector(".workout-stats");
-  const p = document.createElement("p");
-  const strong = document.createElement("strong");
-  strong.textContent = "You have not created a workout yet!"
-
-  p.appendChild(strong);
-  container.appendChild(p);
-}
-
-initWorkout();
