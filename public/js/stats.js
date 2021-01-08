@@ -5,100 +5,20 @@ API.getWorkoutsInRange()
     return res;
   })
   .then(data => {
-    populateChart(data);
-    // chartHashToArray(data)
+    control(data)
   });
 
-const getRandomRgb = () => {
-  var num = Math.round(0xffffff * Math.random());
-  var r = num >> 16;
-  var g = num >> 8 & 255;
-  var b = num & 255;
-  return 'rgb(' + r + ', ' + g + ', ' + b + ', 0.5)';
-}
-
-const generatePalette = (chartArraysHash) => {
-  let cardioArrLength = chartArraysHash.Cardio.names.length;
-  let resistanceArrLength = chartArraysHash.Resistance.names.length;
-  let colorObj = {
-    'Cardio': [],
-    'Resistance': []
-  };
-
-  for (let i = 0; i < cardioArrLength; i++) {
-    let randomColor = getRandomRgb();
-    colorObj['Cardio'].push(randomColor);
-  }
-
-  for (let i = 0; i < resistanceArrLength; i++) {
-    let randomColor = getRandomRgb();
-    colorObj['Resistance'].push(randomColor);
-  }
-  return colorObj;
-}
-
-const pieChartData = (data) => {
-
-  let exercises = data[data.length - 1].exercises;
-  let nameDurationHash = {};
-
-  let arrHash = {
-    'Cardio': {
-      'names': [],
-      'durations': []
-    },
-    'Resistance': {
-      'names': [],
-      'durations': []
-    }
-  };
-
-  for (let [key, value] of Object.entries(exercises)) {
-    switch (value.type) {
-      case 'Cardio':
-        if (!nameDurationHash[value.type]) {
-          nameDurationHash[value.type] = {};
-        }
-        if (!nameDurationHash[value.type][value.name]) {
-          nameDurationHash[value.type][value.name] = value.duration;
-        } else {
-          nameDurationHash[value.type][value.name] += value.duration;
-        }
-        break;
-      case 'Resistance':
-        if (!nameDurationHash[value.type]) {
-          nameDurationHash[value.type] = {};
-        }
-        if (!nameDurationHash[value.type][value.name]) {
-          nameDurationHash[value.type][value.name] = value.duration;
-        } else {
-          nameDurationHash[value.type][value.name] += value.duration;
-        }
-        break;
-      default:
-        break;
-    }
-  }
-
-  for (let [k, v] of Object.entries(nameDurationHash)) {
-    for (let [key, value] of Object.entries(v)) {
-      arrHash[k]['names'].push(key);
-      arrHash[k]['durations'].push(value);
-    }
-
-  }
-
-  return arrHash;
+const control = (data) => {
+  populateChart(data);
 }
 
 const populateChart = (data) => {
   let datesArr = utilFunctions.formatDate();
-  let durations = duration(data);
-  let pounds = calculateTotalWeight(data);
-  let workouts = workoutNames(data);
-  let chartArraysHash = pieChartData(data);
-  let colors = generatePalette(chartArraysHash);
-  console.log(colors)
+  let durations = utilStats.duration(data);
+  let pounds = utilStats.calculateTotalWeight(data);
+  let chartArraysHash = utilStats.pieChartData(data);
+  let colors = utilStats.generatePalette(chartArraysHash);
+  let workouts = utilStats.workoutNames(data);
 
   let line = document.querySelector("#canvas").getContext("2d");
   let bar = document.querySelector("#canvas2").getContext("2d");
@@ -232,53 +152,4 @@ const populateChart = (data) => {
   });
 }
 
-const duration = (data) => {
 
-  let totalsArr = new Array(7).fill(0);
-  let dateArr = utilFunctions.formatDate()
-  let distance = {}
-  let weekOfExercises = data[data.length - 1].exercises;
-
-  for (const [key, value] of Object.entries(weekOfExercises)) {
-    if (value.type === 'Cardio') {
-      !distance[value.dayOf] ? distance[value.dayOf] = value.distance : distance[value.dayOf] += value.distance;
-    }
-  }
-
-  for (const [key, value] of Object.entries(distance)) {
-    let index = dateArr.indexOf(key);
-    totalsArr[index] = value;
-  }
-  return (totalsArr);
-}
-
-const calculateTotalWeight = (data) => {
-  let totalsArr = new Array(7).fill(0);
-  let dateArr = utilFunctions.formatDate();
-  let weight = {};
-  let weekOfExercises = data[data.length - 1].exercises;
-
-  for (const [key, value] of Object.entries(weekOfExercises)) {
-    if (value.type === 'Resistance') {
-      !weight[value.dayOf] ? weight[value.dayOf] = value.weight : weight[value.dayOf] += value.weight;
-    }
-  }
-
-  for (const [key, value] of Object.entries(weight)) {
-    let index = dateArr.indexOf(key);
-    totalsArr[index] = value;
-  }
-
-  return totalsArr;
-}
-
-const workoutNames = (data) => {
-  let workouts = [];
-
-  data.forEach(workout => {
-    workout.exercises.forEach(exercise => {
-      workouts.push(exercise.name);
-    });
-  });
-  return workouts;
-}
