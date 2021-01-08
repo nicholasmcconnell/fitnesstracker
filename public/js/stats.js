@@ -9,7 +9,15 @@ API.getWorkoutsInRange()
     // chartHashToArray(data)
   });
 
-function generatePalette(chartArraysHash) {
+const getRandomRgb = () => {
+  var num = Math.round(0xffffff * Math.random());
+  var r = num >> 16;
+  var g = num >> 8 & 255;
+  var b = num & 255;
+  return 'rgb(' + r + ', ' + g + ', ' + b + ', 0.5)';
+}
+
+const generatePalette = (chartArraysHash) => {
   let cardioArrLength = chartArraysHash.Cardio.names.length;
   let resistanceArrLength = chartArraysHash.Resistance.names.length;
   let colorObj = {
@@ -18,21 +26,18 @@ function generatePalette(chartArraysHash) {
   };
 
   for (let i = 0; i < cardioArrLength; i++) {
-    let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-    console.log(randomColor)
+    let randomColor = getRandomRgb();
     colorObj['Cardio'].push(randomColor);
   }
 
   for (let i = 0; i < resistanceArrLength; i++) {
-    let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-    console.log(randomColor)
+    let randomColor = getRandomRgb();
     colorObj['Resistance'].push(randomColor);
   }
-  console.log(colorObj)
   return colorObj;
 }
 
-let pieChartData = (data) => {
+const pieChartData = (data) => {
 
   let exercises = data[data.length - 1].exercises;
   let nameDurationHash = {};
@@ -77,7 +82,6 @@ let pieChartData = (data) => {
 
   for (let [k, v] of Object.entries(nameDurationHash)) {
     for (let [key, value] of Object.entries(v)) {
-
       arrHash[k]['names'].push(key);
       arrHash[k]['durations'].push(value);
     }
@@ -86,7 +90,8 @@ let pieChartData = (data) => {
 
   return arrHash;
 }
-function populateChart(data) {
+
+const populateChart = (data) => {
   let datesArr = utilFunctions.formatDate();
   let durations = duration(data);
   let pounds = calculateTotalWeight(data);
@@ -108,7 +113,7 @@ function populateChart(data) {
         {
           label: "Workout Distance (miles)",
           // backgroundColor: '',
-          borderColor: "violet",
+          borderColor: "rgba(147,112,219, 0.5)",
           data: durations,
           fill: true
         }
