@@ -35,7 +35,7 @@ const utilStats = {
     return colorObj;
   },
 
-  pieChartData: function (data) {
+  durations: function (data) {
 
     let exercises = data[data.length - 1].exercises;
     let nameDurationHash = {};
@@ -62,6 +62,7 @@ const utilStats = {
           nameDurationHash[value.type][value.name] += value.duration;
         }
       }
+
       switch (value.type) {
         case 'Cardio':
           durationHashConditional()
@@ -85,7 +86,7 @@ const utilStats = {
     return arrHash;
   },
 
-  duration: function (data) {
+  distancePerDay: function (data) {
 
     let totalsArr = new Array(7).fill(0);
     let dateArr = utilFunctions.formatDate()
@@ -105,7 +106,8 @@ const utilStats = {
     return (totalsArr);
   },
 
-  calculateTotalWeight: function (data) {
+  weightPerDay: function (data) {
+    ///////DOES NOT ACCOUNT FOR REPS AND SETS IN TOTAL.  JUST THE WEIGHT USED DURING THE EXERCISE
     let totalsArr = new Array(7).fill(0);
     let dateArr = utilFunctions.formatDate();
     let weight = {};
