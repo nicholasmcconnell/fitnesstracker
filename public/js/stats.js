@@ -9,36 +9,28 @@ API.getWorkoutsInRange()
     // chartHashToArray(data)
   });
 
-function generatePalette() {
-  //1. random color generator function
-  // Have variable the holds last value
-  //check to make sure values aren't the same
-  //make value empty new color after its verified
+function generatePalette(chartArraysHash) {
+  let cardioArrLength = chartArraysHash.Cardio.names.length;
+  let resistanceArrLength = chartArraysHash.Resistance.names.length;
+  let colorObj = {
+    'Cardio': [],
+    'Resistance': []
+  };
 
-  //Should return array same length as names and values object
-  const arr = [
-    "#003f5c",
-    "#2f4b7c",
-    "#665191",
-    "#a05195",
-    "#d45087",
-    "#f95d6a",
-    "#ff7c43",
-    "ffa600",
-    "#003f5c",
-    "#2f4b7c",
-    "#665191",
-    "#a05195",
-    "#d45087",
-    "#f95d6a",
-    "#ff7c43",
-    "ffa600"
-  ]
+  for (let i = 0; i < cardioArrLength; i++) {
+    let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    console.log(randomColor)
+    colorObj['Cardio'].push(randomColor);
+  }
 
-  return arr;
+  for (let i = 0; i < resistanceArrLength; i++) {
+    let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    console.log(randomColor)
+    colorObj['Resistance'].push(randomColor);
+  }
+  console.log(colorObj)
+  return colorObj;
 }
-
-
 
 let pieChartData = (data) => {
 
@@ -47,8 +39,8 @@ let pieChartData = (data) => {
 
   let arrHash = {
     'Cardio': {
-    'names': [],
-    'durations': []
+      'names': [],
+      'durations': []
     },
     'Resistance': {
       'names': [],
@@ -59,7 +51,6 @@ let pieChartData = (data) => {
   for (let [key, value] of Object.entries(exercises)) {
     switch (value.type) {
       case 'Cardio':
-        console.log('in cardio case')
         if (!nameDurationHash[value.type]) {
           nameDurationHash[value.type] = {};
         }
@@ -86,24 +77,23 @@ let pieChartData = (data) => {
 
   for (let [k, v] of Object.entries(nameDurationHash)) {
     for (let [key, value] of Object.entries(v)) {
-   
+
       arrHash[k]['names'].push(key);
       arrHash[k]['durations'].push(value);
     }
 
-  } 
+  }
 
-   return arrHash;
+  return arrHash;
 }
 function populateChart(data) {
   let datesArr = utilFunctions.formatDate();
   let durations = duration(data);
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
-  let colors = generatePalette();
   let chartArraysHash = pieChartData(data);
-  console.log(chartArraysHash)
-
+  let colors = generatePalette(chartArraysHash);
+  console.log(colors)
 
   let line = document.querySelector("#canvas").getContext("2d");
   let bar = document.querySelector("#canvas2").getContext("2d");
@@ -203,7 +193,7 @@ function populateChart(data) {
       datasets: [
         {
           label: 'Cardio Performed',
-          backgroundColor: colors,
+          backgroundColor: colors.Cardio,
           data: chartArraysHash.Cardio.durations
         }
       ]
@@ -223,7 +213,7 @@ function populateChart(data) {
       datasets: [
         {
           label: "Resistance Performed",
-          backgroundColor: colors,
+          backgroundColor: colors.Resistance,
           data: chartArraysHash.Resistance.durations
         }
       ]
@@ -245,7 +235,7 @@ const duration = (data) => {
   let weekOfExercises = data[data.length - 1].exercises;
 
   for (const [key, value] of Object.entries(weekOfExercises)) {
-    if(value.type === 'Cardio'){
+    if (value.type === 'Cardio') {
       !distance[value.dayOf] ? distance[value.dayOf] = value.distance : distance[value.dayOf] += value.distance;
     }
   }
@@ -285,6 +275,5 @@ const workoutNames = (data) => {
       workouts.push(exercise.name);
     });
   });
-  console.log(workouts)
   return workouts;
 }
