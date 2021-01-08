@@ -10,43 +10,45 @@
   <title>Fitness Tracker</title>
 </head>
 
+<nav>
+  <a href="/">Fitness Tracker</a>
+  <a href="/stats">Dashboard</a>
+</nav>
+
 <body>
-  <nav>
-    <a href="/">Fitness Tracker</a>
-    <a href="/stats">Dashboard</a>
-  </nav>
   <div class="wrapper workout">
-    <header>
-      <h1>Fitness Tracker</h1>
-    </header>
+    <!-- <header>
+    </header> -->
 
     <div class="container mt">
-      <div class="ui container workout">
-        <div class="ui raised card m-auto">
-          <div class="prev-workout">
-            <h3>Last Workout Stats</h3>
-            <div>
-              <div class="dayOfStats"></div>
-              <h3>This Weeks Stats</h3>
-              <div class="weekOfStats"></div>
-              <div class="buttons">
-                <!-- <a id="continue-btn" href="/exercise?" class="huge ui blue button">Continue Workout</a> -->
-                <a href="/exercise?" class="huge positive ui button">New Workout</a>
-              </div>
+      <h1>Fitness Tracker</h1>
+
+      <!-- <div class="ui container workout"> -->
+      <div class="ui raised card m-auto">
+        <div class="prev-workout">
+          <h3>Last Workout Stats</h3>
+          <div>
+            <div class="dayOfStats"></div>
+            <h3>This Weeks Stats</h3>
+            <div class="weekOfStats"></div>
+            <div class="buttons">
+              <!-- <a id="continue-btn" href="/exercise?" class="huge ui blue button">Continue Workout</a> -->
+              <a href="/exercise?" class="huge positive ui button">New Workout</a>
             </div>
           </div>
-          <div class="new-workout">
-            <h3>Create Your First Workout</h3>
-          </div>
+        </div>
+        <div class="new-workout">
+          <h3>Create Your First Workout</h3>
         </div>
       </div>
+      <!-- </div> -->
 
 
     </div>
 
-    
+
   </div>
-  </div>
+  <!-- </div> -->
   <div id="toast">
     Workout Added Successfully!
   </div>
