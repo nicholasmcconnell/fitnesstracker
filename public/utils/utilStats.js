@@ -8,7 +8,6 @@ const utilStats = {
   // },
 
   generatePalette: function (chartArraysHash) {
-    console.log(chartArraysHash)
     let cardioArrLength = chartArraysHash.Cardio.names.length;
     let resistanceArrLength = chartArraysHash.Resistance.names.length;
     let colorObj = {
@@ -25,9 +24,7 @@ const utilStats = {
     }
 
     for (let [k, v] of Object.entries(chartArraysHash)) {
-      console.log(k, v)
       for (let [key, value] of Object.entries(v)) {
-        console.log(key, value)
         for (let i = 0; i < value.length; i++) {
           let randomColor = getRandomRgb();
           colorObj[k].push(randomColor);
@@ -55,26 +52,22 @@ const utilStats = {
     };
 
     for (let [key, value] of Object.entries(exercises)) {
+      let durationHashConditional = () => {
+        if (!nameDurationHash[value.type]) {
+          nameDurationHash[value.type] = {};
+        }
+        if (!nameDurationHash[value.type][value.name]) {
+          nameDurationHash[value.type][value.name] = value.duration;
+        } else {
+          nameDurationHash[value.type][value.name] += value.duration;
+        }
+      }
       switch (value.type) {
         case 'Cardio':
-          if (!nameDurationHash[value.type]) {
-            nameDurationHash[value.type] = {};
-          }
-          if (!nameDurationHash[value.type][value.name]) {
-            nameDurationHash[value.type][value.name] = value.duration;
-          } else {
-            nameDurationHash[value.type][value.name] += value.duration;
-          }
+          durationHashConditional()
           break;
         case 'Resistance':
-          if (!nameDurationHash[value.type]) {
-            nameDurationHash[value.type] = {};
-          }
-          if (!nameDurationHash[value.type][value.name]) {
-            nameDurationHash[value.type][value.name] = value.duration;
-          } else {
-            nameDurationHash[value.type][value.name] += value.duration;
-          }
+         durationHashConditional();
           break;
         default:
           break;
