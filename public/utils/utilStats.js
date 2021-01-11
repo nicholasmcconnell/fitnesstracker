@@ -1,12 +1,4 @@
 const utilStats = {
-  // getRandomRgb: function () {
-  //   var num = Math.round(0xffffff * Math.random());
-  //   var r = num >> 16;
-  //   var g = num >> 8 & 255;
-  //   var b = num & 255;
-  //   return 'rgb(' + r + ', ' + g + ', ' + b + ', 0.5)';
-  // },
-
   generatePalette: function (chartArraysHash) {
     let cardioArrLength = chartArraysHash.Cardio.names.length;
     let resistanceArrLength = chartArraysHash.Resistance.names.length;

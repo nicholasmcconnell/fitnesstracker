@@ -46,7 +46,7 @@ async function initLastWorkout() {
             duration: lastWorkoutSpecs.duration,
           },
           weekOfStats: {
-            ...tallyExercises(lastWorkoutWeek.exercises)
+            ...utilWorkout.tallyExercises(lastWorkoutWeek.exercises)
           }
         }
         break;

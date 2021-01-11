@@ -2,8 +2,18 @@
 
 API.getWorkoutsInRange()
   .then(res => {
-    console.log(res)
-    return res;
+    if (res.weekOf !== utilFunctions.formatDate()[0]) {
+      let container = document.querySelector('.container');
+      let h2 = document.createElement('h2');
+      h2.classList.add('text-center');
+      
+      h2.textContent = 'No workouts have been logged for this week.';
+      container.prepend(h2)
+      ////Then should display previous weeks and be able to scroll through them
+      //may need to have api retrieve all workouts so stats for previous weeks can be viewed
+    } else {
+      return res;
+    }
   })
   .then(data => {
     control(data)
