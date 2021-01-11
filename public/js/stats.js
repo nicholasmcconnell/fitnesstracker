@@ -1,4 +1,6 @@
 // get all workout data from back-end
+const previousButton = document.querySelector('.previous');
+const nextButton = document.querySelector('.next');
 
 API.getWorkoutsInRange()
   .then(res => {
@@ -175,5 +177,18 @@ const populateChart = (data) => {
     }
   });
 }
+
+//previous/next
+// - each button gets evenent listner or on
+// - doc.querySelector the button to var
+// - put even listener that makes api call 
+// - selects week based on index 
+//     - arr.length just loads again if at the ened (same for arr[0])
+// - calls render workout and passes exercise to renderworkoutfunction;
+
+previousButton.addEventListener('click', () => {
+  console.log('clicked')
+})
+
 
 

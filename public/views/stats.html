@@ -5,13 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" /> -->
   <link rel="stylesheet" href="/style/style.css" />
   <title>Fitness Chart</title>
 </head>
 <nav>
-  <a href="/">Fitness Tracker</a>
+  <a href="/">Fitness Tracker | </a>
+  <a href="/exercise">Exercise</a>
 </nav>
 
 <body>
@@ -20,20 +23,27 @@
       <h1>Workout Dashboard</h1>
     </header>
     <div class="container mt">
-      <div class="row mt">
-        <div class="col-md-6">
-          <canvas id="canvas"></canvas>
+      <div class="ui raised card m-auto">
+        <div class="row justify-content-center">
+          <button class="previous col-md-2">Previous</button>
+          <p class="col-m-2">Week of:</p>
+          <button class="next col-md-2">Next</button>
         </div>
-        <div class="col-md-6">
-          <canvas id="canvas2"></canvas>
+        <div class="row mt">
+          <div class="col-md-6">
+            <canvas id="canvas"></canvas>
+          </div>
+          <div class="col-md-6">
+            <canvas id="canvas2"></canvas>
+          </div>
         </div>
-      </div>
-      <div class="row mt">
-        <div class="col-md-6">
-          <canvas id="canvas3"></canvas>
-        </div>
-        <div class="col-md-6">
-          <canvas id="canvas4"></canvas>
+        <div class="row mt">
+          <div class="col-md-6">
+            <canvas id="canvas3"></canvas>
+          </div>
+          <div class="col-md-6">
+            <canvas id="canvas4"></canvas>
+          </div>
         </div>
       </div>
     </div>
