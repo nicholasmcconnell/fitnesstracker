@@ -1,3 +1,4 @@
+
 const utilStats = {
   generatePalette: function (chartArraysHash) {
     let cardioArrLength = chartArraysHash.Cardio.names.length;
@@ -43,6 +44,10 @@ const utilStats = {
       }
     };
 
+    if(data.weekOf !== utilFunctions.formatDate()[0]){
+      return arrHash;
+    }
+
     for (let [key, value] of Object.entries(exercises)) {
       let durationHashConditional = () => {
         if (!nameDurationHash[value.type]) {
@@ -79,7 +84,6 @@ const utilStats = {
   },
 
   distancePerDay: function (data) {
-
     let totalsArr = new Array(7).fill(0);
     let dateArr = utilFunctions.formatDate()
     let distance = {}

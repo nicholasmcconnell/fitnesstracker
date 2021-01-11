@@ -2,15 +2,15 @@
 
 
 const control = async () => {
-  const workoutSummary = await initLastWorkout();
-  renderWorkoutSummary(workoutSummary);
+  const lastWorkoutWeek = await API.getLastWorkout();
+  const workoutSummary = await initLastWorkout(lastWorkoutWeek);
+  renderWorkoutSummary(workoutSummary, lastWorkoutWeek);
 }
 
 control();
 
-async function initLastWorkout() {
-  const lastWorkoutWeek = await API.getLastWorkout();
-
+async function initLastWorkout(lastWorkoutWeek) {
+  console.log(lastWorkoutWeek)
   if (!lastWorkoutWeek || !lastWorkoutWeek.exercises.length) {
     renderNoWorkoutText()
   } else if (lastWorkoutWeek.exercises.length) {
@@ -57,8 +57,9 @@ async function initLastWorkout() {
     return workoutSummary;
   }
 }
-function renderWorkoutSummary(summary) {
-  
+
+function renderWorkoutSummary(summary, lastWorkoutWeek) {
+  // let workoutKeyMap = {};
   const { dayOfStatsCardio, dayOfStatsResistance, weekOfStats } = {
     dayOfStatsCardio: {
       date: "Date",
@@ -107,18 +108,25 @@ function renderWorkoutSummary(summary) {
   const container2 = document.querySelector(".weekOfStats");
 
 
-
+console.log(summary)
   for (const [k, v] of Object.entries(summary)) {
+    if(k === 'weekOfStats' && (lastWorkoutWeek.weekOf !== utilFunctions.formatDate()[0])){
+      const p = document.createElement("p");
+      p.textContent = 'No workouts logged for this week.';
+      container2.appendChild(p);
+      return;      
+    }
+
     for (const [key, value] of Object.entries(v)) {
       const p = document.createElement("p");
       const strong = document.createElement("strong");
-    
+
       strong.textContent = workoutKeyMap[k][key];
       const textNode = document.createTextNode(`: ${summary[k][key]}`);
       p.appendChild(strong);
       p.appendChild(textNode);
-     
-      k === 'dayOfStatsCardio'|| k === 'dayOfStatsResistance' ? container.appendChild(p) : container2.appendChild(p);
+
+      k === 'dayOfStatsCardio' || k === 'dayOfStatsResistance' ? container.appendChild(p) : container2.appendChild(p);
     }
   };
 }
