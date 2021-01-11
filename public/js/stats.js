@@ -41,6 +41,7 @@ const populateChart = (data) => {
   let pie = document.querySelector("#canvas3").getContext("2d");
   let pie2 = document.querySelector("#canvas4").getContext("2d");
 
+  let titleFontSize = '14';
   let lineChart = new Chart(line, {
     type: "line",
     data: {
@@ -60,6 +61,8 @@ const populateChart = (data) => {
       title: {
         display: true,
         text: "Distance Covered",
+        fontSize: titleFontSize
+
       },
       scales: {
         xAxes: [
@@ -113,7 +116,8 @@ const populateChart = (data) => {
     options: {
       title: {
         display: true,
-        text: "Pounds Lifted"
+        text: "Pounds Lifted",
+        fontSize: titleFontSize
       },
       scales: {
         yAxes: [
@@ -127,7 +131,7 @@ const populateChart = (data) => {
     }
   });
 
-  let pieChart = new Chart(pie, {
+  let cardioPieChart = new Chart(pie, {
     type: "pie",
     data: {
       labels: chartArraysHash.Cardio.names,
@@ -142,12 +146,14 @@ const populateChart = (data) => {
     options: {
       title: {
         display: true,
-        text: "Cardio Performed (minutes)"
+        text: !chartArraysHash.Cardio.durations.length ? 'No Cardio Minutes Logged' : "Cardio Performed (minutes)",
+        fontColor: !chartArraysHash.Cardio.durations.length ? 'Red' : '',
+        fontSize: titleFontSize
       }
     }
   });
 
-  let donutChart = new Chart(pie2, {
+  let resistancePieChart = new Chart(pie2, {
     type: "pie",
     data: {
       labels: chartArraysHash.Resistance.names,
@@ -162,7 +168,10 @@ const populateChart = (data) => {
     options: {
       title: {
         display: true,
-        text: "Resistance Performed (minutes)"
+        text: !chartArraysHash.Resistance.durations.length ? 'No Resistance Minutes Logged' : "Resistance Performed (minutes)",
+        fontColor: !chartArraysHash.Resistance.durations.length ? 'red' : "",
+        fontSize: titleFontSize
+
       }
     }
   });
