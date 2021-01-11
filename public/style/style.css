@@ -97,7 +97,7 @@ input {
 
 .wrapper {
   background-color: #f2f8ff;
-  padding-bottom: 100px;
+  /* padding-bottom: 100px; */
 }
 
 .card.m-auto,

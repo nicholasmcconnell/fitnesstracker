@@ -2,6 +2,7 @@
 
 API.getWorkoutsInRange()
   .then(res => {
+    console.log(res)
     return res;
   })
   .then(data => {
@@ -9,6 +10,7 @@ API.getWorkoutsInRange()
   });
 
 const control = (data) => {
+  console.log(data)
   populateChart(data);
 }
 

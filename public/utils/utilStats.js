@@ -37,7 +37,7 @@ const utilStats = {
 
   durations: function (data) {
 
-    let exercises = data[data.length - 1].exercises;
+    let exercises = data.exercises;
     let nameDurationHash = {};
 
     let arrHash = {
@@ -91,7 +91,7 @@ const utilStats = {
     let totalsArr = new Array(7).fill(0);
     let dateArr = utilFunctions.formatDate()
     let distance = {}
-    let weekOfExercises = data[data.length - 1].exercises;
+    let weekOfExercises = data.exercises;
 
     for (const [key, value] of Object.entries(weekOfExercises)) {
       if (value.type === 'Cardio') {
@@ -111,7 +111,7 @@ const utilStats = {
     let totalsArr = new Array(7).fill(0);
     let dateArr = utilFunctions.formatDate();
     let weight = {};
-    let weekOfExercises = data[data.length - 1].exercises;
+    let weekOfExercises = data.exercises;
 
     for (const [key, value] of Object.entries(weekOfExercises)) {
       if (value.type === 'Resistance') {
@@ -127,15 +127,15 @@ const utilStats = {
     return totalsArr;
   },
 
-  workoutNames: function (data) {
-    let workouts = [];
+  // workoutNames: function (data) {
+  //   let workouts = [];
 
-    data.forEach(workout => {
-      workout.exercises.forEach(exercise => {
-        workouts.push(exercise.name);
-      });
-    });
-    return workouts;
-  }
+  //   data.forEach(workout => {
+  //     workout.exercises.forEach(exercise => {
+  //       workouts.push(exercise.name);
+  //     });
+  //   });
+  //   return workouts;
+  // }
 
 }
