@@ -2,7 +2,7 @@
 
 API.getWorkoutsInRange()
   .then(res => {
-    if (res.weekOf !== utilFunctions.formatDate()[0]) {
+     if (res === undefined || res.weekOf !== utilFunctions.formatDate()[0]) {
       let container = document.querySelector('.container');
       let h2 = document.createElement('h2');
       h2.classList.add('text-center');
@@ -21,7 +21,6 @@ API.getWorkoutsInRange()
   });
 
 const control = (data) => {
-  console.log(data)
   populateChart(data);
 }
 

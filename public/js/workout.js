@@ -12,7 +12,7 @@ control();
 async function initLastWorkout(lastWorkoutWeek) {
   console.log(lastWorkoutWeek)
   if (!lastWorkoutWeek || !lastWorkoutWeek.exercises.length) {
-    renderNoWorkoutText()
+    utilWorkout.renderNoWorkoutText()
   } else if (lastWorkoutWeek.exercises.length) {
     document
       .querySelector("a[href='/exercise?']")
