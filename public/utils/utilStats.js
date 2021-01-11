@@ -1,12 +1,5 @@
-const utilStats = {
-  // getRandomRgb: function () {
-  //   var num = Math.round(0xffffff * Math.random());
-  //   var r = num >> 16;
-  //   var g = num >> 8 & 255;
-  //   var b = num & 255;
-  //   return 'rgb(' + r + ', ' + g + ', ' + b + ', 0.5)';
-  // },
 
+const utilStats = {
   generatePalette: function (chartArraysHash) {
     let cardioArrLength = chartArraysHash.Cardio.names.length;
     let resistanceArrLength = chartArraysHash.Resistance.names.length;
@@ -37,7 +30,7 @@ const utilStats = {
 
   durations: function (data) {
 
-    let exercises = data[data.length - 1].exercises;
+    let exercises = data.exercises;
     let nameDurationHash = {};
 
     let arrHash = {
@@ -50,6 +43,10 @@ const utilStats = {
         'durations': []
       }
     };
+
+    if(data.weekOf !== utilFunctions.formatDate()[0]){
+      return arrHash;
+    }
 
     for (let [key, value] of Object.entries(exercises)) {
       let durationHashConditional = () => {
@@ -87,11 +84,10 @@ const utilStats = {
   },
 
   distancePerDay: function (data) {
-
     let totalsArr = new Array(7).fill(0);
     let dateArr = utilFunctions.formatDate()
     let distance = {}
-    let weekOfExercises = data[data.length - 1].exercises;
+    let weekOfExercises = data.exercises;
 
     for (const [key, value] of Object.entries(weekOfExercises)) {
       if (value.type === 'Cardio') {
@@ -111,7 +107,7 @@ const utilStats = {
     let totalsArr = new Array(7).fill(0);
     let dateArr = utilFunctions.formatDate();
     let weight = {};
-    let weekOfExercises = data[data.length - 1].exercises;
+    let weekOfExercises = data.exercises;
 
     for (const [key, value] of Object.entries(weekOfExercises)) {
       if (value.type === 'Resistance') {
@@ -127,15 +123,15 @@ const utilStats = {
     return totalsArr;
   },
 
-  workoutNames: function (data) {
-    let workouts = [];
+  // workoutNames: function (data) {
+  //   let workouts = [];
 
-    data.forEach(workout => {
-      workout.exercises.forEach(exercise => {
-        workouts.push(exercise.name);
-      });
-    });
-    return workouts;
-  }
+  //   data.forEach(workout => {
+  //     workout.exercises.forEach(exercise => {
+  //       workouts.push(exercise.name);
+  //     });
+  //   });
+  //   return workouts;
+  // }
 
 }

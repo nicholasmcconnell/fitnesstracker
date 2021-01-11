@@ -2,22 +2,39 @@
 
 API.getWorkoutsInRange()
   .then(res => {
-    return res;
+    if (res.weekOf !== utilFunctions.formatDate()[0]) {
+      let container = document.querySelector('.container');
+      let h2 = document.createElement('h2');
+      h2.classList.add('text-center');
+      
+      h2.textContent = 'No workouts have been logged for this week.';
+      container.prepend(h2)
+      return res;
+      ////Then should display previous weeks and be able to scroll through them
+      //may need to have api retrieve all workouts so stats for previous weeks can be viewed
+    } else {
+      return res;
+    }
   })
   .then(data => {
     control(data)
   });
 
 const control = (data) => {
+  console.log(data)
   populateChart(data);
 }
 
 const populateChart = (data) => {
+  //find why bar and line show nothing and pie charts do
   let datesArr = utilFunctions.formatDate();
   let distance = utilStats.distancePerDay(data);
   let pounds = utilStats.weightPerDay(data);
   let chartArraysHash = utilStats.durations(data);
   let colors = utilStats.generatePalette(chartArraysHash);
+
+  console.log(distance)
+  console.log(chartArraysHash)
 
   let line = document.querySelector("#canvas").getContext("2d");
   let bar = document.querySelector("#canvas2").getContext("2d");
