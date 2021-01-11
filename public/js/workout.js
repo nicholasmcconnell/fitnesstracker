@@ -107,8 +107,6 @@ function renderWorkoutSummary(summary, lastWorkoutWeek) {
   const container = document.querySelector(".dayOfStats");
   const container2 = document.querySelector(".weekOfStats");
 
-
-console.log(summary)
   for (const [k, v] of Object.entries(summary)) {
     if(k === 'weekOfStats' && (lastWorkoutWeek.weekOf !== utilFunctions.formatDate()[0])){
       const p = document.createElement("p");
