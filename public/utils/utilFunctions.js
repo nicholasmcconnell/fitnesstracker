@@ -30,24 +30,20 @@ const utilFunctions = {
   weeksPast: (numOfWeeks) => {
     numOfWeeks;
     let daysInAWeek = 7
-    let weeksInDays = numOfWeeks * daysInAWeek;
+    let weeksInDaysTotal = weeksInDays = numOfWeeks * daysInAWeek;
     let d = new Date()
     let month = d.getMonth();
     let day = d.getDate();
     let year = d.getFullYear();
-    let weeksMatrix = [];
+    let weeksObj = {};
 
-    // console.log(currSunYear, currSunMonth, currSunDay)
-    // let d = new Date(currSunYear, currSunMonth, currSunDay-28);
     for (let i = 0; i < numOfWeeks; i++) {
-      let weekArr = utilFunctions.formatDateSeed(year, month, day - weeksInDays);
-      weeksMatrix.unshift(weekArr);
+      let weekArr = utilFunctions.formatDateSeed(year, month, day - (weeksInDaysTotal - weeksInDays));
+      weeksObj[i + 1] = weekArr;
       weeksInDays -= 7;
-      console.log(i, weekArr);
     }
-    return weeksMatrix;
+    return weeksObj;
   }
-
 };
 
 // module.exports = utilFunctions;

@@ -207,6 +207,7 @@ seedButton.addEventListener('click', () => {
   let weeksMatrix = utilFunctions.weeksPast(numOfWeeks);
   console.log(weeksMatrix);
 
+  //change matrix in weeksPast() to {i : weekArr}
   // }
   //CREATE WORKOUT JSON
   //date: "2021-01-11T23:48:09.602Z"
