@@ -202,13 +202,19 @@ seedButton.addEventListener('click', () => {
   //write seeds
   // see if date function can handle date changing easily
   // see what is sent and created via routes
+  let numOfWeeks = 3;
+  // for(let i = 0; i<3; i++){
+    utilFunctions.weeksPast(numOfWeeks);
 
+  // }
   //CREATE WORKOUT JSON
   //date: "2021-01-11T23:48:09.602Z"
   // exercises: []
   // weekOf: "1/10/2021"
   // __v: 0
   // _id: "5ffce3b9c8a7cf3ccb9dca23"
+
+  // let weekOfObj =
 
   //CARDIO ADD EXX JSON
   //   {type: "Cardio", name: "45", distance: 45, duration: 45}
@@ -241,6 +247,7 @@ seedButton.addEventListener('click', () => {
   //   workoutData.reps = Number(repsInput.value.trim());
   //   workoutData.duration = Number(resistanceDurationInput.value.trim());
   // }
+
 
 
 })

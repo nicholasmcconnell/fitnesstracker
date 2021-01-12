@@ -20,7 +20,7 @@ module.exports = {
                 { $push: { exercises: req.body } }
             )
             .then(workout => {
-                console.log(res.json(workout));
+                res.json(workout);
             })
             .catch(err => {
                 res.json(err);
@@ -31,7 +31,7 @@ module.exports = {
             console.log('in create')
         db.Workout.create({})
             .then(dbWorkout => {
-                console.log(res.json(dbWorkout));
+                res.json(dbWorkout);
             })
             .catch(err => {
                 res.json(err);
