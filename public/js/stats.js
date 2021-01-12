@@ -204,7 +204,8 @@ seedButton.addEventListener('click', () => {
   // see what is sent and created via routes
   let numOfWeeks = 3;
   // for(let i = 0; i<3; i++){
-    utilFunctions.weeksPast(numOfWeeks);
+  let weeksMatrix = utilFunctions.weeksPast(numOfWeeks);
+  console.log(weeksMatrix);
 
   // }
   //CREATE WORKOUT JSON
