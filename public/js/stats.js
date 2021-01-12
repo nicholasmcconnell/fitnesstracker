@@ -1,14 +1,15 @@
 // get all workout data from back-end
 const previousButton = document.querySelector('.previous');
 const nextButton = document.querySelector('.next');
+const seedButton = document.querySelector('.seed')
 
 API.getWorkoutsInRange()
   .then(res => {
-     if (res === undefined || res.weekOf !== utilFunctions.formatDate()[0]) {
+    if (res === undefined || res.weekOf !== utilFunctions.formatDate()[0]) {
       let container = document.querySelector('.container');
       let h2 = document.createElement('h2');
       h2.classList.add('text-center');
-      
+
       h2.textContent = 'No workouts have been logged for this week.';
       container.prepend(h2)
       return res;
@@ -187,7 +188,61 @@ const populateChart = (data) => {
 // - calls render workout and passes exercise to renderworkoutfunction;
 
 previousButton.addEventListener('click', () => {
-  console.log('clicked')
+  console.log('previous')
+})
+
+nextButton.addEventListener('click', () => {
+  console.log('next')
+})
+
+seedButton.addEventListener('click', () => {
+  console.log('seed')
+  //send seeds via send seed function from stats
+  //may be easier ro write speficic seed route
+  //write seeds
+  // see if date function can handle date changing easily
+  // see what is sent and created via routes
+
+  //CREATE WORKOUT JSON
+  //date: "2021-01-11T23:48:09.602Z"
+  // exercises: []
+  // weekOf: "1/10/2021"
+  // __v: 0
+  // _id: "5ffce3b9c8a7cf3ccb9dca23"
+
+  //CARDIO ADD EXX JSON
+  //   {type: "Cardio", name: "45", distance: 45, duration: 45}
+  // distance: 45
+  // duration: 45
+  // name: "45"
+  // type: "Cardio"}
+
+  //RESISTANCE ADD EX JSON
+  // type: "Resistance", name: "88", weight: 88, sets: 88, reps: 88, …}
+  // duration: 88
+  // name: "88"
+  // reps: 88
+  // sets: 88
+  // type: "Resistance"
+  // weight: 88
+  // __proto__: Object  
+
+  //FORM SUBMIT ORDER OF OBJECT
+  // if (workoutType === "Cardio") {
+  //   workoutData.type = "Cardio";
+  //   workoutData.name = cardioNameInput.value.trim();
+  //   workoutData.distance = Number(distanceInput.value.trim());
+  //   workoutData.duration = Number(durationInput.value.trim());
+  // } else if (workoutType === "Resistance") {
+  //   workoutData.type = "Resistance";
+  //   workoutData.name = nameInput.value.trim();
+  //   workoutData.weight = Number(weightInput.value.trim());
+  //   workoutData.sets = Number(setsInput.value.trim());
+  //   workoutData.reps = Number(repsInput.value.trim());
+  //   workoutData.duration = Number(resistanceDurationInput.value.trim());
+  // }
+
+
 })
 
 

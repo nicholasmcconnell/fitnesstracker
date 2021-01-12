@@ -9,3 +9,4 @@ package-lock.json
 .client/build
 /client/package-lock.json
 BUGS.txt
+STYLEBUGS.txt
