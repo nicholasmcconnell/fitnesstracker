@@ -5,8 +5,8 @@ const Schema = mongoose.Schema;
 
 const workoutSeedSchema = new Schema({
     date: {
-        type: String
-        // type: Date, default: () => new Date()
+        type: Date, 
+        default: () => new Date()
     },
     weekOf: {
         type: String
@@ -14,7 +14,7 @@ const workoutSeedSchema = new Schema({
     exercises: [{
         dayOf: {
             type: String,
-            default: `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
+            // default: `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
         },
         type: {
             type: String,
