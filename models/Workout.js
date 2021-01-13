@@ -3,6 +3,7 @@ const utilFunctions = require('./modelUtils/modelFunctions.js');
 
 const d = new Date();
 const Schema = mongoose.Schema;
+
 const workoutSchema = new Schema({
   date: { type: Date, default: () => new Date() },
   weekOf: {
