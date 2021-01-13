@@ -5,6 +5,7 @@ const seedButton = document.querySelector('.seed')
 
 API.getWorkoutsInRange()
   .then(res => {
+
     if (res === undefined || res.weekOf !== utilFunctions.formatDate()[0]) {
       let container = document.querySelector('.container');
       let h2 = document.createElement('h2');
@@ -20,7 +21,11 @@ API.getWorkoutsInRange()
     }
   })
   .then(data => {
-    control(data)
+    if (!data) {
+      return;
+    } else {
+      control(data)
+    }
   });
 
 const control = (data) => {
@@ -203,12 +208,17 @@ seedButton.addEventListener('click', () => {
   // see if date function can handle date changing easily
   // see what is sent and created via routes
   let numOfWeeks = 3;
-  // for(let i = 0; i<3; i++){
-  let weeksMatrix = utilFunctions.weeksPast(numOfWeeks);
-  console.log(weeksMatrix);
 
-  //change matrix in weeksPast() to {i : weekArr}
-  // }
+  let weeksObj = utilFunctions.weeksPast(numOfWeeks);
+
+  console.log(weeksObj);
+
+  for (const [key, value] of Object.entries(weeksObj)) {
+    console.log(key, value)
+  }
+  //drop database
+  // create workouts based on index 0 of array
+
   //CREATE WORKOUT JSON
   //date: "2021-01-11T23:48:09.602Z"
   // exercises: []

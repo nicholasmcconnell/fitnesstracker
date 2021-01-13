@@ -15,6 +15,8 @@ const utilFunctions = {
   },
 
   formatDateSeed: (year, month, day) => {
+    //Works with weeksPast() to return object of weeks past date arr's 
+    //whose size corresponds to size of seed¸
     let d = new Date(year, month, day);
     let datesArr = [];
 
