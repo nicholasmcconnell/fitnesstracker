@@ -1,6 +1,5 @@
 const db = require('../models');
 
-console.log('in workout controller')
 module.exports = {
     findAllWorkouts: function (req, res) {
         db.Workout
@@ -28,10 +27,21 @@ module.exports = {
     },
     createWorkout: function (req, res) {
         // app.post("/api/workouts", (req, res) => {
-            console.log('in create')
+            console.log('in create worktout', req.body)
         db.Workout.create({})
             .then(dbWorkout => {
-                console.log(dbWorkout)
+                res.json(dbWorkout);
+            })
+            .catch(err => {
+                res.json(err);
+            });
+        // });
+    },
+    createWorkoutSeed: function (req, res) {
+        // app.post("/api/workouts", (req, res) => {
+        console.log('in create seed', req.body)
+        db.WorkoutSeed.create(req.body)
+            .then(dbWorkout => {
                 res.json(dbWorkout);
             })
             .catch(err => {

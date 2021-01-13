@@ -212,21 +212,33 @@ seedButton.addEventListener('click', () => {
   let weeksObj = utilFunctions.weeksPast(numOfWeeks);
 
   console.log(weeksObj);
-
-  for (const [key, value] of Object.entries(weeksObj)) {
-    console.log(key, value)
-    let api = API.createWorkout()
-    console.log(api)
-  }
-  //drop database
-  // create workouts based on index 0 of array
-
   //CREATE WORKOUT JSON
   //date: "2021-01-11T23:48:09.602Z"
   // exercises: []
   // weekOf: "1/10/2021"
   // __v: 0
   // _id: "5ffce3b9c8a7cf3ccb9dca23"
+
+    for (const [key, value] of Object.entries(weeksObj)) {
+      let apiSend = {
+        date: Date,
+        weekOf: value[0],
+        exercises: [],
+      }
+    // console.log(key, value)
+    API.createWorkoutSeed(apiSend)
+      .then(res => {
+        console.log(res);
+      });
+
+    //
+  }
+
+  //SUDO
+  //drop database
+  // create workouts based on index 0 of array
+
+
 
   // let weekOfObj =
 
