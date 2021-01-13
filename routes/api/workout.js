@@ -7,7 +7,8 @@ const workoutController = require('../../controllers/workoutController');
 router.route('/')
     .get(workoutController.findAllWorkouts)
     .post(workoutController.createWorkout)
-
+router.route('/seed')
+    .post(workoutController.createWorkoutSeed)
 router.route('/:id')
     .put(workoutController.updateOneWorkout)
 

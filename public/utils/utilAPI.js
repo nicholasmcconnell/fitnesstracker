@@ -33,7 +33,17 @@ const API = {
     });
 
     const json = await res.json();
-    console.log(json)
+    return json;
+  },
+  createWorkoutSeed: async function (data) {
+    console.log('in workout seed', data)
+    const res = await fetch("/api/workouts/seed", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    });
+
+    const json = await res.json();
     return json;
   },
 
