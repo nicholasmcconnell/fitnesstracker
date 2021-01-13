@@ -31,6 +31,7 @@ module.exports = {
             console.log('in create')
         db.Workout.create({})
             .then(dbWorkout => {
+                console.log(dbWorkout)
                 res.json(dbWorkout);
             })
             .catch(err => {

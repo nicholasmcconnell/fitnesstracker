@@ -215,6 +215,8 @@ seedButton.addEventListener('click', () => {
 
   for (const [key, value] of Object.entries(weeksObj)) {
     console.log(key, value)
+    let api = API.createWorkout()
+    console.log(api)
   }
   //drop database
   // create workouts based on index 0 of array
