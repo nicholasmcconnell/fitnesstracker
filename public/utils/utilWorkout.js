@@ -16,12 +16,15 @@ const utilWorkout = {
     },
 
     renderNoWorkoutText: function () {
-        const container = document.querySelector(".workout-stats");
+        const container = document.querySelector(".dayOfStats");
         const p = document.createElement("p");
         const strong = document.createElement("strong");
         strong.textContent = "You have not created a workout yet!"
 
         p.appendChild(strong);
         container.appendChild(p);
+
+        let thisWeek = document.getElementById('weekStatsTitle');
+        thisWeek.textContent = '';
     }
 }

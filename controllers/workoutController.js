@@ -13,13 +13,14 @@ module.exports = {
             });
     },
     updateOneWorkout: function (req, res) {
+        console.log(req.body)
         db.Workout
             .updateOne(
                 { _id: req.params.id },
                 { $push: { exercises: req.body } }
             )
             .then(workout => {
-                console.log(res.json(workout));
+                res.json(workout);
             })
             .catch(err => {
                 res.json(err);
@@ -30,6 +31,7 @@ module.exports = {
             console.log('in create')
         db.Workout.create({})
             .then(dbWorkout => {
+                console.log(dbWorkout)
                 res.json(dbWorkout);
             })
             .catch(err => {
