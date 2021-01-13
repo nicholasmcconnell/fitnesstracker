@@ -231,6 +231,14 @@ seedButton.addEventListener('click', () => {
         console.log(res);
       });
 
+      //get id via get last workout or get all
+      // then use deletemany and addmany from seed to finishe the job
+      //send massive seed file from here so weeks obj cam be used
+      //this will use just workout model - sorry for all the extra coding
+    
+    //need to be able to use workoutModel.  or else just having to rewrite app
+    //Use insetermany to db??
+
     //
   }
 

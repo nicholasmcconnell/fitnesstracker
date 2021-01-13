@@ -25,9 +25,25 @@ module.exports = {
                 res.json(err);
             });
     },
+
+    updateOneWorkoutSeed: function (req, res) {
+        console.log(req.body)
+        db.WorkoutSeed
+            .updateOne(
+                { _id: req.params.id },
+                { $push: { exercises: req.body } }
+            )
+            .then(workout => {
+                res.json(workout);
+            })
+            .catch(err => {
+                res.json(err);
+            });
+    },
+
     createWorkout: function (req, res) {
         // app.post("/api/workouts", (req, res) => {
-            console.log('in create worktout', req.body)
+        console.log('in create worktout', req.body)
         db.Workout.create({})
             .then(dbWorkout => {
                 res.json(dbWorkout);

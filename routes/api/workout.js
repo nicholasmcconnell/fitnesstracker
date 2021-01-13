@@ -7,13 +7,15 @@ const workoutController = require('../../controllers/workoutController');
 router.route('/')
     .get(workoutController.findAllWorkouts)
     .post(workoutController.createWorkout)
-router.route('/seed')
-    .post(workoutController.createWorkoutSeed)
 router.route('/:id')
     .put(workoutController.updateOneWorkout)
-
 router.route('/range')
     .get(workoutController.findRange)
+
+router.route('/seed')
+    .post(workoutController.createWorkoutSeed)
+router.route('/seed/:id')
+    .put(workoutController.updateOneWorkout)
 
 console.log('in workout.js')
 
