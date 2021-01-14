@@ -124,15 +124,27 @@ const utilStats = {
   },
 
   seed: async function () {
-    let del = await API.deleteCollection();
-    console.log(del)
-    return del;
+    API.deleteCollection()
+    .then(res => console.log(`${res} documents removed.`))
+    .catch(err => console.log(err))
+
+    let numOfWeeks = 3;
+    let weeksObj = utilFunctions.weeksPast(numOfWeeks);
+
+    for (const [key, value] of Object.entries(weeksObj)) {
+      let apiSend = {
+        date: Date,
+        weekOf: value[0],
+        exercises: [],
+      }
+    }
   }
 
   // workoutNames: function (data) {
   //   let workouts = [];
 
-  //   data.forEach(workout => {
+  //   d
+  // ata.forEach(workout => {
   //     workout.exercises.forEach(exercise => {
   //       workouts.push(exercise.name);
   //     });

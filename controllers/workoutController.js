@@ -2,7 +2,6 @@ const db = require('../models');
 
 module.exports = {
     findAllWorkouts: function (req, res) {
-        console.log('in find all controller')
         db.Workout
             .find({})
             .then(dbWorkout => {
@@ -13,7 +12,6 @@ module.exports = {
             });
     },
     updateOneWorkout: function (req, res) {
-        console.log(req.body)
         db.Workout
             .updateOne(
                 { _id: req.params.id },
@@ -43,8 +41,6 @@ module.exports = {
     // },
 
     createWorkout: function (req, res) {
-        // app.post("/api/workouts", (req, res) => {
-        console.log('in create worktout', req.body)
         db.Workout.create({})
             .then(dbWorkout => {
                 res.json(dbWorkout);
@@ -52,8 +48,7 @@ module.exports = {
             .catch(err => {
                 res.json(err);
             });
-        // });
-    },
+   },
     // createWorkoutSeed: function (req, res) {
     //     // app.post("/api/workouts", (req, res) => {
     //     console.log('in create seed', req.body)
@@ -68,8 +63,6 @@ module.exports = {
     // },
 
     findRange: function (req, res) {
-        console.log('constorller range')
-        // app.get("/api/workouts/range", (req, res) => {
         db.Workout.find({})
             .then(dbWorkout => {
                 res.json(dbWorkout);
@@ -77,16 +70,12 @@ module.exports = {
             .catch(err => {
                 res.json(err);
             });
-        // })
     },
 
     deleteCollection: function (req, res) {
-        console.log('ind controller deleteCollection')
         db.Workout.deleteMany({})
         .then(dbWorkout => {
-            console.log(dbWorkout.deletedCount)
-           res.json(dbWorkout.deletedCount)   
-                  
+           res.json(dbWorkout.deletedCount);
         })
         .catch(err => {
             console.log('err in controller', err);
