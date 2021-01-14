@@ -13,24 +13,34 @@ const API = {
     return json[json.length - 1];
   },
   addExercise: async function (data) {
-    const id = location.search.split("=")[1];
+    let id = location.search.split("=")[1];
+    let res;
 
-    const res = await fetch("/api/workouts/" + id, {
-      method: "PUT",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" },
-    });
+    try {
+      res = await fetch("/api/workouts/" + id, {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch (err) {
+      console.log(err)
+    }
 
     const json = await res.json();
 
     return json;
   },
   createWorkout: async function (data = {}) {
-    const res = await fetch("/api/workouts", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
-    });
+    let res;
+    try {
+      res = await fetch("/api/workouts", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+      });
+    } catch (err) {
+      console.log(err)
+    }
 
     const json = await res.json();
     return json;
@@ -48,22 +58,30 @@ const API = {
   // },
 
   getWorkoutsInRange: async function () {
-    const res = await fetch(`/api/workouts/range`);
-    const json = await res.json();
-    console.log('json', json)
+    let res;
+
+    try {
+      res = await fetch(`/api/workouts/range`);
+    } catch (err) {
+      console.log(err)
+    }
+    let json = await res.json();
 
     return json[json.length - 1];
   },
 
   deleteCollection: async function () {
-    console.log('in util api deleteCollection')
-    const res = await fetch("/api/workouts", {
-      method: "DELETE",
-    });
-    console.log(res)
-    const json = await res.json();
-    console.log(json)
+    let res;
 
+    try {
+      res = await fetch("/api/workouts", {
+        method: "DELETE",
+      });
+    } catch (err) {
+      console.log(err)
+    }
+
+    const json = await res.json();
     return json;
   }
 };
