@@ -82,5 +82,22 @@ const API = {
 
     const json = await res.json();
     return json;
+  },
+
+  insertCollection: async function (data){
+    console.log(data)
+    let res;
+    try {
+      res = await fetch('/api/workouts/seed', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+      })
+    } catch (err) {
+      console.log(err)
+    }
+    const json = await res.json();
+    console.log(json)
+    // return json;
   }
 };

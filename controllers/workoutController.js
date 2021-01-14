@@ -1,4 +1,5 @@
 const db = require('../models');
+console.log('db', db)
 
 module.exports = {
     findAllWorkouts: function (req, res) {
@@ -48,7 +49,7 @@ module.exports = {
             .catch(err => {
                 res.json(err);
             });
-   },
+    },
     // createWorkoutSeed: function (req, res) {
     //     // app.post("/api/workouts", (req, res) => {
     //     console.log('in create seed', req.body)
@@ -74,12 +75,28 @@ module.exports = {
 
     deleteCollection: function (req, res) {
         db.Workout.deleteMany({})
-        .then(dbWorkout => {
-           res.json(dbWorkout.deletedCount);
+            .then(dbWorkout => {
+                res.json(dbWorkout.deletedCount);
+            })
+            .catch(err => {
+                console.log('err in controller', err);
+            })
+    },
+
+    insertCollection: function (req, res) {
+        console.log('86 eq body', req.body)
+        db.Workout.collection.insertMany(req.body, function (error, doc) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('success');
+            }
+            // db.close();
         })
-        .catch(err => {
-            console.log('err in controller', err);
-        })
+            // .then(dbWorkout => {
+            //     console.log(dbWorkout)
+            // })
+            // .catch(err => console.log(err))
     }
 }
 

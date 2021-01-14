@@ -201,7 +201,7 @@ nextButton.addEventListener('click', () => {
 });
 
 seedButton.addEventListener('click', () => {
-  utilStats.seed()
+  utilStats.seedFunction()
 });
 
 ////////////////////SEED FUNCTION SUDO AND OBJECT FORMATS

@@ -12,6 +12,9 @@ router.route('/:id')
     .put(workoutController.updateOneWorkout)
 router.route('/range')
     .get(workoutController.findRange)
+router.route('/seed')
+    .post(workoutController.insertCollection)
+
 // router.route('/')
 
 console.log('in workout.js routes')
