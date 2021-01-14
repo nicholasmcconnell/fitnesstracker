@@ -50,13 +50,19 @@ const API = {
   getWorkoutsInRange: async function () {
     const res = await fetch(`/api/workouts/range`);
     const json = await res.json();
+    console.log('json', json)
 
     return json[json.length - 1];
   },
+
   deleteCollection: async function () {
     console.log('in util api deleteCollection')
-    const res = await fetch('/api/workouts/delete');
-    const json = await res.json()
+    const res = await fetch("/api/workouts", {
+      method: "DELETE",
+    });
+    console.log(res)
+    const json = await res.json();
+    console.log(json)
 
     return json;
   }

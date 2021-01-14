@@ -2,6 +2,7 @@ const db = require('../models');
 
 module.exports = {
     findAllWorkouts: function (req, res) {
+        console.log('in find all controller')
         db.Workout
             .find({})
             .then(dbWorkout => {
@@ -79,15 +80,16 @@ module.exports = {
         // })
     },
 
-
-    deleteCollection: (req, res) => {
+    deleteCollection: function (req, res) {
         console.log('ind controller deleteCollection')
         db.Workout.deleteMany({})
         .then(dbWorkout => {
-            console.log(res.json(dbWorkout))
+            console.log(dbWorkout.deletedCount)
+           res.json(dbWorkout.deletedCount)   
+                  
         })
         .catch(err => {
-            console.log(err);
+            console.log('err in controller', err);
         })
     }
 }

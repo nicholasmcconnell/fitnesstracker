@@ -123,6 +123,12 @@ const utilStats = {
     return totalsArr;
   },
 
+  seed: async function () {
+    let del = await API.deleteCollection();
+    console.log(del)
+    return del;
+  }
+
   // workoutNames: function (data) {
   //   let workouts = [];
 
@@ -134,4 +140,4 @@ const utilStats = {
   //   return workouts;
   // }
 
-}
+};

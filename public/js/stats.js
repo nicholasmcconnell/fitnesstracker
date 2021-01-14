@@ -200,6 +200,8 @@ nextButton.addEventListener('click', () => {
   console.log('next')
 })
 
+
+
 seedButton.addEventListener('click', () => {
   console.log('seed')
   //send seeds via send seed function from stats
@@ -219,27 +221,40 @@ seedButton.addEventListener('click', () => {
   // __v: 0
   // _id: "5ffce3b9c8a7cf3ccb9dca23"
 
-
+  ///Make new promise  
   API.deleteCollection()
     .then(res => {
-      console.log('delete many res', res)
-    });
+      console.log('stats res', res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
+  // let promise = new Promise(function (res, rej) {
+  //   res(API.deleteCollection());
+  // })
+  // promise.then(res => {
+  //   console.log(res)
+  // })
+  // promise.catch(err => {
+  //   console.log(err)
+  // })
 
 
-    for (const [key, value] of Object.entries(weeksObj)) {
-      let apiSend = {
-        date: Date,
-        weekOf: value[0],
-        exercises: [],
-      }
-   
-  
+  for (const [key, value] of Object.entries(weeksObj)) {
+    let apiSend = {
+      date: Date,
+      weekOf: value[0],
+      exercises: [],
+    }
 
-      //get id via get last workout or get all
-      // then use deletemany and addmany from seed to finishe the job
-      //send massive seed file from here so weeks obj cam be used
-      //this will use just workout model - sorry for all the extra coding
-    
+
+
+    //get id via get last workout or get all
+    // then use deletemany and addmany from seed to finishe the job
+    //send massive seed file from here so weeks obj cam be used
+    //this will use just workout model - sorry for all the extra coding
+
     //need to be able to use workoutModel.  or else just having to rewrite app
     //Use insetermany to db??
 

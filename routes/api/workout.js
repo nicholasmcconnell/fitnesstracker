@@ -7,19 +7,18 @@ const workoutController = require('../../controllers/workoutController');
 router.route('/')
     .get(workoutController.findAllWorkouts)
     .post(workoutController.createWorkout)
+    .delete(workoutController.deleteCollection)
 router.route('/:id')
     .put(workoutController.updateOneWorkout)
 router.route('/range')
     .get(workoutController.findRange)
-router.route('/delete')
-    .delete(workoutController.deleteCollection)
+// router.route('/')
 
+console.log('in workout.js routes')
 // router.route('/seed')
 //     .post(workoutController.createWorkoutSeed)
 // router.route('/seed/:id')
 //     .put(workoutController.updateOneWorkout)
-
-console.log('in workout.js')
 
 module.exports = router;
 
