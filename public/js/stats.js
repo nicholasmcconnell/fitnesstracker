@@ -219,17 +219,21 @@ seedButton.addEventListener('click', () => {
   // __v: 0
   // _id: "5ffce3b9c8a7cf3ccb9dca23"
 
+
+  API.deleteCollection()
+    .then(res => {
+      console.log('delete many res', res)
+    });
+
+
     for (const [key, value] of Object.entries(weeksObj)) {
       let apiSend = {
         date: Date,
         weekOf: value[0],
         exercises: [],
       }
-    // console.log(key, value)
-    API.createWorkoutSeed(apiSend)
-      .then(res => {
-        console.log(res);
-      });
+   
+  
 
       //get id via get last workout or get all
       // then use deletemany and addmany from seed to finishe the job

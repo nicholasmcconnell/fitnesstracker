@@ -26,20 +26,20 @@ module.exports = {
             });
     },
 
-    updateOneWorkoutSeed: function (req, res) {
-        console.log(req.body)
-        db.WorkoutSeed
-            .updateOne(
-                { _id: req.params.id },
-                { $push: { exercises: req.body } }
-            )
-            .then(workout => {
-                res.json(workout);
-            })
-            .catch(err => {
-                res.json(err);
-            });
-    },
+    // updateOneWorkoutSeed: function (req, res) {
+    //     console.log(req.body)
+    //     db.WorkoutSeed
+    //         .updateOne(
+    //             { _id: req.params.id },
+    //             { $push: { exercises: req.body } }
+    //         )
+    //         .then(workout => {
+    //             res.json(workout);
+    //         })
+    //         .catch(err => {
+    //             res.json(err);
+    //         });
+    // },
 
     createWorkout: function (req, res) {
         // app.post("/api/workouts", (req, res) => {
@@ -53,18 +53,18 @@ module.exports = {
             });
         // });
     },
-    createWorkoutSeed: function (req, res) {
-        // app.post("/api/workouts", (req, res) => {
-        console.log('in create seed', req.body)
-        db.WorkoutSeed.create(req.body)
-            .then(dbWorkout => {
-                res.json(dbWorkout);
-            })
-            .catch(err => {
-                res.json(err);
-            });
-        // });
-    },
+    // createWorkoutSeed: function (req, res) {
+    //     // app.post("/api/workouts", (req, res) => {
+    //     console.log('in create seed', req.body)
+    //     db.WorkoutSeed.create(req.body)
+    //         .then(dbWorkout => {
+    //             res.json(dbWorkout);
+    //         })
+    //         .catch(err => {
+    //             res.json(err);
+    //         });
+    //     // });
+    // },
 
     findRange: function (req, res) {
         console.log('constorller range')
@@ -77,6 +77,18 @@ module.exports = {
                 res.json(err);
             });
         // })
+    },
+
+
+    deleteCollection: (req, res) => {
+        console.log('ind controller deleteCollection')
+        db.Workout.deleteMany({})
+        .then(dbWorkout => {
+            console.log(res.json(dbWorkout))
+        })
+        .catch(err => {
+            console.log(err);
+        })
     }
 }
 

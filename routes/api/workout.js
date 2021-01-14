@@ -11,11 +11,13 @@ router.route('/:id')
     .put(workoutController.updateOneWorkout)
 router.route('/range')
     .get(workoutController.findRange)
+router.route('/delete')
+    .delete(workoutController.deleteCollection)
 
-router.route('/seed')
-    .post(workoutController.createWorkoutSeed)
-router.route('/seed/:id')
-    .put(workoutController.updateOneWorkout)
+// router.route('/seed')
+//     .post(workoutController.createWorkoutSeed)
+// router.route('/seed/:id')
+//     .put(workoutController.updateOneWorkout)
 
 console.log('in workout.js')
 
