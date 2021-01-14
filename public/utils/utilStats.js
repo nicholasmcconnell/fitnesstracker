@@ -134,11 +134,11 @@ const utilStats = {
 
     let data = [{
       date: '0/0/0',
-      weekOf: '1/1/1',
+      weekOf: '1/10/2021',
       exercises: [
         {
-          dayOf: '2/2/2',
-          type: "resistance",
+          dayOf: '1/10/2021',
+          type: "Resistance",
           name: "Push Press",
           duration: 25,
           weight: 185,
@@ -146,8 +146,8 @@ const utilStats = {
           sets: 4
         },
         {
-          dayOf: '3/3/3',
-          type: "cardio",
+          dayOf: '1/11/2021',
+          type: "Cardio",
           name: "Running",
           duration: 25,
           distance: 4
