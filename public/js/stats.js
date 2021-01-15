@@ -37,15 +37,16 @@ const control = (data) => {
 }
 
 const populateChart = (data) => {
+  console.log(data)
   localStorage.setItem('displayWeek', data.weekOf)
   let displayWeek = localStorage.getItem('displayWeek');
   let weeksPast = utilFunctions.weeksPast(3)
 
-  for (let [key, value] of Object.entries(weeksPast)) {
-    if (displayWeek === value[0]) {
-      localStorage.setItem('weeksPastKey', key)
-    }
-  }
+  // for (let [key, value] of Object.entries(weeksPast)) {
+  //   if (displayWeek === value[0]) {
+  //     localStorage.setItem('weeksPastKey', key)
+  //   }
+  // }
 
   let datesArr = utilFunctions.datesArr();
 
@@ -185,17 +186,34 @@ previousButton.addEventListener('click', async () => {
   let displayWeek = localStorage.getItem('displayWeek')
   let allWorkouts = await API.getAllWorkouts();
   let weeksPast = utilFunctions.weeksPast(3);
+  let weeksPastKey;
 
   for (let [key, value] of Object.entries(weeksPast)) {
     if (displayWeek === value[0]) {
-      localStorage.setItem('weeksPastKey', key - 1)
-      populateChart(allWorkouts[key - 1])
+      ((key-1)< 0) ? weeksPastKey = 0 : weeksPastKey = (key-1);
+      console.log(weeksPastKey)
+      localStorage.setItem('weeksPastKey', weeksPastKey)
+      populateChart(allWorkouts[weeksPastKey])
     }
   }
 });
 
-nextButton.addEventListener('click', () => {
-  console.log('next')
+nextButton.addEventListener('click', async () => {
+  let displayWeek = localStorage.getItem('displayWeek')
+  let allWorkouts = await API.getAllWorkouts();
+  let weeksPast = utilFunctions.weeksPast(3);
+  let weeksPastLength = Object.keys(weeksPast).length;
+  let weeksPastKey;
+
+  for (let [key, value] of Object.entries(weeksPast)) {
+    if (displayWeek === value[0]) {
+      ((key+1)> weeksPastLength-1) ? weeksPastKey = weeksPastLength-1 : weeksPastKey = key+=1;
+      console.log(key+1)
+      localStorage.setItem('weeksPastKey', '')
+      localStorage.setItem('weeksPastKey', weeksPastKey)
+      populateChart(allWorkouts[weeksPastKey])
+    }
+  }
 });
 
 seedButton.addEventListener('click', () => {

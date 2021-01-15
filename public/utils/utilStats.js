@@ -353,16 +353,7 @@ const utilStats = {
 
   },
 
-  // workoutNames: function (data) {
-  //   let workouts = [];
-
-  //   d
-  // ata.forEach(workout => {
-  //     workout.exercises.forEach(exercise => {
-  //       workouts.push(exercise.name);
-  //     });
-  //   });
-  //   return workouts;
-  // }
-
+  prevNext: () => {
+    
+  }
 };
