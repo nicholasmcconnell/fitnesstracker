@@ -133,7 +133,7 @@ const utilStats = {
 
     let data = [
       {
-        ///WEEK ONE 
+        ///WEEK THREE 
         date: { type: Date, default: () => new Date() },
         weekOf: weeksObj[0][0],
         exercises: [
@@ -244,7 +244,7 @@ const utilStats = {
         ]
       },
       {
-        ////////WEEK THREE/////////
+        ////////WEEK ONE/////////
         date: { type: Date, default: () => new Date() },
         weekOf: weeksObj[2][0],
         exercises: [
@@ -276,9 +276,16 @@ const utilStats = {
           {
             dayOf: weeksObj[2][3],
             type: "Cardio",
-            name: "Running",
+            name: "Dog Run",
             duration: 25,
             distance: 4
+          },
+          {
+            dayOf: weeksObj[2][6],
+            type: "Cardio",
+            name: "Hike",
+            duration: 60,
+            distance: 3.25
           },
           {
             dayOf: weeksObj[2][4],
