@@ -130,30 +130,6 @@ const utilStats = {
 
     let numOfWeeks = 3;
     let weeksObj = utilFunctions.weeksPast(numOfWeeks);
-    console.log(weeksObj)
-
-    // let data = [{
-    //   date: '0/0/0',
-    //   weekOf: '1/10/2021',
-    //   exercises: [
-    //     {
-    //       dayOf: '1/10/2021',
-    //       type: "Resistance",
-    //       name: "Push Press",
-    //       duration: 25,
-    //       weight: 185,
-    //       reps: 8,
-    //       sets: 4
-    //     },
-    //     {
-    //       dayOf: '1/11/2021',
-    //       type: "Cardio",
-    //       name: "Running",
-    //       duration: 25,
-    //       distance: 4
-    //     },
-    //   ]
-    // }];
 
     let data = [
       {
@@ -330,17 +306,8 @@ const utilStats = {
       .then(res => console.log(res))
       .catch(err => console.log(err))
 
-    // for (const [key, value] of Object.entries(weeksObj)) {
-    //   console.log(key, value)
-    //   let apiSend = {
-    //     date: Date,
-    //     weekOf: value[0],
-    //     exercises: [],
-    //   }
-    // }
+ 
   },
-
-
 
   // workoutNames: function (data) {
   //   let workouts = [];
