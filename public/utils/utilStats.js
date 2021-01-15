@@ -280,14 +280,7 @@ const utilStats = {
             duration: 25,
             distance: 4
           },
-          {
-            dayOf: weeksObj[2][6],
-            type: "Cardio",
-            name: "Hike",
-            duration: 60,
-            distance: 3.25
-          },
-          {
+                   {
             dayOf: weeksObj[2][4],
             type: "Resistance",
             name: "Quad Press",
@@ -304,6 +297,13 @@ const utilStats = {
             weight: 300,
             reps: 10,
             sets: 4
+          },
+          {
+            dayOf: weeksObj[2][6],
+            type: "Cardio",
+            name: "Hike",
+            duration: 60,
+            distance: 3.25
           },
         ]
       },

@@ -3,6 +3,7 @@
 
 const control = async () => {
   const lastWorkoutWeek = await API.getLastWorkout();
+  console.log(lastWorkoutWeek)
   const workoutSummary = await initLastWorkout(lastWorkoutWeek);
   console.log(lastWorkoutWeek, workoutSummary)
   if(!lastWorkoutWeek || !workoutSummary){
