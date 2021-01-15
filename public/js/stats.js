@@ -40,9 +40,6 @@ const populateChart = (data) => {
   let chartArraysHash = utilStats.durations(data);
   let colors = utilStats.generatePalette(chartArraysHash);
 
-  console.log(distance)
-  console.log(chartArraysHash)
-
   let line = document.querySelector("#canvas").getContext("2d");
   let bar = document.querySelector("#canvas2").getContext("2d");
   let pie = document.querySelector("#canvas3").getContext("2d");
@@ -192,12 +189,18 @@ const populateChart = (data) => {
 //     - arr.length just loads again if at the ened (same for arr[0])
 // - calls render workout and passes exercise to renderworkoutfunction;
 
+
 previousButton.addEventListener('click', async () => {
   console.log('previous')
   let allWorkouts = await API.getAllWorkouts();
   console.log(allWorkouts)
+
   //click button
   //reduce weeksObj[i] by one or if === 0 do nothing.
+  //set week of to local storate at populate graph
+  //get from local storage on this click
+  //get the key of weeksObj with index 0 of date from local storage
+  //then get all workouts and do one less than keey of weeks object index from local storage
 });
 
 nextButton.addEventListener('click', () => {
@@ -206,7 +209,7 @@ nextButton.addEventListener('click', () => {
 
 seedButton.addEventListener('click', () => {
   utilStats.seedFunction()
-  // location.reload();
+  location.reload();
 });
 
 ////////////////////SEED FUNCTION SUDO AND OBJECT FORMATS

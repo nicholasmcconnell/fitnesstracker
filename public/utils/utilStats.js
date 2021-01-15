@@ -326,6 +326,7 @@ const utilStats = {
  
   },
 
+
   // workoutNames: function (data) {
   //   let workouts = [];
 
