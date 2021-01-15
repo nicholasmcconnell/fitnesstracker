@@ -3,6 +3,8 @@ const previousButton = document.querySelector('.previous');
 const nextButton = document.querySelector('.next');
 const seedButton = document.querySelector('.seed')
 
+// localStorage.clear();
+
 API.getWorkoutsInRange()
   .then(res => {
     if (res === undefined || res.weekOf !== utilFunctions.formatDate()[0]) {
@@ -33,8 +35,15 @@ const control = (data) => {
 }
 
 const populateChart = (data) => {
-  //find why bar and line show nothing and pie charts do
-  let datesArr = utilFunctions.formatDate();
+  localStorage.setItem('displayWeek', data.weekOf)
+  let weeksPastKey = localStorage.getItem('weeksPastKey')
+  let displayWeek = localStorage.getItem('displayWeek');
+  let weeksPast = utilFunctions.weeksPast(3)
+
+  let datesArr = [];
+  !displayWeek ? datesArr = utilFunctions.formatDate() : datesArr = weeksPast[weeksPastKey];
+  console.log(datesArr)
+  console.log(data)
   let distance = utilStats.distancePerDay(data);
   let pounds = utilStats.weightPerDay(data);
   let chartArraysHash = utilStats.durations(data);
@@ -92,7 +101,8 @@ const populateChart = (data) => {
   let barChart = new Chart(bar, {
     type: "bar",
     data: {
-      labels: utilFunctions.formatDate(),
+      labels: datesArr,
+      // utilFunctions.formatDate(),
       datasets: [
         {
           label: `Week of ${utilFunctions.formatDate()[0]}`,
@@ -191,9 +201,20 @@ const populateChart = (data) => {
 
 
 previousButton.addEventListener('click', async () => {
-  console.log('previous')
+  let displayWeek = localStorage.getItem('displayWeek')
+  console.log(displayWeek)
   let allWorkouts = await API.getAllWorkouts();
   console.log(allWorkouts)
+  let weeksPast = utilFunctions.weeksPast(3);
+ 
+  for(let [key, value] of Object.entries(weeksPast)){
+    if(displayWeek === value[0]){
+      console.log(displayWeek, value[0], key)
+      console.log(allWorkouts[key-1])
+      localStorage.setItem('weeksPastKey', key-1)
+      populateChart(allWorkouts[key-1])
+    }
+  }
 
   //click button
   //reduce weeksObj[i] by one or if === 0 do nothing.
@@ -208,6 +229,7 @@ nextButton.addEventListener('click', () => {
 });
 
 seedButton.addEventListener('click', () => {
+  localStorage.setItem('weeksPastKey', 2)
   utilStats.seedFunction()
   location.reload();
 });
