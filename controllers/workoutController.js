@@ -89,14 +89,10 @@ module.exports = {
             if (error) {
                 console.log(error);
             } else {
-                console.log('success');
+                console.log('Documents succesfully inserted!');
+                res.json('Documents succesfully inserted!')
             }
-            // db.close();
         })
-            // .then(dbWorkout => {
-            //     console.log(dbWorkout)
-            // })
-            // .catch(err => console.log(err))
     }
 }
 

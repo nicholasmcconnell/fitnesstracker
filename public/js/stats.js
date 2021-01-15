@@ -5,7 +5,6 @@ const seedButton = document.querySelector('.seed')
 
 API.getWorkoutsInRange()
   .then(res => {
-
     if (res === undefined || res.weekOf !== utilFunctions.formatDate()[0]) {
       let container = document.querySelector('.container');
       let h2 = document.createElement('h2');
@@ -24,6 +23,7 @@ API.getWorkoutsInRange()
     if (!data) {
       return;
     } else {
+      console.log(data)
       control(data)
     }
   });
@@ -202,6 +202,7 @@ nextButton.addEventListener('click', () => {
 
 seedButton.addEventListener('click', () => {
   utilStats.seedFunction()
+  location.reload();
 });
 
 ////////////////////SEED FUNCTION SUDO AND OBJECT FORMATS

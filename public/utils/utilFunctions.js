@@ -23,16 +23,15 @@ const utilFunctions = {
     for (let i = 0; i <= 6; i++) {
       let date = i - (d.getDay());
       let day = new Date(d.setDate(d.getDate() + date))
-      datesArr.push(`${d.getMonth() + 1}-${day.getDate()}-${d.getFullYear()}`)
+      datesArr.push(`${d.getMonth() + 1}/${day.getDate()}/${d.getFullYear()}`)
     }
 
     return datesArr;
   },
 
   weeksPast: (numOfWeeks) => {
-    numOfWeeks;
     let daysInAWeek = 7
-    let weeksInDaysTotal = weeksInDays = numOfWeeks * daysInAWeek;
+    let weeksInDays = (numOfWeeks-1) * daysInAWeek;
     let d = new Date()
     let month = d.getMonth();
     let day = d.getDate();
@@ -40,10 +39,11 @@ const utilFunctions = {
     let weeksObj = {};
 
     for (let i = 0; i < numOfWeeks; i++) {
-      let weekArr = utilFunctions.formatDateSeed(year, month, day - (weeksInDaysTotal - weeksInDays));
-      weeksObj[i + 1] = weekArr;
+      let weekArr = utilFunctions.formatDateSeed(year, month, day - weeksInDays);
+      weeksObj[i] = weekArr;
       weeksInDays -= 7;
     }
+    console.log(weeksObj)
     return weeksObj;
   }
 };
