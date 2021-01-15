@@ -192,8 +192,12 @@ const populateChart = (data) => {
 //     - arr.length just loads again if at the ened (same for arr[0])
 // - calls render workout and passes exercise to renderworkoutfunction;
 
-previousButton.addEventListener('click', () => {
+previousButton.addEventListener('click', async () => {
   console.log('previous')
+  let allWorkouts = await API.getAllWorkouts();
+  console.log(allWorkouts)
+  //click button
+  //reduce weeksObj[i] by one or if === 0 do nothing.
 });
 
 nextButton.addEventListener('click', () => {
@@ -202,7 +206,7 @@ nextButton.addEventListener('click', () => {
 
 seedButton.addEventListener('click', () => {
   utilStats.seedFunction()
-  location.reload();
+  // location.reload();
 });
 
 ////////////////////SEED FUNCTION SUDO AND OBJECT FORMATS

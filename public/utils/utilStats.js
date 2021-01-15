@@ -131,6 +131,7 @@ const utilStats = {
     let numOfWeeks = 3;
     let weeksObj = utilFunctions.weeksPast(numOfWeeks);
 
+
     let data = [
       {
         ///WEEK THREE 
@@ -220,7 +221,7 @@ const utilStats = {
             type: "Cardio",
             name: "Running",
             duration: 25,
-            distance: 4
+            distance: 2.2
           },
 
           {
@@ -261,8 +262,8 @@ const utilStats = {
             dayOf: weeksObj[2][1],
             type: "Cardio",
             name: "Running",
-            duration: 25,
-            distance: 4
+            duration: 60,
+            distance: 4.3
           },
           {
             dayOf: weeksObj[2][3],
@@ -278,7 +279,7 @@ const utilStats = {
             type: "Cardio",
             name: "Dog Run",
             duration: 25,
-            distance: 4
+            distance: 2.5
           },
                    {
             dayOf: weeksObj[2][4],
@@ -305,10 +306,19 @@ const utilStats = {
             duration: 60,
             distance: 3.25
           },
+          {
+            dayOf: weeksObj[2][6],
+            type: "Resistance",
+            name: "Squats",
+            duration: 20,
+            weight: 225,
+            reps: 10,
+            sets: 3
+          }
         ]
       },
     ]
-
+    console.log(data)
     API.insertCollection(data)
       .then(res => console.log(res))
       .catch(err => console.log(err))
