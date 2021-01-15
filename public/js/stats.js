@@ -5,7 +5,6 @@ const seedButton = document.querySelector('.seed')
 
 API.getWorkoutsInRange()
   .then(res => {
-
     if (res === undefined || res.weekOf !== utilFunctions.formatDate()[0]) {
       let container = document.querySelector('.container');
       let h2 = document.createElement('h2');
@@ -24,6 +23,7 @@ API.getWorkoutsInRange()
     if (!data) {
       return;
     } else {
+      console.log(data)
       control(data)
     }
   });
@@ -194,24 +194,24 @@ const populateChart = (data) => {
 
 previousButton.addEventListener('click', () => {
   console.log('previous')
-})
+});
 
 nextButton.addEventListener('click', () => {
   console.log('next')
-})
+});
 
 seedButton.addEventListener('click', () => {
-  console.log('seed')
+  utilStats.seedFunction()
+  location.reload();
+});
+
+////////////////////SEED FUNCTION SUDO AND OBJECT FORMATS
   //send seeds via send seed function from stats
   //may be easier ro write speficic seed route
   //write seeds
   // see if date function can handle date changing easily
   // see what is sent and created via routes
-  let numOfWeeks = 3;
 
-  let weeksObj = utilFunctions.weeksPast(numOfWeeks);
-
-  console.log(weeksObj);
   //CREATE WORKOUT JSON
   //date: "2021-01-11T23:48:09.602Z"
   // exercises: []
@@ -219,20 +219,27 @@ seedButton.addEventListener('click', () => {
   // __v: 0
   // _id: "5ffce3b9c8a7cf3ccb9dca23"
 
-    for (const [key, value] of Object.entries(weeksObj)) {
-      let apiSend = {
-        date: Date,
-        weekOf: value[0],
-        exercises: [],
-      }
-    // console.log(key, value)
-    API.createWorkoutSeed(apiSend)
-      .then(res => {
-        console.log(res);
-      });
+  ///Make new promise  
+   // let promise = new Promise(function (res, rej) {
+  //   res(API.deleteCollection());
+  // })
+  // promise.then(res => {
+  //   console.log(res)
+  // })
+  // promise.catch(err => {
+  //   console.log(err)
+  // })
+
+    //get id via get last workout or get all
+    // then use deletemany and addmany from seed to finishe the job
+    //send massive seed file from here so weeks obj cam be used
+    //this will use just workout model - sorry for all the extra coding
+
+    //need to be able to use workoutModel.  or else just having to rewrite app
+    //Use insetermany to db??
 
     //
-  }
+
 
   //SUDO
   //drop database
@@ -276,7 +283,7 @@ seedButton.addEventListener('click', () => {
 
 
 
-})
+
 
 
 

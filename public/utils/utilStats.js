@@ -44,7 +44,7 @@ const utilStats = {
       }
     };
 
-    if(data.weekOf !== utilFunctions.formatDate()[0]){
+    if (data.weekOf !== utilFunctions.formatDate()[0]) {
       return arrHash;
     }
 
@@ -65,7 +65,7 @@ const utilStats = {
           durationHashConditional()
           break;
         case 'Resistance':
-         durationHashConditional();
+          durationHashConditional();
           break;
         default:
           break;
@@ -123,10 +123,197 @@ const utilStats = {
     return totalsArr;
   },
 
+  seedFunction: async function () {
+    API.deleteCollection()
+      .then(res => console.log(`${res} documents removed.`))
+      .catch(err => console.log(err))
+
+    let numOfWeeks = 3;
+    let weeksObj = utilFunctions.weeksPast(numOfWeeks);
+
+    let data = [
+      {
+        ///WEEK ONE 
+        date: { type: Date, default: () => new Date() },
+        weekOf: weeksObj[0][0],
+        exercises: [
+          {
+            dayOf: weeksObj[0][1],
+            type: "Resistance",
+            name: "Push Press",
+            duration: 25,
+            weight: 185,
+            reps: 8,
+            sets: 4
+          },
+          {
+            dayOf: weeksObj[0][1],
+            dayOf: '',
+            type: "Cardio",
+            name: "Running",
+            duration: 25,
+            distance: 4
+          },
+          {
+            dayOf: weeksObj[0][3],
+            type: "Resistance",
+            name: "Bench Press",
+            duration: 20,
+            weight: 300,
+            reps: 10,
+            sets: 4
+          },
+          {
+            dayOf: weeksObj[0][3],
+            type: "Resistance",
+            name: "Quad Press",
+            duration: 30,
+            weight: 300,
+            reps: 10,
+            sets: 4
+          },
+          {
+            dayOf: weeksObj[0][4],
+            type: "Resistance",
+            name: "Bench Press",
+            duration: 20,
+            weight: 300,
+            reps: 10,
+            sets: 4
+          },
+          {
+            dayOf: weeksObj[0][4],
+            type: "Resistance",
+            name: "Quad Press",
+            duration: 30,
+            weight: 300,
+            reps: 10,
+            sets: 4
+          },
+        ]
+      },
+      {
+        ////////WEEK TWO/////////
+        date: { type: Date, default: () => new Date() },
+        weekOf: weeksObj[1][0],
+        exercises: [
+          {
+            dayOf: weeksObj[1][1],
+            type: "Resistance",
+            name: "Lateral Pull",
+            duration: 20,
+            weight: 300,
+            reps: 10,
+            sets: 4
+          },
+          {
+            dayOf: weeksObj[1][1],
+            type: "Resistance",
+            name: "Military Press",
+            duration: 20,
+            weight: 300,
+            reps: 10,
+            sets: 4
+          },
+          {
+            dayOf: weeksObj[1][3],
+            type: "Cardio",
+            name: "Running",
+            duration: 25,
+            distance: 4
+          },
+
+          {
+            dayOf: weeksObj[1][3],
+            type: "Resistance",
+            name: "Bicep Curl",
+            duration: 20,
+            weight: 100,
+            reps: 10,
+            sets: 4
+          },
+          {
+            dayOf: weeksObj[1][5],
+            type: "Resistance",
+            name: "tricep Curl",
+            duration: 20,
+            weight: 5000,
+            reps: 10,
+            sets: 60
+          },
+        ]
+      },
+      {
+        ////////WEEK THREE/////////
+        date: { type: Date, default: () => new Date() },
+        weekOf: weeksObj[2][0],
+        exercises: [
+          {
+            dayOf: weeksObj[2][1],
+            type: "Resistance",
+            name: "Push Press",
+            duration: 25,
+            weight: 185,
+            reps: 8,
+            sets: 4
+          },
+          {
+            dayOf: weeksObj[2][1],
+            type: "Cardio",
+            name: "Running",
+            duration: 25,
+            distance: 4
+          },
+          {
+            dayOf: weeksObj[2][3],
+            type: "Resistance",
+            name: "Bench Press",
+            duration: 20,
+            weight: 285,
+            reps: 10,
+            sets: 4
+          },
+          {
+            dayOf: weeksObj[2][3],
+            type: "Cardio",
+            name: "Running",
+            duration: 25,
+            distance: 4
+          },
+          {
+            dayOf: weeksObj[2][4],
+            type: "Resistance",
+            name: "Quad Press",
+            duration: 30,
+            weight: 300,
+            reps: 10,
+            sets: 4
+          },
+          {
+            dayOf: weeksObj[2][4],
+            type: "Resistance",
+            name: "Military Press",
+            duration: 20,
+            weight: 300,
+            reps: 10,
+            sets: 4
+          },
+        ]
+      },
+    ]
+
+    API.insertCollection(data)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+
+ 
+  },
+
   // workoutNames: function (data) {
   //   let workouts = [];
 
-  //   data.forEach(workout => {
+  //   d
+  // ata.forEach(workout => {
   //     workout.exercises.forEach(exercise => {
   //       workouts.push(exercise.name);
   //     });
@@ -134,4 +321,4 @@ const utilStats = {
   //   return workouts;
   // }
 
-}
+};
