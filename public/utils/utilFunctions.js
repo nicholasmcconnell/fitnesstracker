@@ -31,7 +31,7 @@ const utilFunctions = {
 
   weeksPast: (numOfWeeks) => {
     let daysInAWeek = 7
-    let weeksInDays = (numOfWeeks-1) * daysInAWeek;
+    let weeksInDays = (numOfWeeks - 1) * daysInAWeek;
     let d = new Date()
     let month = d.getMonth();
     let day = d.getDate();
@@ -45,6 +45,16 @@ const utilFunctions = {
     }
     console.log(weeksObj)
     return weeksObj;
+  },
+
+  datesArr: () => {
+    let weeksPastKey = localStorage.getItem('weeksPastKey')
+    let displayWeek = localStorage.getItem('displayWeek');
+    let weeksPast = utilFunctions.weeksPast(3)
+    let datesArr = [];
+
+    !displayWeek ? datesArr = utilFunctions.formatDate() : datesArr = weeksPast[weeksPastKey];
+    return datesArr;
   }
 };
 

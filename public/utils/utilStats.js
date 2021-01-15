@@ -44,7 +44,7 @@ const utilStats = {
       }
     };
 
-    if (data.weekOf !== utilFunctions.formatDate()[0]) {
+    if (data.weekOf !== utilFunctions.datesArr()[0]) {
       return arrHash;
     }
 
@@ -86,10 +86,10 @@ const utilStats = {
   distancePerDay: function (data) {
     console.log(data)
     let totalsArr = new Array(7).fill(0);
-    let dateArr = utilFunctions.formatDate()
+    let dateArr = utilFunctions.datesArr()
     let distance = {}
     let weekOfExercises = data.exercises;
-/////ADD DAY OF TO SEED!!!!!!!!!
+    /////ADD DAY OF TO SEED!!!!!!!!!
     for (const [key, value] of Object.entries(weekOfExercises)) {
       console.log(value.dayof)
       if (value.type === 'Cardio') {
@@ -111,7 +111,7 @@ const utilStats = {
   weightPerDay: function (data) {
     ///////DOES NOT ACCOUNT FOR REPS AND SETS IN TOTAL.  JUST THE WEIGHT USED DURING THE EXERCISE
     let totalsArr = new Array(7).fill(0);
-    let dateArr = utilFunctions.formatDate();
+    let dateArr = utilFunctions.datesArr();
     let weight = {};
     let weekOfExercises = data.exercises;
 
@@ -157,7 +157,6 @@ const utilStats = {
           },
           {
             dayOf: weeksObj[0][1],
-            dayOf: '',
             type: "Cardio",
             name: "Running",
             duration: 25,
@@ -198,6 +197,13 @@ const utilStats = {
             weight: 300,
             reps: 10,
             sets: 4
+          },
+          {
+            dayOf: weeksObj[0][5],
+            type: "Cardio",
+            name: "Walk",
+            duration: 60,
+            distance: 5.2
           },
         ]
       },
@@ -246,9 +252,16 @@ const utilStats = {
             type: "Resistance",
             name: "tricep Curl",
             duration: 20,
-            weight: 5000,
+            weight: 50,
             reps: 10,
             sets: 60
+          },
+          {
+            dayOf: weeksObj[1][6],
+            type: "Cardio",
+            name: "Jogging",
+            duration: 30,
+            distance: 3.7
           },
         ]
       },
@@ -289,7 +302,7 @@ const utilStats = {
             duration: 25,
             distance: 2.5
           },
-                   {
+          {
             dayOf: weeksObj[2][4],
             type: "Resistance",
             name: "Quad Press",
@@ -331,9 +344,8 @@ const utilStats = {
       .then(res => console.log(res))
       .catch(err => console.log(err))
 
- 
-  },
 
+  },
 
   // workoutNames: function (data) {
   //   let workouts = [];
