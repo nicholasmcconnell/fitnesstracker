@@ -208,8 +208,8 @@ nextButton.addEventListener('click', async () => {
   for (let [key, value] of Object.entries(weeksPast)) {
     if (displayWeek === value[0]) {
       ((key+1)> weeksPastLength-1) ? weeksPastKey = weeksPastLength-1 : weeksPastKey = key+=1;
-      console.log(key+1)
-      localStorage.setItem('weeksPastKey', '')
+      (weeksPastKey.length > 1) ? weeksPastKey = weeksPastKey.substring(1) : weeksPastKey;
+      localStorage.removeItem('weeksPastKey')
       localStorage.setItem('weeksPastKey', weeksPastKey)
       populateChart(allWorkouts[weeksPastKey])
     }
