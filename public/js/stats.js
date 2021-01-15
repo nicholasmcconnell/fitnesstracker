@@ -35,6 +35,7 @@ const control = (data) => {
 }
 
 const populateChart = (data) => {
+  ///Turn localstorage get and returns datesArr
   localStorage.setItem('displayWeek', data.weekOf)
   let weeksPastKey = localStorage.getItem('weeksPastKey')
   let displayWeek = localStorage.getItem('displayWeek');

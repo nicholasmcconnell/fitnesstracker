@@ -97,10 +97,11 @@ const utilStats = {
         console.log(distance)
       }
     }
-
+    // console.log(dateArr) date array needs to come from function that is at top of populate chart
     for (const [key, value] of Object.entries(distance)) {
       console.log(key)
       let index = dateArr.indexOf(key);
+      console.log(index)
       totalsArr[index] = value;
     }
     console.log(totalsArr)
@@ -135,6 +136,8 @@ const utilStats = {
 
     let numOfWeeks = 3;
     let weeksObj = utilFunctions.weeksPast(numOfWeeks);
+    let weekZero = weeksObj[0];
+
 
 
     let data = [
