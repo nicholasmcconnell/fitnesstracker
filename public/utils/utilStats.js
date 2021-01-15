@@ -1,5 +1,12 @@
 
 const utilStats = {
+  getRandomRgb: () => {
+    var num = Math.round(0xffffff * Math.random());
+    var r = num >> 16;
+    var g = num >> 8 & 255;
+    var b = num & 255;
+    return 'rgba(' + r + ', ' + g + ', ' + b + ', 0.5)';
+  },
   generatePalette: function (chartArraysHash) {
     let cardioArrLength = chartArraysHash.Cardio.names.length;
     let resistanceArrLength = chartArraysHash.Resistance.names.length;
@@ -8,18 +15,10 @@ const utilStats = {
       'Resistance': []
     };
 
-    let getRandomRgb = () => {
-      var num = Math.round(0xffffff * Math.random());
-      var r = num >> 16;
-      var g = num >> 8 & 255;
-      var b = num & 255;
-      return 'rgb(' + r + ', ' + g + ', ' + b + ', 0.5)';
-    }
-
     for (let [k, v] of Object.entries(chartArraysHash)) {
       for (let [key, value] of Object.entries(v)) {
         for (let i = 0; i < value.length; i++) {
-          let randomColor = getRandomRgb();
+          let randomColor = utilStats.getRandomRgb();
           colorObj[k].push(randomColor);
         }
         break;
@@ -27,7 +26,14 @@ const utilStats = {
     }
     return colorObj;
   },
-
+  barChartColors: () => {
+    let barColorArr = [];
+    for(let i = 0; i<=6; i++){
+      barColorArr.push(utilStats.getRandomRgb())
+    }
+    console.log(barColorArr)
+    return barColorArr;
+  },
   durations: function (data) {
 
     let exercises = data.exercises;

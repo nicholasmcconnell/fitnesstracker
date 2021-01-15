@@ -67,8 +67,8 @@ const populateChart = (data) => {
       datasets: [
         {
           label: "Workout Distance (miles)",
-          // backgroundColor: '',
-          borderColor: "rgba(147,112,219, 0.5)",
+          backgroundColor: utilStats.getRandomRgb(),
+          borderColor: utilStats.getRandomRgb(),
           data: distance,
           fill: true
         }
@@ -107,27 +107,12 @@ const populateChart = (data) => {
     type: "bar",
     data: {
       labels: datesArr,
-      // utilFunctions.formatDate(),
       datasets: [
         {
-          label: `Week of ${utilFunctions.formatDate()[0]}`,
+          label: `Week of ${utilFunctions.datesArr()[0]}`,
           data: pounds,
-          backgroundColor: [
-            "rgba(255, 99, 132, 0.2)",
-            "rgba(54, 162, 235, 0.2)",
-            "rgba(255, 206, 86, 0.2)",
-            "rgba(75, 192, 192, 0.2)",
-            "rgba(153, 102, 255, 0.2)",
-            "rgba(255, 159, 64, 0.2)"
-          ],
-          borderColor: [
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)"
-          ],
+          backgroundColor: utilStats.barChartColors(),
+          borderColor: utilStats.barChartColors(),
           borderWidth: 1
         }
       ]
