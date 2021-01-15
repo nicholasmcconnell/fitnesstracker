@@ -1,7 +1,11 @@
+// const utilFunctions = require("../../models/modelUtils/modelFunctions");
+
 // get all workout data from back-end
 const previousButton = document.querySelector('.previous');
 const nextButton = document.querySelector('.next');
 const seedButton = document.querySelector('.seed')
+
+// localStorage.clear();
 
 API.getWorkoutsInRange()
   .then(res => {
@@ -33,15 +37,22 @@ const control = (data) => {
 }
 
 const populateChart = (data) => {
-  //find why bar and line show nothing and pie charts do
-  let datesArr = utilFunctions.formatDate();
+  localStorage.setItem('displayWeek', data.weekOf)
+  let displayWeek = localStorage.getItem('displayWeek');
+  let weeksPast = utilFunctions.weeksPast(3)
+
+  for (let [key, value] of Object.entries(weeksPast)) {
+    if (displayWeek === value[0]) {
+      localStorage.setItem('weeksPastKey', key)
+    }
+  }
+
+  let datesArr = utilFunctions.datesArr();
+
   let distance = utilStats.distancePerDay(data);
   let pounds = utilStats.weightPerDay(data);
   let chartArraysHash = utilStats.durations(data);
   let colors = utilStats.generatePalette(chartArraysHash);
-
-  console.log(distance)
-  console.log(chartArraysHash)
 
   let line = document.querySelector("#canvas").getContext("2d");
   let bar = document.querySelector("#canvas2").getContext("2d");
@@ -95,7 +106,8 @@ const populateChart = (data) => {
   let barChart = new Chart(bar, {
     type: "bar",
     data: {
-      labels: utilFunctions.formatDate(),
+      labels: datesArr,
+      // utilFunctions.formatDate(),
       datasets: [
         {
           label: `Week of ${utilFunctions.formatDate()[0]}`,
@@ -184,16 +196,17 @@ const populateChart = (data) => {
   });
 }
 
-//previous/next
-// - each button gets evenent listner or on
-// - doc.querySelector the button to var
-// - put even listener that makes api call 
-// - selects week based on index 
-//     - arr.length just loads again if at the ened (same for arr[0])
-// - calls render workout and passes exercise to renderworkoutfunction;
+previousButton.addEventListener('click', async () => {
+  let displayWeek = localStorage.getItem('displayWeek')
+  let allWorkouts = await API.getAllWorkouts();
+  let weeksPast = utilFunctions.weeksPast(3);
 
-previousButton.addEventListener('click', () => {
-  console.log('previous')
+  for (let [key, value] of Object.entries(weeksPast)) {
+    if (displayWeek === value[0]) {
+      localStorage.setItem('weeksPastKey', key - 1)
+      populateChart(allWorkouts[key - 1])
+    }
+  }
 });
 
 nextButton.addEventListener('click', () => {
@@ -201,89 +214,7 @@ nextButton.addEventListener('click', () => {
 });
 
 seedButton.addEventListener('click', () => {
+  localStorage.setItem('weeksPastKey', 2)
   utilStats.seedFunction()
   location.reload();
 });
-
-////////////////////SEED FUNCTION SUDO AND OBJECT FORMATS
-  //send seeds via send seed function from stats
-  //may be easier ro write speficic seed route
-  //write seeds
-  // see if date function can handle date changing easily
-  // see what is sent and created via routes
-
-  //CREATE WORKOUT JSON
-  //date: "2021-01-11T23:48:09.602Z"
-  // exercises: []
-  // weekOf: "1/10/2021"
-  // __v: 0
-  // _id: "5ffce3b9c8a7cf3ccb9dca23"
-
-  ///Make new promise  
-   // let promise = new Promise(function (res, rej) {
-  //   res(API.deleteCollection());
-  // })
-  // promise.then(res => {
-  //   console.log(res)
-  // })
-  // promise.catch(err => {
-  //   console.log(err)
-  // })
-
-    //get id via get last workout or get all
-    // then use deletemany and addmany from seed to finishe the job
-    //send massive seed file from here so weeks obj cam be used
-    //this will use just workout model - sorry for all the extra coding
-
-    //need to be able to use workoutModel.  or else just having to rewrite app
-    //Use insetermany to db??
-
-    //
-
-
-  //SUDO
-  //drop database
-  // create workouts based on index 0 of array
-
-
-
-  // let weekOfObj =
-
-  //CARDIO ADD EXX JSON
-  //   {type: "Cardio", name: "45", distance: 45, duration: 45}
-  // distance: 45
-  // duration: 45
-  // name: "45"
-  // type: "Cardio"}
-
-  //RESISTANCE ADD EX JSON
-  // type: "Resistance", name: "88", weight: 88, sets: 88, reps: 88, …}
-  // duration: 88
-  // name: "88"
-  // reps: 88
-  // sets: 88
-  // type: "Resistance"
-  // weight: 88
-  // __proto__: Object  
-
-  //FORM SUBMIT ORDER OF OBJECT
-  // if (workoutType === "Cardio") {
-  //   workoutData.type = "Cardio";
-  //   workoutData.name = cardioNameInput.value.trim();
-  //   workoutData.distance = Number(distanceInput.value.trim());
-  //   workoutData.duration = Number(durationInput.value.trim());
-  // } else if (workoutType === "Resistance") {
-  //   workoutData.type = "Resistance";
-  //   workoutData.name = nameInput.value.trim();
-  //   workoutData.weight = Number(weightInput.value.trim());
-  //   workoutData.sets = Number(setsInput.value.trim());
-  //   workoutData.reps = Number(repsInput.value.trim());
-  //   workoutData.duration = Number(resistanceDurationInput.value.trim());
-  // }
-
-
-
-
-
-
-

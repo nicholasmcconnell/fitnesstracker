@@ -11,5 +11,7 @@ router.route('/range')
     .get(workoutController.findRange)
 router.route('/seed')
     .post(workoutController.insertCollection)
+router.route('/all')
+    .get(workoutController.findAllWorkouts)
 
 module.exports = router;

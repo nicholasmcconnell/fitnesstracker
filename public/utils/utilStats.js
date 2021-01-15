@@ -44,7 +44,7 @@ const utilStats = {
       }
     };
 
-    if (data.weekOf !== utilFunctions.formatDate()[0]) {
+    if (data.weekOf !== utilFunctions.datesArr()[0]) {
       return arrHash;
     }
 
@@ -84,28 +84,34 @@ const utilStats = {
   },
 
   distancePerDay: function (data) {
+    console.log(data)
     let totalsArr = new Array(7).fill(0);
-    let dateArr = utilFunctions.formatDate()
+    let dateArr = utilFunctions.datesArr()
     let distance = {}
     let weekOfExercises = data.exercises;
-
+    /////ADD DAY OF TO SEED!!!!!!!!!
     for (const [key, value] of Object.entries(weekOfExercises)) {
+      console.log(value.dayof)
       if (value.type === 'Cardio') {
         !distance[value.dayOf] ? distance[value.dayOf] = value.distance : distance[value.dayOf] += value.distance;
+        console.log(distance)
       }
     }
-
+    // console.log(dateArr) date array needs to come from function that is at top of populate chart
     for (const [key, value] of Object.entries(distance)) {
+      console.log(key)
       let index = dateArr.indexOf(key);
+      console.log(index)
       totalsArr[index] = value;
     }
+    console.log(totalsArr)
     return (totalsArr);
   },
 
   weightPerDay: function (data) {
     ///////DOES NOT ACCOUNT FOR REPS AND SETS IN TOTAL.  JUST THE WEIGHT USED DURING THE EXERCISE
     let totalsArr = new Array(7).fill(0);
-    let dateArr = utilFunctions.formatDate();
+    let dateArr = utilFunctions.datesArr();
     let weight = {};
     let weekOfExercises = data.exercises;
 
@@ -130,6 +136,9 @@ const utilStats = {
 
     let numOfWeeks = 3;
     let weeksObj = utilFunctions.weeksPast(numOfWeeks);
+    let weekZero = weeksObj[0];
+
+
 
     let data = [
       {
@@ -148,7 +157,6 @@ const utilStats = {
           },
           {
             dayOf: weeksObj[0][1],
-            dayOf: '',
             type: "Cardio",
             name: "Running",
             duration: 25,
@@ -189,6 +197,13 @@ const utilStats = {
             weight: 300,
             reps: 10,
             sets: 4
+          },
+          {
+            dayOf: weeksObj[0][5],
+            type: "Cardio",
+            name: "Walk",
+            duration: 60,
+            distance: 5.2
           },
         ]
       },
@@ -220,7 +235,7 @@ const utilStats = {
             type: "Cardio",
             name: "Running",
             duration: 25,
-            distance: 4
+            distance: 2.2
           },
 
           {
@@ -237,9 +252,16 @@ const utilStats = {
             type: "Resistance",
             name: "tricep Curl",
             duration: 20,
-            weight: 5000,
+            weight: 50,
             reps: 10,
             sets: 60
+          },
+          {
+            dayOf: weeksObj[1][6],
+            type: "Cardio",
+            name: "Jogging",
+            duration: 30,
+            distance: 3.7
           },
         ]
       },
@@ -261,8 +283,8 @@ const utilStats = {
             dayOf: weeksObj[2][1],
             type: "Cardio",
             name: "Running",
-            duration: 25,
-            distance: 4
+            duration: 60,
+            distance: 4.3
           },
           {
             dayOf: weeksObj[2][3],
@@ -278,9 +300,9 @@ const utilStats = {
             type: "Cardio",
             name: "Dog Run",
             duration: 25,
-            distance: 4
+            distance: 2.5
           },
-                   {
+          {
             dayOf: weeksObj[2][4],
             type: "Resistance",
             name: "Quad Press",
@@ -305,15 +327,24 @@ const utilStats = {
             duration: 60,
             distance: 3.25
           },
+          {
+            dayOf: weeksObj[2][6],
+            type: "Resistance",
+            name: "Squats",
+            duration: 20,
+            weight: 225,
+            reps: 10,
+            sets: 3
+          }
         ]
       },
     ]
-
+    console.log(data)
     API.insertCollection(data)
       .then(res => console.log(res))
       .catch(err => console.log(err))
 
- 
+
   },
 
   // workoutNames: function (data) {

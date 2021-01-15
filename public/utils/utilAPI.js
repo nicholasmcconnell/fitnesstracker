@@ -89,5 +89,18 @@ const API = {
     const json = await res.json();
     console.log(json)
     return json;
-  }
+  },
+  getAllWorkouts: async function () {
+    let res;
+    try {
+      res = await fetch("/api/workouts");
+
+    } catch (err) {
+      console.log(err)
+    }
+    const json = await res.json();
+    console.log(json)
+
+    return json;
+  },
 };
