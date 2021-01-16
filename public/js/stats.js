@@ -1,11 +1,8 @@
-// const utilFunctions = require("../../models/modelUtils/modelFunctions");
-
-// get all workout data from back-end
 const previousButton = document.querySelector('.previous');
 const nextButton = document.querySelector('.next');
 const seedButton = document.querySelector('.seed')
 
-// localStorage.clear();
+const seedWeeks = 3;
 
 API.getWorkoutsInRange()
   .then(res => {
@@ -37,16 +34,16 @@ const control = (data) => {
 }
 
 const populateChart = (data) => {
-  console.log(data)
   localStorage.setItem('displayWeek', data.weekOf)
   let displayWeek = localStorage.getItem('displayWeek');
-  let weeksPast = utilFunctions.weeksPast(3)
+  let weeksPast = utilFunctions.weeksPast(seedWeeks)
+  console.log(weeksPast)
 
-  // for (let [key, value] of Object.entries(weeksPast)) {
-  //   if (displayWeek === value[0]) {
-  //     localStorage.setItem('weeksPastKey', key)
-  //   }
-  // }
+  for (let [key, value] of Object.entries(weeksPast)) {
+    if (displayWeek === value[0]) {
+      localStorage.setItem('weeksPastKey', key)
+    }
+  }
 
   let datesArr = utilFunctions.datesArr();
 
@@ -76,7 +73,7 @@ const populateChart = (data) => {
       ]
     },
     options: {
-      responsive: true,
+      // responsive: true,
       title: {
         display: true,
         text: "Distance Covered",
@@ -185,7 +182,7 @@ const populateChart = (data) => {
 previousButton.addEventListener('click', async () => {
   let displayWeek = localStorage.getItem('displayWeek')
   let allWorkouts = await API.getAllWorkouts();
-  let weeksPast = utilFunctions.weeksPast(3);
+  let weeksPast = utilFunctions.weeksPast(seedWeeks);
   let weeksPastKey;
 
   for (let [key, value] of Object.entries(weeksPast)) {
@@ -201,7 +198,7 @@ previousButton.addEventListener('click', async () => {
 nextButton.addEventListener('click', async () => {
   let displayWeek = localStorage.getItem('displayWeek')
   let allWorkouts = await API.getAllWorkouts();
-  let weeksPast = utilFunctions.weeksPast(3);
+  let weeksPast = utilFunctions.weeksPast(seedWeeks);
   let weeksPastLength = Object.keys(weeksPast).length;
   let weeksPastKey;
 
@@ -209,7 +206,6 @@ nextButton.addEventListener('click', async () => {
     if (displayWeek === value[0]) {
       ((key+1)> weeksPastLength-1) ? weeksPastKey = weeksPastLength-1 : weeksPastKey = key+=1;
       (weeksPastKey.length > 1) ? weeksPastKey = weeksPastKey.substring(1) : weeksPastKey;
-      localStorage.removeItem('weeksPastKey')
       localStorage.setItem('weeksPastKey', weeksPastKey)
       populateChart(allWorkouts[weeksPastKey])
     }

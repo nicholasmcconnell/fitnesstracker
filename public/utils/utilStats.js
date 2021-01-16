@@ -7,7 +7,7 @@ const utilStats = {
     var b = num & 255;
     return 'rgba(' + r + ', ' + g + ', ' + b + ', 0.5)';
   },
-  generatePalette: function (chartArraysHash) {
+  generatePalette:  (chartArraysHash) => {
     let cardioArrLength = chartArraysHash.Cardio.names.length;
     let resistanceArrLength = chartArraysHash.Resistance.names.length;
     let colorObj = {
@@ -34,7 +34,7 @@ const utilStats = {
     console.log(barColorArr)
     return barColorArr;
   },
-  durations: function (data) {
+  durations: (data) => {
 
     let exercises = data.exercises;
     let nameDurationHash = {};
@@ -85,11 +85,10 @@ const utilStats = {
       }
 
     }
-
     return arrHash;
   },
 
-  distancePerDay: function (data) {
+  distancePerDay: (data) => {
     console.log(data)
     let totalsArr = new Array(7).fill(0);
     let dateArr = utilFunctions.datesArr()
@@ -114,7 +113,7 @@ const utilStats = {
     return (totalsArr);
   },
 
-  weightPerDay: function (data) {
+  weightPerDay: (data) => {
     ///////DOES NOT ACCOUNT FOR REPS AND SETS IN TOTAL.  JUST THE WEIGHT USED DURING THE EXERCISE
     let totalsArr = new Array(7).fill(0);
     let dateArr = utilFunctions.datesArr();
@@ -135,16 +134,13 @@ const utilStats = {
     return totalsArr;
   },
 
-  seedFunction: async function () {
+  seedFunction: async () => {
     API.deleteCollection()
       .then(res => console.log(`${res} documents removed.`))
       .catch(err => console.log(err))
 
     let numOfWeeks = 3;
     let weeksObj = utilFunctions.weeksPast(numOfWeeks);
-    let weekZero = weeksObj[0];
-
-
 
     let data = [
       {
@@ -173,7 +169,7 @@ const utilStats = {
             type: "Resistance",
             name: "Bench Press",
             duration: 20,
-            weight: 300,
+            weight: 185,
             reps: 10,
             sets: 4
           },
@@ -353,7 +349,4 @@ const utilStats = {
 
   },
 
-  prevNext: () => {
-    
-  }
 };
