@@ -1,6 +1,13 @@
 
 const utilStats = {
-  generatePalette: function (chartArraysHash) {
+  getRandomRgb: () => {
+    var num = Math.round(0xffffff * Math.random());
+    var r = num >> 16;
+    var g = num >> 8 & 255;
+    var b = num & 255;
+    return 'rgba(' + r + ', ' + g + ', ' + b + ', 0.5)';
+  },
+  generatePalette:  (chartArraysHash) => {
     let cardioArrLength = chartArraysHash.Cardio.names.length;
     let resistanceArrLength = chartArraysHash.Resistance.names.length;
     let colorObj = {
@@ -8,18 +15,10 @@ const utilStats = {
       'Resistance': []
     };
 
-    let getRandomRgb = () => {
-      var num = Math.round(0xffffff * Math.random());
-      var r = num >> 16;
-      var g = num >> 8 & 255;
-      var b = num & 255;
-      return 'rgb(' + r + ', ' + g + ', ' + b + ', 0.5)';
-    }
-
     for (let [k, v] of Object.entries(chartArraysHash)) {
       for (let [key, value] of Object.entries(v)) {
         for (let i = 0; i < value.length; i++) {
-          let randomColor = getRandomRgb();
+          let randomColor = utilStats.getRandomRgb();
           colorObj[k].push(randomColor);
         }
         break;
@@ -27,8 +26,15 @@ const utilStats = {
     }
     return colorObj;
   },
-
-  durations: function (data) {
+  barChartColors: () => {
+    let barColorArr = [];
+    for(let i = 0; i<=6; i++){
+      barColorArr.push(utilStats.getRandomRgb())
+    }
+    console.log(barColorArr)
+    return barColorArr;
+  },
+  durations: (data) => {
 
     let exercises = data.exercises;
     let nameDurationHash = {};
@@ -79,11 +85,10 @@ const utilStats = {
       }
 
     }
-
     return arrHash;
   },
 
-  distancePerDay: function (data) {
+  distancePerDay: (data) => {
     console.log(data)
     let totalsArr = new Array(7).fill(0);
     let dateArr = utilFunctions.datesArr()
@@ -108,7 +113,7 @@ const utilStats = {
     return (totalsArr);
   },
 
-  weightPerDay: function (data) {
+  weightPerDay: (data) => {
     ///////DOES NOT ACCOUNT FOR REPS AND SETS IN TOTAL.  JUST THE WEIGHT USED DURING THE EXERCISE
     let totalsArr = new Array(7).fill(0);
     let dateArr = utilFunctions.datesArr();
@@ -129,16 +134,13 @@ const utilStats = {
     return totalsArr;
   },
 
-  seedFunction: async function () {
+  seedFunction: async () => {
     API.deleteCollection()
       .then(res => console.log(`${res} documents removed.`))
       .catch(err => console.log(err))
 
     let numOfWeeks = 3;
     let weeksObj = utilFunctions.weeksPast(numOfWeeks);
-    let weekZero = weeksObj[0];
-
-
 
     let data = [
       {
@@ -167,7 +169,7 @@ const utilStats = {
             type: "Resistance",
             name: "Bench Press",
             duration: 20,
-            weight: 300,
+            weight: 185,
             reps: 10,
             sets: 4
           },
@@ -346,17 +348,5 @@ const utilStats = {
 
 
   },
-
-  // workoutNames: function (data) {
-  //   let workouts = [];
-
-  //   d
-  // ata.forEach(workout => {
-  //     workout.exercises.forEach(exercise => {
-  //       workouts.push(exercise.name);
-  //     });
-  //   });
-  //   return workouts;
-  // }
 
 };

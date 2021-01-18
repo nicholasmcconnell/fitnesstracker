@@ -50,7 +50,7 @@ const utilFunctions = {
   datesArr: () => {
     let weeksPastKey = localStorage.getItem('weeksPastKey')
     let displayWeek = localStorage.getItem('displayWeek');
-    let weeksPast = utilFunctions.weeksPast(3)
+    let weeksPast = utilFunctions.weeksPast(seedWeeks)
     let datesArr = [];
 
     !displayWeek ? datesArr = utilFunctions.formatDate() : datesArr = weeksPast[weeksPastKey];

@@ -3,9 +3,7 @@
 
 const control = async () => {
   const lastWorkoutWeek = await API.getLastWorkout();
-  console.log(lastWorkoutWeek)
   const workoutSummary = await initLastWorkout(lastWorkoutWeek);
-  console.log(lastWorkoutWeek, workoutSummary)
   if(!lastWorkoutWeek || !workoutSummary){
     return;
   } else {
@@ -16,7 +14,6 @@ const control = async () => {
 control();
 
 async function initLastWorkout(lastWorkoutWeek) {
-  console.log(lastWorkoutWeek)
   if (!lastWorkoutWeek || !lastWorkoutWeek.exercises.length) {
     utilWorkout.renderNoWorkoutText()
   } else if (lastWorkoutWeek.exercises.length) {
@@ -65,7 +62,6 @@ async function initLastWorkout(lastWorkoutWeek) {
 }
 
 function renderWorkoutSummary(summary, lastWorkoutWeek) {
-  // let workoutKeyMap = {};
   const { dayOfStatsCardio, dayOfStatsResistance, weekOfStats } = {
     dayOfStatsCardio: {
       date: "Date",
