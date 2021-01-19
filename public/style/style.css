@@ -1,15 +1,29 @@
+/* ELEMENTS  */
+
 *, *::before, *::after {
-  box-sizing: border-box;
+  /* box-sizing:border-box; */
   margin: 0;
   padding: 0;
 }
 
-html, body, .wrapper {
+html, body {
   height: 100%;
+  min-height: 100%;
 }
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.wrapper {
+  /* background-color: #f2f8ff; */
+  background-color: rosybrown;
+/* box-sizing: border-box; */
+overflow: hidden;
+height: auto;
+min-height: 100vh;
+width: auto;
+  padding-bottom: 10vh;
 }
 
 nav {
@@ -26,18 +40,47 @@ a, a:hover, a:active, a:visited {
   color: inherit;
 }
 
-header {
-  height: 75px;
-  padding-top: 40px;
-  margin-bottom: 40px;
-
-  text-align: center;
-  font-size: 1.5rem;
+header{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  /* height: px; */
+  max-width: 100%;
+  min-width: 0%;
 }
 
 header h1 {
-  transform: skewX(-2deg);
+  padding: 25px;
+  font-size: 6vh;
 }
+
+button {
+  display: block;
+  margin: 0 auto;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  padding: 10px;
+  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+}
+
+button {
+  vertical-align: middle;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  padding: 10px;
+  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+}
+
+/* CARD */
+
+
+
+/* FORM */
 
 select {
   display: block;
@@ -47,7 +90,7 @@ select {
   font-size: 1rem;
   border-radius: 6px;
   border: 1px solid #aaa;
-  width: 100%;
+  width: 80%;
   padding: 10px;
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
   background-repeat: no-repeat, repeat;
@@ -59,8 +102,8 @@ select::-ms-expand {
   display: none;
 }
 
-select:hover {
-  border-color: #888;
+select, input:hover {
+  border-color: rgba(59, 153, 252, 0.7);
 }
 
 select:focus {
@@ -71,35 +114,36 @@ select:focus {
   outline: none;
 }
 
-select option {
+form .workout-type select option {
   font-weight: normal;
-  width: 100%;
+  width: 30%;
 }
 
-input {
+
+
+.workout-type, form .cardio-form div, form .resistance-form div {
+  display: flex;
+  margin-top: 30px;
+}
+
+/* form label {
+  width: 150px;
+  margin-top: 0.7rem;
+} */
+
+/* form .buttons {
+  display: inline-block;
+  margin-top: 20px;
+} */
+
+form::after {
+  content: " ";
   display: block;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #aaa;
-  width: 100%;
-  padding: 10px;
-  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  clear: both;
 }
 
-.wrapper {
-  background-color: #f2f8ff;
-  /* padding-bottom: 100px; */
-}
-
-.card.m-auto {
-  padding: 30px;
-  margin: auto;
-  /* margin-bottom: 200px; */
-  width: 50%;
-  height: 80%;
+.d-none {
+  display: none;
 }
 
 form .workout-type, form .cardio-form div, form .resistance-form div {
@@ -107,15 +151,17 @@ form .workout-type, form .cardio-form div, form .resistance-form div {
   margin-top: 30px;
 }
 
-form label {
+/* form label {
   width: 150px;
   margin-top: 0.7rem;
-}
 
-form>button {
-  float: right;
-  margin-top: 20px;
-}
+} */
+
+/* form .buttons {
+  justify-content: center;
+align-items: center;
+margin-top: 20px;
+} */
 
 form::after {
   content: " ";
@@ -127,30 +173,73 @@ form::after {
   display: none !important;
 }
 
-.exercise .ui.card {
-  width: 400px;
-  max-width: 600px;
-}
-
-.exercise .buttons {
-  margin-top: 20px;
+form .workout-type, form .cardio-form div, form .resistance-form div {
   display: flex;
+  margin-top: 0;
+  padding: 20px;
 }
 
-.exercise .buttons button {
-  width: 100%;
-}
+/* .workout-type, .cardio-form, .resistance-form {
+  padding: 25px;
+} */
 
-button {
+form .exType {
+  margin-top: 8px;
+}
+form label {
+  width: 40%;
+  min-width: 95px;
+  margin-top: -8px;
+  font-size: 15px;
+  padding-right: 5px;
+}
+form input {
   display: block;
-  border: none;
-  cursor: pointer;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
   font-size: 1rem;
   border-radius: 6px;
   border: 1px solid #aaa;
-  padding: 10px;
+  width: 80%;
+  height: 40px;
+  /* min-width: 100px; */
+  margin-top: -20px;
+  padding-left: 10px;
   background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
 }
+
+
+/* form>button {
+  float: right;
+  margin-top: 20px;
+} */
+
+form::after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+.d-none {
+  display: none;
+}
+
+/* .exercise .ui.card {
+  width: 400px;
+  max-width: 600px;
+} */
+
+/* .exercise .buttons {
+  margin-top: 20px;
+  display: flex;
+} */
+
+/* .exercise .card .buttons button {
+  width: 100%;
+} */
+
+/* TOAST */
 
 #toast {
   border-radius: 4px;
@@ -169,65 +258,12 @@ button {
   transition: all 0.5s;
 }
 
-#toast.success {
+/* #toast.success {
   opacity: 1;
   right: 10px;
   background-color: hsl(94, 40%, 86%);
   color: hsl(94, 90%, 16%);
-  /* transition: all .5s; */
-}
-
-.workout-type, form .cardio-form div, form .resistance-form div {
-  display: flex;
-  margin-top: 30px;
-}
-
-form label {
-  width: 150px;
-  margin-top: 0.7rem;
-}
-
-form>button {
-  float: right;
-  margin-top: 20px;
-}
-
-form::after {
-  content: " ";
-  display: block;
-  clear: both;
-}
-
-.d-none {
-  display: none;
-}
-
-button {
-  display: block;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #aaa;
-  padding: 10px;
-  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
-}
-
-/* #toast {
-  border-radius: 4px;
-  border-width: 1px;
-  font-size: 13px;
-  line-height: 19.5px;
-  margin: 0px 0px 16px;
-  padding: 12px 59.5px 12px 20px;
-  text-align: left;
-  width: 300px;
-  min-height: 80px;
-  position: fixed;
-  top: 10px;
-  right: -320px;
-  opacity: 0;
-  transition: all 0.5s;
+  transition: all .5s;
 } */
 
 #toast.success {
@@ -237,56 +273,10 @@ button {
   transition: all 0.5s;
 }
 
-.workout-type, form .cardio-form div, form .resistance-form div {
-  display: flex;
-  margin-top: 30px;
+#toast.success {
+  background-color: hsl(94, 40%, 86%);
+  color: hsl(94, 90%, 16%);
 }
-
-form label {
-  width: 150px;
-  margin-top: 0.7rem;
-}
-
-form>button {
-  float: right;
-  margin-top: 20px;
-}
-
-form::after {
-  content: " ";
-  display: block;
-  clear: both;
-}
-
-.d-none {
-  display: none;
-}
-
-button {
-  display: block;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #aaa;
-  padding: 10px;
-  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
-}
-
-/* #toast {
-  border-radius: 4px;
-  border-width: 1px;
-  font-size: 20px;
-  line-height: 19.5px;
-  margin: 0px 0px 16px;
-  padding: 12px 59.5px 12px 20px;
-  text-align: center;
-  width: 300px;
-  min-height: 80px;
-  position: fixed;
-  top: 10px;
-  right: -320px;
-} */
 
 #toast.success {
   background-color: hsl(94, 40%, 86%);
@@ -298,24 +288,10 @@ button {
   animation-timing-function: cubic-bezier(.47, .48, .6, .88);
 }
 
-.d-none {
-  display: none;
-}
-
-.btn, button {
-  display: block;
-  cursor: pointer;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #aaa;
-  padding: 10px;
-  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
-}
-
-form>button {
+/* form>button {
   margin: 5px;
   margin-top: 20px;
-}
+} */
 
 /* #toast {
   border-radius: 4px;
@@ -333,23 +309,45 @@ form>button {
   opacity: 0;
 } */
 
+/* 
 .d-flex {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-}
+} */
 
-.col {
+/* .col {
   flex: 1;
+} */
+
+
+
+.container {
+  /* background-color: magenta; */
+  /* margin-bottom: 50px; */
+  /* height: 100%; */
 }
 
-#toast.success {
-  background-color: hsl(94, 40%, 86%);
-  color: hsl(94, 90%, 16%);
+.card.m-auto {
+  display: flex;
+  margin: 0 auto;
+  width: 50%;
+  min-width: 290px;
+  height: auto;
+  max-height: 100%;
+  text-align: center;
+  /* margin-bottom: 50px; */
+  /* background-color: mediumblue; */
 }
 
+/* PREVIOUS WORKOUT DIV */
+.prev-workout {
+  padding:2.3vh;
+  text-align: center;
+  background-color: lime;
+}
 .prev-workout h3 {
-  font-size: 25px;
+  font-size: 30px;
   width: 100%;
 }
 
@@ -362,8 +360,8 @@ form>button {
   width: 350px;
 } */
 
-.prev-workout button {
-  margin: 10px;
+.prev-workout .buttons {
+  margin-bottom: 10px;
 }
 
 .new-workout {
@@ -371,37 +369,26 @@ form>button {
 }
 
 .mt {
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
-.workout .ui.card {
+/* .workout .ui.card {
   padding-top: 25px;
-}
+} */
 
 .prev-workout {
-  text-align: center;
+  /* text-align: center; */
 }
 
-.prev-workout .buttons {
+/* .prev-workout .buttons {
   display: flex;
   height: 75px;
   margin-top: 30px;
-}
-
-.buttons {
-  display: inline-block;
-  margin: auto;
-}
-
-.buttons .ui.button {
-  display: inline-block;
-  vertical-align: middle;
-  margin: auto;
-  width: 50%;
-}
+} */
 
 .ui.card h2 {
-  padding: 10px;
+  /* text-align: center; */
+  /* padding: 10px; */
 }
 
 /* .buttons .ui.button:first-child {
@@ -416,8 +403,23 @@ form>button {
   border-top-right-radius: 0;
 } */
 
-.workout-type, .cardio-form, .resistance-form {
-  padding: 10px;
+.buttons {
+  /* display: flex;
+  margin: auto;
+  justify-content: center; */
+}
+
+.buttons .ui.button {
+  /* top:50%; 
+  left:50%; */
+  /* text-align: center; */
+  /* vertical-align: middle; */
+  /* margin: 0; */
+  margin-top: 20px;
+  width: 45%;
+  height: 100%;
+  min-width: 190px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes toast {
