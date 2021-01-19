@@ -84,7 +84,7 @@ select {
   font-size: 1rem;
   border-radius: 6px;
   border: 1px solid #aaa;
-  width: 100%;
+  width: 80%;
   padding: 10px;
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
   background-repeat: no-repeat, repeat;
@@ -108,23 +108,12 @@ select:focus {
   outline: none;
 }
 
-select option {
+form .workout-type select option {
   font-weight: normal;
-  width: 100%;
+  width: 30%;
 }
 
-input {
-  display: block;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #aaa;
-  width: 100%;
-  padding: 10px;
-  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
-}
+
 
 .workout-type, form .cardio-form div, form .resistance-form div {
   display: flex;
@@ -188,12 +177,32 @@ form .workout-type, form .cardio-form div, form .resistance-form div {
   padding: 25px;
 } */
 
+form .exType {
+  margin-top: 8px;
+}
 form label {
   width: 40%;
   min-width: 95px;
-  margin-top: 0.7rem;
-  /* padding-right: 5px; */
+  margin-top: -8px;
+  font-size: 15px;
+  padding-right: 5px;
 }
+form input {
+  display: block;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  width: 80%;
+  height: 40px;
+  /* min-width: 100px; */
+  margin-top: -20px;
+  padding-left: 10px;
+  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+}
+
 
 /* form>button {
   float: right;
@@ -319,7 +328,8 @@ form::after {
   width: 50%;
   min-width: 290px;
   height: auto;
-  margin-bottom: 20px;
+  max-height: 1p0%;
+  margin-bottom: 50px;
   /* background-color: mediumblue; */
 }
 
