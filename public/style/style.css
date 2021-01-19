@@ -6,7 +6,7 @@
   padding: 0;
 }
 
-html, body, .wrapper {
+html, body {
   height: 100%;
   min-height: 100%;
 }
@@ -16,8 +16,14 @@ body {
 }
 
 .wrapper {
-  background-color: #f2f8ff;
-  padding-bottom: 20vh;
+  /* background-color: #f2f8ff; */
+  background-color: rosybrown;
+/* box-sizing: border-box; */
+overflow: hidden;
+height: auto;
+min-height: 100vh;
+width: auto;
+  padding-bottom: 10vh;
 }
 
 nav {
@@ -328,8 +334,9 @@ form::after {
   width: 50%;
   min-width: 290px;
   height: auto;
-  max-height: 1p0%;
-  margin-bottom: 50px;
+  max-height: 100%;
+  text-align: center;
+  /* margin-bottom: 50px; */
   /* background-color: mediumblue; */
 }
 
@@ -337,7 +344,7 @@ form::after {
 .prev-workout {
   padding:2.3vh;
   text-align: center;
-  /* background-color: lime; */
+  background-color: lime;
 }
 .prev-workout h3 {
   font-size: 30px;
@@ -354,7 +361,7 @@ form::after {
 } */
 
 .prev-workout .buttons {
-  /* margin-bottom: 10px; */
+  margin-bottom: 10px;
 }
 
 .new-workout {
