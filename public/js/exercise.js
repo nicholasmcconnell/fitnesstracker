@@ -101,11 +101,7 @@ function validateInputs() {
 }
 
 async function handleFormSubmit(event) {
-  // if (validateInputs()) {
-  // } else {
-  //   alert('exercise not iniciated')
-  // };
-  // await initExercise()
+  
   event.preventDefault();
 
   let workoutData = {};
@@ -123,17 +119,15 @@ async function handleFormSubmit(event) {
     workoutData.reps = Number(repsInput.value.trim());
     workoutData.duration = Number(resistanceDurationInput.value.trim());
   }
-  console.log(workoutData)
 
   await API.addExercise(workoutData);
-  // clearInputßs();
   toast.classList.add("success");
 }
 
 function handleToastAnimationEnd() {
   toast.removeAttribute("class");
   if (shouldNavigateAway) {
-    location.href = "/";
+    location.href = "/stats";
   }
 }
 
@@ -153,17 +147,13 @@ if (workoutTypeSelect) {
 }
 if (completeButton) {
   completeButton.addEventListener("click", function (event) {
-    // shouldNavigateAway = true;
+    shouldNavigateAway = true;
     handleFormSubmit(event);
   });
 }
-// if (addButton) {
 
-//   addButton.addEventListener("click", handleFormSubmit);
-// }
 toast.addEventListener("animationend", handleToastAnimationEnd);
 
-//this isn't doing anything really, it runs when page loads and that's about it - doesn't validate form on submit and then empty forms are being submitted
 document
   .querySelectorAll("input")
   .forEach(element => element.addEventListener("input", validateInputs));

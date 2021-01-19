@@ -31,7 +31,6 @@ const utilStats = {
     for(let i = 0; i<=6; i++){
       barColorArr.push(utilStats.getRandomRgb())
     }
-    console.log(barColorArr)
     return barColorArr;
   },
   durations: (data) => {
@@ -89,27 +88,21 @@ const utilStats = {
   },
 
   distancePerDay: (data) => {
-    console.log(data)
     let totalsArr = new Array(7).fill(0);
     let dateArr = utilFunctions.datesArr()
     let distance = {}
     let weekOfExercises = data.exercises;
     /////ADD DAY OF TO SEED!!!!!!!!!
     for (const [key, value] of Object.entries(weekOfExercises)) {
-      console.log(value.dayof)
       if (value.type === 'Cardio') {
         !distance[value.dayOf] ? distance[value.dayOf] = value.distance : distance[value.dayOf] += value.distance;
-        console.log(distance)
       }
     }
     // console.log(dateArr) date array needs to come from function that is at top of populate chart
     for (const [key, value] of Object.entries(distance)) {
-      console.log(key)
       let index = dateArr.indexOf(key);
-      console.log(index)
       totalsArr[index] = value;
     }
-    console.log(totalsArr)
     return (totalsArr);
   },
 

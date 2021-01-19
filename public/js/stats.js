@@ -7,11 +7,12 @@ const seedWeeks = 3;
 API.getWorkoutsInRange()
   .then(res => {
     if (res === undefined || res.weekOf !== utilFunctions.formatDate()[0]) {
-      let container = document.querySelector('.container');
+      let container = document.querySelector('.prev-workout');
       let h2 = document.createElement('h2');
       h2.classList.add('text-center');
 
       h2.textContent = 'No workouts have been logged for this week.';
+      h2.style.color = 'red';
       container.prepend(h2)
       return res;
       ////Then should display previous weeks and be able to scroll through them
@@ -24,7 +25,6 @@ API.getWorkoutsInRange()
     if (!data) {
       return;
     } else {
-      console.log(data)
       control(data)
     }
   });
@@ -37,7 +37,9 @@ const populateChart = (data) => {
   localStorage.setItem('displayWeek', data.weekOf)
   let displayWeek = localStorage.getItem('displayWeek');
   let weeksPast = utilFunctions.weeksPast(seedWeeks)
-  console.log(weeksPast)
+
+  let weekOfDisplay = document.querySelector('.weekOfDisplay')
+  weekOfDisplay.textContent = `Week of: ${displayWeek}`;
 
   for (let [key, value] of Object.entries(weeksPast)) {
     if (displayWeek === value[0]) {
@@ -73,6 +75,7 @@ const populateChart = (data) => {
       ]
     },
     options: {
+      maintainAspectRatio: false,
       // responsive: true,
       title: {
         display: true,
@@ -129,8 +132,11 @@ const populateChart = (data) => {
             }
           }
         ]
-      }
-    }
+      },
+      // responsive: true, 
+      maintainAspectRatio: false
+    },
+
   });
 
   let cardioPieChart = new Chart(pie, {
@@ -146,6 +152,7 @@ const populateChart = (data) => {
       ]
     },
     options: {
+      maintainAspectRatio: false,
       title: {
         display: true,
         text: !chartArraysHash.Cardio.durations.length ? 'No Cardio Minutes Logged' : "Cardio Performed (minutes)",
@@ -168,6 +175,7 @@ const populateChart = (data) => {
       ]
     },
     options: {
+      maintainAspectRatio: false,
       title: {
         display: true,
         text: !chartArraysHash.Resistance.durations.length ? 'No Resistance Minutes Logged' : "Resistance Performed (minutes)",
@@ -187,8 +195,7 @@ previousButton.addEventListener('click', async () => {
 
   for (let [key, value] of Object.entries(weeksPast)) {
     if (displayWeek === value[0]) {
-      ((key-1)< 0) ? weeksPastKey = 0 : weeksPastKey = (key-1);
-      console.log(weeksPastKey)
+      ((key - 1) < 0) ? weeksPastKey = 0 : weeksPastKey = (key - 1);
       localStorage.setItem('weeksPastKey', weeksPastKey)
       populateChart(allWorkouts[weeksPastKey])
     }
@@ -204,7 +211,7 @@ nextButton.addEventListener('click', async () => {
 
   for (let [key, value] of Object.entries(weeksPast)) {
     if (displayWeek === value[0]) {
-      ((key+1)> weeksPastLength-1) ? weeksPastKey = weeksPastLength-1 : weeksPastKey = key+=1;
+      ((key + 1) > weeksPastLength - 1) ? weeksPastKey = weeksPastLength - 1 : weeksPastKey = key += 1;
       (weeksPastKey.length > 1) ? weeksPastKey = weeksPastKey.substring(1) : weeksPastKey;
       localStorage.setItem('weeksPastKey', weeksPastKey)
       populateChart(allWorkouts[weeksPastKey])
