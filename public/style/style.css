@@ -1,4 +1,5 @@
 /* ELEMENTS  */
+
 *, *::before, *::after {
   /* box-sizing:border-box; */
   margin: 0;
@@ -6,6 +7,7 @@
 }
 
 html, body, .wrapper {
+  height: 100%;
   min-height: 100%;
 }
 
@@ -15,7 +17,7 @@ body {
 
 .wrapper {
   background-color: #f2f8ff;
-  padding-bottom: 15vh;
+  padding-bottom: 20vh;
 }
 
 nav {
@@ -32,16 +34,18 @@ a, a:hover, a:active, a:visited {
   color: inherit;
 }
 
-header {
-  height: 75px;
-  padding-top: 40px;
-  margin-bottom: 40px;
-  text-align: center;
-  font-size: 1.5rem;
+header{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  /* height: px; */
+  max-width: 100%;
+  min-width: 0%;
 }
 
 header h1 {
-  transform: skewX(-2deg);
+  padding: 25px;
+  font-size: 6vh;
 }
 
 button {
@@ -56,7 +60,6 @@ button {
   background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
 }
 
-
 button {
   vertical-align: middle;
   cursor: pointer;
@@ -68,15 +71,8 @@ button {
 }
 
 /* CARD */
-.card.m-auto {
-  display: flex;
-  padding: 30px;
-  margin: 0 auto;
-  /* margin-bottom: 200px; */
-  width: 50%;
-  min-width: 300px;
-  height: 80%;
-}
+
+
 
 /* FORM */
 
@@ -101,7 +97,7 @@ select::-ms-expand {
 }
 
 select, input:hover {
-  border-color:rgba(59, 153, 252, 0.7);
+  border-color: rgba(59, 153, 252, 0.7);
 }
 
 select:focus {
@@ -196,7 +192,6 @@ form label {
   width: 40%;
   min-width: 95px;
   margin-top: 0.7rem;
-
   /* padding-right: 5px; */
 }
 
@@ -229,8 +224,8 @@ form::after {
   width: 100%;
 } */
 
-
 /* TOAST */
+
 #toast {
   border-radius: 4px;
   border-width: 1px;
@@ -278,8 +273,6 @@ form::after {
   animation-timing-function: cubic-bezier(.47, .48, .6, .88);
 }
 
-
-
 /* form>button {
   margin: 5px;
   margin-top: 20px;
@@ -300,6 +293,7 @@ form::after {
   right: -320px;
   opacity: 0;
 } */
+
 /* 
 .d-flex {
   display: flex;
@@ -311,10 +305,32 @@ form::after {
   flex: 1;
 } */
 
-/* .prev-workout */
 
+
+.container {
+  /* background-color: magenta; */
+  /* margin-bottom: 50px; */
+  /* height: 100%; */
+}
+
+.card.m-auto {
+  display: flex;
+  margin: 0 auto;
+  width: 50%;
+  min-width: 290px;
+  height: auto;
+  margin-bottom: 20px;
+  /* background-color: mediumblue; */
+}
+
+/* PREVIOUS WORKOUT DIV */
+.prev-workout {
+  padding:2.3vh;
+  text-align: center;
+  /* background-color: lime; */
+}
 .prev-workout h3 {
-  font-size: 25px;
+  font-size: 30px;
   width: 100%;
 }
 
@@ -327,8 +343,8 @@ form::after {
   width: 350px;
 } */
 
-.prev-workout button {
-  margin: 10px;
+.prev-workout .buttons {
+  /* margin-bottom: 10px; */
 }
 
 .new-workout {
@@ -336,7 +352,7 @@ form::after {
 }
 
 .mt {
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 /* .workout .ui.card {
@@ -344,7 +360,7 @@ form::after {
 } */
 
 .prev-workout {
-  text-align: center;
+  /* text-align: center; */
 }
 
 /* .prev-workout .buttons {
@@ -353,10 +369,8 @@ form::after {
   margin-top: 30px;
 } */
 
-
-
 .ui.card h2 {
-  text-align: center;
+  /* text-align: center; */
   /* padding: 10px; */
 }
 
@@ -373,25 +387,23 @@ form::after {
 } */
 
 .buttons {
-  display: flex;
+  /* display: flex;
   margin: auto;
-  justify-content: center;
+  justify-content: center; */
 }
 
-.buttons .ui {
-  top:50%; 
-  left:50%;
+.buttons .ui.button {
+  /* top:50%; 
+  left:50%; */
   /* text-align: center; */
   /* vertical-align: middle; */
   /* margin: 0; */
-  margin-top: 10px;
+  margin-top: 20px;
   width: 45%;
   height: 100%;
   min-width: 190px;
-  box-shadow: 2px 2px rgb(177, 196, 202);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
-
-
 
 @keyframes toast {
   50% {
