@@ -7,7 +7,7 @@ const seedWeeks = 3;
 API.getWorkoutsInRange()
   .then(res => {
     if (res === undefined || res.weekOf !== utilFunctions.formatDate()[0]) {
-      let container = document.querySelector('.container');
+      let container = document.querySelector('.prev-workout');
       let h2 = document.createElement('h2');
       h2.classList.add('text-center');
 
@@ -36,6 +36,9 @@ const populateChart = (data) => {
   localStorage.setItem('displayWeek', data.weekOf)
   let displayWeek = localStorage.getItem('displayWeek');
   let weeksPast = utilFunctions.weeksPast(seedWeeks)
+
+  let weekOfDisplay = document.querySelector('.weekOfDisplay')
+  weekOfDisplay.textContent = `Week of: ${displayWeek}`;
 
   for (let [key, value] of Object.entries(weeksPast)) {
     if (displayWeek === value[0]) {

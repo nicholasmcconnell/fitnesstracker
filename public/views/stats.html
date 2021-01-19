@@ -10,7 +10,7 @@
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" /> -->
   <link rel="stylesheet" href="/style/style.css" />
-  <title>Fitness Chart</title>
+  <title>Fitness Tracker</title>
 </head>
 <nav>
   <a href="/">Fitness Tracker | </a>
@@ -20,19 +20,24 @@
 <body>
   <div class="wrapper">
     <header>
-      <h1>Workout Stats</h1>
+      <h1>Weekly Stats</h1>
     </header>
     <!-- <div class="container mt"> -->
       <div class="ui raised card m-auto">
         <!-- <div class="row justify-content-center"> -->
-          <div class="buttons">
-            <button class="previous huge ui button">Previous</button>
-            <!-- <p class="col-m-2">Week of:</p> -->
-            <button class="next huge ui button">Next</button>
-            <button class="seed huge ui button">Seed</button>
-          </div>
+      
         <!-- </div> -->
         <div class="prev-workout">
+          <div class="buttons">
+            <h2>Click Seed to Preview Stats Features!</h2>
+            <button class="stats seed huge ui button">Seed</button>
+            <hr>
+          </div>
+          <div class="buttons">
+            <button class="stats previous huge ui button">Previous</button>
+            <button class="stats next huge ui button">Next</button>
+            <h2 class="weekOfDisplay"></h2>
+          </div>
             <canvas id="canvas"></canvas>
             <canvas id="canvas2"></canvas>
             <canvas id="canvas3"></canvas>
