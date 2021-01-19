@@ -12,6 +12,7 @@ API.getWorkoutsInRange()
       h2.classList.add('text-center');
 
       h2.textContent = 'No workouts have been logged for this week.';
+      h2.style.color = 'red';
       container.prepend(h2)
       return res;
       ////Then should display previous weeks and be able to scroll through them

@@ -1,7 +1,6 @@
 /* ELEMENTS  */
 
 *, *::before, *::after {
-  /* box-sizing:border-box; */
   margin: 0;
   padding: 0;
 }
@@ -42,7 +41,6 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* height: px; */
   max-width: 100%;
   min-width: 0%;
 }
@@ -52,7 +50,7 @@ header h1 {
   font-size: 5vh;
 }
 
-button {
+/* button {
   display: block;
   margin: 0 auto;
   border: none;
@@ -62,9 +60,9 @@ button {
   border: 1px solid #aaa;
   padding: 10px;
   background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
-}
+} */
 
-button {
+/* button {
   vertical-align: middle;
   cursor: pointer;
   font-size: 1rem;
@@ -72,15 +70,13 @@ button {
   border: 1px solid #aaa;
   padding: 10px;
   background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
-}
+} */
 
 /* CANVAS */
 
 canvas {
   max-height: 250px
 }
-
-/* CARD */
 
 /* FORM */
 
@@ -126,16 +122,6 @@ form .workout-type select option {
   margin-top: 30px;
 }
 
-/* form label {
-  width: 150px;
-  margin-top: 0.7rem;
-} */
-
-/* form .buttons {
-  display: inline-block;
-  margin-top: 20px;
-} */
-
 form::after {
   content: " ";
   display: block;
@@ -150,18 +136,6 @@ form .workout-type, form .cardio-form div, form .resistance-form div {
   display: flex;
   margin-top: 30px;
 }
-
-/* form label {
-  width: 150px;
-  margin-top: 0.7rem;
-
-} */
-
-/* form .buttons {
-  justify-content: center;
-align-items: center;
-margin-top: 20px;
-} */
 
 form::after {
   content: " ";
@@ -178,10 +152,6 @@ form .workout-type, form .cardio-form div, form .resistance-form div {
   margin-top: 0;
   padding: 20px;
 }
-
-/* .workout-type, .cardio-form, .resistance-form {
-  padding: 25px;
-} */
 
 form .exType {
   margin-top: 8px;
@@ -205,16 +175,10 @@ form input {
   border: 1px solid #aaa;
   width: 80%;
   height: 40px;
-  /* min-width: 100px; */
   margin-top: -20px;
   padding-left: 10px;
   background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
 }
-
-/* form>button {
-  float: right;
-  margin-top: 20px;
-} */
 
 form::after {
   content: " ";
@@ -226,57 +190,23 @@ form::after {
   display: none;
 }
 
-/* .exercise .ui.card {
-  width: 400px;
-  max-width: 600px;
-} */
-
-/* .exercise .buttons {
-  margin-top: 20px;
-  display: flex;
-} */
-
-/* .exercise .card .buttons button {
-  width: 100%;
-} */
-
 /* TOAST */
 
 #toast {
   border-radius: 4px;
   border-width: 1px;
-  font-size: 13px;
-  line-height: 19.5px;
+  font-size: 20px;
+  /* line-height: 19.5px; */
   margin: 0px 0px 16px;
   padding: 40px;
   text-align: center;
   width: 300px;
-  min-height: 80px;
+  min-height: 60px;
   position: fixed;
-  top: 10px;
+  bottom: 10px;
   right: -320px;
   opacity: 0;
-  transition: all 0.5s;
-}
-
-/* #toast.success {
-  opacity: 1;
-  right: 10px;
-  background-color: hsl(94, 40%, 86%);
-  color: hsl(94, 90%, 16%);
-  transition: all .5s;
-} */
-
-#toast.success {
-  right: 10px;
-  background-color: hsl(94, 40%, 86%);
-  color: hsl(94, 90%, 16%);
-  transition: all 0.5s;
-}
-
-#toast.success {
-  background-color: hsl(94, 40%, 86%);
-  color: hsl(94, 90%, 16%);
+  transition: all 1s;
 }
 
 #toast.success {
@@ -285,47 +215,10 @@ form::after {
   animation-name: toast;
   animation-duration: 2s;
   animation-fill-mode: forwards;
-  animation-delay: 1.3s;
-  animation-timing-function: cubic-bezier(.47, .48, .6, .88);
+  animation-timing-function: linear;
 }
 
-/* form>button {
-  margin: 5px;
-  margin-top: 20px;
-} */
-
-/* #toast {
-  border-radius: 4px;
-  border-width: 1px;
-  font-size: 13px;
-  line-height: 19.5px;
-  margin: 0px 0px 16px;
-  padding: 12px 59.5px 12px 20px;
-  text-align: left;
-  width: 300px;
-  min-height: 80px;
-  position: fixed;
-  top: 10px;
-  right: -320px;
-  opacity: 0;
-} */
-
-/* 
-.d-flex {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-} */
-
-/* .col {
-  flex: 1;
-} */
-
-.container {
-  /* background-color: magenta; */
-  /* margin-bottom: 50px; */
-  /* height: 100%; */
-}
+/* CARD */
 
 .card.m-auto {
   display: flex;
@@ -335,8 +228,6 @@ form::after {
   height: auto;
   max-height: 100%;
   text-align: center;
-  /* margin-bottom: 50px; */
-  /* background-color: mediumblue; */
 }
 
 /* PREVIOUS WORKOUT DIV */
@@ -356,10 +247,6 @@ form::after {
   margin-bottom: 5px;
 }
 
-/* .workout .card {
-  width: 350px;
-} */
-
 .prev-workout .buttons {
   margin-bottom: 10px;
 }
@@ -368,78 +255,24 @@ form::after {
   display: none;
 }
 
-.mt {
-  /* margin-top: 20px; */
-}
-
-/* .workout .ui.card {
-  padding-top: 25px;
-} */
-
-.prev-workout {
-  /* text-align: center; */
-}
-
-/* .prev-workout .buttons {
-  display: flex;
-  height: 75px;
-  margin-top: 30px;
-} */
-
-.ui.card h2 {
-  /* text-align: center; */
-  /* padding: 10px; */
-}
-
-/* .buttons .ui.button:first-child {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.buttons .ui.button:nth-child(2) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 0;
-} */
-
 .prev-workout .buttons .stats.seed.ui.button {
   width: 30%;
   background-color: rgb(23, 212, 105);
-  /* max-width: px; */
   margin-top: 0px;
   margin-bottom: 15px;
   min-width: 135px;
   padding-top: 12px;
-
-  /* display: inline-flex;
-  align-items: center;
-  text-align: center; */
 }
 
 .prev-workout .buttons .stats.ui.button {
   width: 30%;
-  /* max-width: px; */
   margin-top: 5px;
   min-width: 135px;
   height: 45px;
   padding-top: 14px;
-
-  /* display: inline-flex; */
-  /* align-items: center; */
-  /* text-align: center; */
-
-  /* text-align: center; */
-/* display:table-cell; */
-/* vertical-align:middle; */
 }
 
 .buttons .ui.button {
-  /* top:50%; 
-  left:50%; */
-  /* text-align: center; */
-  /* vertical-align: middle; */
-  /* margin: 0; */
   margin-top: 20px;
   width: 45%;
   height: 100%;
