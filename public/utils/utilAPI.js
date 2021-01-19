@@ -98,8 +98,6 @@ const API = {
       console.log(err)
     }
     const json = await res.json();
-    console.log(json)
-
     return json;
   },
 };

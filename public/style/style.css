@@ -76,6 +76,13 @@ button {
   background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
 }
 
+/* CANVAS */
+canvas {
+  /* min-height: 300px; */
+  /* min-width: 300px; */
+  max-height: 250px
+}
+
 /* CARD */
 
 

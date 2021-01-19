@@ -43,7 +43,6 @@ const utilFunctions = {
       weeksObj[i] = weekArr;
       weeksInDays -= 7;
     }
-    console.log(weeksObj)
     return weeksObj;
   },
 
