@@ -34,6 +34,7 @@ const control = (data) => {
 }
 
 const populateChart = (data) => {
+  console.log('in pop chart')
   localStorage.setItem('displayWeek', data.weekOf)
   let displayWeek = localStorage.getItem('displayWeek');
   let weeksPast = utilFunctions.weeksPast(seedWeeks)
