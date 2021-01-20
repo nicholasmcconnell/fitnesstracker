@@ -3,7 +3,6 @@ const nextButton = document.querySelector('.next');
 const seedButton = document.querySelector('.seed')
 
 const seedWeeks = 3;
-
 API.getWorkoutsInRange()
   .then(res => {
     if (res === undefined || res.weekOf !== utilFunctions.formatDate()[0]) {
@@ -32,10 +31,22 @@ API.getWorkoutsInRange()
 const control = (data) => {
   populateChart(data);
 }
+let lineChart;
+let barChart;
+let cardioPieChart;
+let resistancePieChart;
 
 const populateChart = (data) => {
-  console.log('in pop chart')
+
+  if (lineChart || barChart || cardioPieChart || resistancePieChart) {
+    lineChart.destroy();
+    barChart.destroy();
+    cardioPieChart.destroy();
+    resistancePieChart.destroy()
+  }
+
   localStorage.setItem('displayWeek', data.weekOf)
+
   let displayWeek = localStorage.getItem('displayWeek');
   let weeksPast = utilFunctions.weeksPast(seedWeeks)
 
@@ -61,7 +72,9 @@ const populateChart = (data) => {
   let pie2 = document.querySelector("#canvas4").getContext("2d");
 
   let titleFontSize = '14';
-  let lineChart = new Chart(line, {
+
+
+  lineChart = new Chart(line, {
     type: "line",
     data: {
       labels: datesArr,
@@ -105,7 +118,9 @@ const populateChart = (data) => {
     }
   });
 
-  let barChart = new Chart(bar, {
+
+
+  barChart = new Chart(bar, {
     type: "bar",
     data: {
       labels: datesArr,
@@ -140,7 +155,7 @@ const populateChart = (data) => {
 
   });
 
-  let cardioPieChart = new Chart(pie, {
+  cardioPieChart = new Chart(pie, {
     type: "pie",
     data: {
       labels: chartArraysHash.Cardio.names,
@@ -163,7 +178,7 @@ const populateChart = (data) => {
     }
   });
 
-  let resistancePieChart = new Chart(pie2, {
+  resistancePieChart = new Chart(pie2, {
     type: "pie",
     data: {
       labels: chartArraysHash.Resistance.names,
@@ -186,7 +201,7 @@ const populateChart = (data) => {
       }
     }
   });
-}
+ }
 
 previousButton.addEventListener('click', async () => {
   let displayWeek = localStorage.getItem('displayWeek')
