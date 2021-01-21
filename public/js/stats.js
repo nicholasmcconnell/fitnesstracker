@@ -39,12 +39,12 @@ let resistancePieChart;
 
 const populateChart = (data) => {
 
-  // if (lineChart || barChart || cardioPieChart || resistancePieChart) {
-  //   lineChart.destroy();
-  //   barChart.destroy();
-  //   cardioPieChart.destroy();
-  //   resistancePieChart.destroy()
-  // }
+  if (lineChart || barChart || cardioPieChart || resistancePieChart) {
+    lineChart.destroy();
+    barChart.destroy();
+    cardioPieChart.destroy();
+    resistancePieChart.destroy()
+  }
 
   localStorage.setItem('displayWeek', data.weekOf)
 
