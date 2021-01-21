@@ -239,5 +239,5 @@ nextButton.addEventListener('click', async () => {
 seedButton.addEventListener('click', () => {
   localStorage.setItem('weeksPastKey', 2)
   utilStats.seedFunction()
-  location.reload();
+  // location.reload();
 });
