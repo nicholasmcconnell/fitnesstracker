@@ -124,11 +124,11 @@ const utilStats = {
       totalsArr[index] = value;
     }
 
-    return totalsArr;
+    return totalsArr; 
   },
 
   seedFunction: async () => {
-    API.deleteCollection()
+     await API.deleteCollection()
       .then(res => console.log(`${res} documents removed.`))
       .catch(err => console.log(err))
 
@@ -338,8 +338,6 @@ const utilStats = {
     API.insertCollection(data)
       .then(res => console.log(res))
       .catch(err => console.log(err))
-
-
   },
 
 };

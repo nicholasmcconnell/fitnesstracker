@@ -1,6 +1,5 @@
 ///////////// THIS FILE IS FOR DISPLAYING LAST WORKOUT SUMMARY ON INDEX.JS////////////
 
-
 const control = async () => {
   const lastWorkoutWeek = await API.getLastWorkout();
   const workoutSummary = await initLastWorkout(lastWorkoutWeek);

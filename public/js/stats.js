@@ -3,6 +3,7 @@ const nextButton = document.querySelector('.next');
 const seedButton = document.querySelector('.seed')
 
 const seedWeeks = 3;
+
 API.getWorkoutsInRange()
   .then(res => {
     if (res === undefined || res.weekOf !== utilFunctions.formatDate()[0]) {
@@ -10,7 +11,7 @@ API.getWorkoutsInRange()
       let h2 = document.createElement('h2');
       h2.classList.add('text-center');
 
-      h2.textContent = 'No workouts have been logged for this week.';
+      h2.textContent = 'No workouts have been logged.';
       h2.style.color = 'red';
       container.prepend(h2)
       return res;
@@ -38,12 +39,12 @@ let resistancePieChart;
 
 const populateChart = (data) => {
 
-  if (lineChart || barChart || cardioPieChart || resistancePieChart) {
-    lineChart.destroy();
-    barChart.destroy();
-    cardioPieChart.destroy();
-    resistancePieChart.destroy()
-  }
+  // if (lineChart || barChart || cardioPieChart || resistancePieChart) {
+  //   lineChart.destroy();
+  //   barChart.destroy();
+  //   cardioPieChart.destroy();
+  //   resistancePieChart.destroy()
+  // }
 
   localStorage.setItem('displayWeek', data.weekOf)
 
