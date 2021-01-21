@@ -12,7 +12,7 @@
     "server": "nodemon server.js",
     "seed": "node seeders/seed.js",
     "dev": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build exercise.html"
   },
   "author": "",
   "license": "ISC",
