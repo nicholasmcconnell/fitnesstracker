@@ -7,7 +7,7 @@ const utilStats = {
     var b = num & 255;
     return 'rgba(' + r + ', ' + g + ', ' + b + ', 0.5)';
   },
-  generatePalette:  (chartArraysHash) => {
+  generatePalette: (chartArraysHash) => {
     let cardioArrLength = chartArraysHash.Cardio.names.length;
     let resistanceArrLength = chartArraysHash.Resistance.names.length;
     let colorObj = {
@@ -28,7 +28,7 @@ const utilStats = {
   },
   barChartColors: () => {
     let barColorArr = [];
-    for(let i = 0; i<=6; i++){
+    for (let i = 0; i <= 6; i++) {
       barColorArr.push(utilStats.getRandomRgb())
     }
     return barColorArr;
@@ -124,11 +124,14 @@ const utilStats = {
       totalsArr[index] = value;
     }
 
-    return totalsArr; 
+    return totalsArr;
   },
 
   seedFunction: async () => {
-     await API.deleteCollection()
+
+    localStorage.setItem('weeksPastKey', 2)
+
+    await API.deleteCollection()
       .then(res => console.log(`${res} documents removed.`))
       .catch(err => console.log(err))
 

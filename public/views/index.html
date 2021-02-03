@@ -1,29 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+    />
+    <link rel="stylesheet" href="style/style.css" />
+    <title>Fitness Tracker</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
-  <link rel="stylesheet" href="style/style.css" />
-  <title>Fitness Tracker</title>
-</head>
+  <nav>
+    <a href="/">Fitness Tracker | </a>
+    <a href="/stats">Weekly Stats</a>
+  </nav>
 
-<nav>
-  <a href="/">Fitness Tracker | </a>
-  <a href="/stats">Weekly Stats</a>
-</nav>
+  <body>
+    <!--
+    4. link to seed function
+    5. handle seed click in workout.js
+    -->
 
-<body>
-  <div class="wrapper">
-    <header>
-      <h1>Fitness Tracker</h1>
-    </header>
+    <div class="wrapper">
+      <button id="modal-btn">Show Modal</button>
+      <div class="modal ui raised card m-auto">
+        <div class="modal-header">
+          <button class="close-btn">&times;</button>
+          <h1>I am the Header</h1>
+        </div>
+        <div class="modal-content">
+          <p>this is the text inside the modal</p>
+          <div class="buttons">
+            <a class="huge ui positive button seed-btn">Seed</a>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <h2>I am the Footer</h2>
+        </div>
+      </div>
+
+      <header>
+        <h1>Fitness Tracker</h1>
+      </header>
+
       <div class="ui raised card m-auto">
         <div class="prev-workout">
           <div>
-            <h3 id='weekStatsTitle'>This Weeks Stats</h3>
+            <h3 id="weekStatsTitle">This Weeks Stats</h3>
             <div class="weekOfStats"></div>
             <h3>Last Workout</h3>
             <div class="dayOfStats"></div>
@@ -36,14 +61,12 @@
           <h3>Create Your First Workout</h3>
         </div>
       </div>
-  </div>
-  <div id="toast">
-    Workout Added Successfully!
-  </div>
-  <script src="/utils/utilAPI.js"></script>
-  <script src="/utils/utilFunctions.js"></script>
-  <script src="/utils/utilWorkout.js"></script>
-  <script src="/js/workout.js"></script>
-</body>
-
+    </div>
+    <div id="toast">Workout Added Successfully!</div>
+    <script src="/utils/utilAPI.js"></script>
+    <script src="/utils/utilFunctions.js"></script>
+    <script src="/utils/utilWorkout.js"></script>
+    <script src="/utils/utilStats.js"></script>
+    <script src="/js/workout.js"></script>
+  </body>
 </html>
