@@ -202,7 +202,7 @@ const populateChart = (data) => {
       }
     }
   });
- }
+}
 
 previousButton.addEventListener('click', async () => {
   let displayWeek = localStorage.getItem('displayWeek')
@@ -237,7 +237,7 @@ nextButton.addEventListener('click', async () => {
 });
 
 seedButton.addEventListener('click', () => {
-  localStorage.setItem('weeksPastKey', 2)
+  // localStorage.setItem('weeksPastKey', 2)
   utilStats.seedFunction()
   location.reload();
 });

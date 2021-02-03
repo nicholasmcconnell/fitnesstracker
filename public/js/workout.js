@@ -1,9 +1,8 @@
 ///////////// THIS FILE IS FOR DISPLAYING LAST WORKOUT SUMMARY ON INDEX.JS////////////
-
 const control = async () => {
   const lastWorkoutWeek = await API.getLastWorkout();
   const workoutSummary = await initLastWorkout(lastWorkoutWeek);
-  if(!lastWorkoutWeek || !workoutSummary){
+  if (!lastWorkoutWeek || !workoutSummary) {
     return;
   } else {
     renderWorkoutSummary(workoutSummary, lastWorkoutWeek);
@@ -11,6 +10,29 @@ const control = async () => {
 }
 
 control();
+
+let modalBtn = document.getElementById("modal-btn")
+let modal = document.querySelector(".modal")
+let closeBtn = document.querySelector(".close-btn")
+let seedBtn = document.querySelector('.seed-btn')
+
+seedBtn.onclick = () => {
+  utilStats.seedFunction()
+  modal.style.display = "none"
+}
+// modalBtn.onclick = function () {
+//   modal.style.display = "block"
+// }
+closeBtn.onclick = function () {
+  console.log('click')
+  modal.style.display = "none"
+}
+window.onclick = function (e) {
+  if (e.target === modal) {
+    modal.style.display = "none"
+  }
+}
+
 
 async function initLastWorkout(lastWorkoutWeek) {
   if (!lastWorkoutWeek || !lastWorkoutWeek.exercises.length) {
@@ -109,11 +131,11 @@ function renderWorkoutSummary(summary, lastWorkoutWeek) {
   const container2 = document.querySelector(".weekOfStats");
 
   for (const [k, v] of Object.entries(summary)) {
-    if(k === 'weekOfStats' && (lastWorkoutWeek.weekOf !== utilFunctions.formatDate()[0])){
+    if (k === 'weekOfStats' && (lastWorkoutWeek.weekOf !== utilFunctions.formatDate()[0])) {
       const p = document.createElement("p");
       p.textContent = 'No workouts logged for this week.';
       container2.appendChild(p);
-      return;      
+      return;
     }
 
     for (const [key, value] of Object.entries(v)) {
