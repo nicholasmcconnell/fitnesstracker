@@ -54,45 +54,28 @@ header h1 {
 /* MODAL */
 
 .modal {
-  /* display: block; */
-  /* position:;   */
- /* padding-top: 50px; */
-  /* left: 0; 
-  top: 0; */
   width: 100%;
   height: 100%;  
-  /* background-color: rgb(0, 0, 0); */
   z-index: 1;
   background-color: rgba(59, 59, 59, 0.5);
-
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-
   display: flex;
   margin: 0 auto;
-  /* width: 50%;
-  min-width: 350px;
-  height: auto;
-  max-height: 100%; */
   text-align: center;
 }
 .modal-header{
-  /* background-color: tomato; */
-  /* min-height: 30px; */
   overflow: auto;
-  /* width: 100%; */
-  /* color: #5793fd; */
 }
 .modal-content {
-  /* position: relative;  */
+  border-radius: 5px;
   background-color: white ;
-  padding: 0 10px 20px 10px; 
+  padding: 0 10px 25px 10px; 
   margin: auto; 
   width: 75%;  
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
@@ -110,7 +93,6 @@ header h1 {
   padding-bottom: 0;
   margin-top: 10px;
   margin-bottom: 0;
-  /* margin-left: 90%; */
   font-weight: bold;
 }
 .close-btn:hover {
