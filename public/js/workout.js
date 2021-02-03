@@ -18,10 +18,11 @@ let seedBtn = document.querySelector('.seed-btn')
 
 seedBtn.onclick = () => {
   utilStats.seedFunction()
+  modal.style.display = "none"
 }
-modalBtn.onclick = function () {
-  modal.style.display = "block"
-}
+// modalBtn.onclick = function () {
+//   modal.style.display = "block"
+// }
 closeBtn.onclick = function () {
   console.log('click')
   modal.style.display = "none"
