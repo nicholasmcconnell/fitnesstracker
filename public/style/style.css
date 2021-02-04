@@ -142,7 +142,8 @@ p {
 /* CANVAS */
 
 canvas {
-  max-height: 250px;
+  max-height: 300px;
+  min-height: 200px;
 }
 
 /* FORM */
@@ -248,9 +249,15 @@ form label {
   color: rgb(85, 84, 84);
 }
 
-#cardio-name,
+/* #cardio-name,
 #resistance-name {
   width: 70%;
+} */
+
+#resistance-name,
+#cardio-name,
+#type {
+  width: 50%;
 }
 
 form input {
@@ -261,7 +268,7 @@ form input {
   font-size: 1rem;
   border-radius: 6px;
   border: 1px solid #aaa;
-  width: 70%;
+  width: 50%;
   height: 40px;
   margin-top: -20px;
   padding-left: 10px;
