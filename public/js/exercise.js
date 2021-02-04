@@ -1,6 +1,7 @@
 ////////////THIS FILE IS FOR ADDING NEW EXERCISES TO DATABASE/////////////////
 
 const workoutTypeSelect = document.querySelector("#type");
+const exerciseName = document.querySelector('#resistance-name')
 const cardioForm = document.querySelector(".cardio-form");
 const resistanceForm = document.querySelector(".resistance-form");
 const cardioNameInput = document.querySelector("#cardio-name");
@@ -15,6 +16,7 @@ const completeButton = document.querySelector("button.complete");
 const addButton = document.querySelector("button.add-another");
 const toast = document.querySelector("#toast");
 const newWorkout = document.querySelector(".new-workout");
+
 
 let workoutType = null;
 let shouldNavigateAway = false;
@@ -55,7 +57,9 @@ function validateInputs() {
   let isValid = true;
 
   if (workoutType === "Resistance") {
-    if (resistanceNameInput.value.trim() === "") {
+    console.log(1)
+    if (resistanceNameInput.value.trim() === "" || resistanceNameInput.value.trim() === "Select Type") {
+      console.log(2)
       isValid = false;
     }
 
@@ -151,7 +155,12 @@ if (completeButton) {
 
 toast.addEventListener("animationend", handleToastAnimationEnd);
 
-document
-  .querySelectorAll("input")
+// if (exerciseName && exerciseName !== 'Select Type') {
+//   exerciseName.addEventListener("change",)
+// }
+
+document.querySelectorAll("input")
   .forEach(element => element.addEventListener("input", validateInputs));
+
+[document.querySelector('#resistance-name'), document.querySelector('#cardio-name')].forEach(name => name.addEventListener("change", validateInputs))
   // svzuq

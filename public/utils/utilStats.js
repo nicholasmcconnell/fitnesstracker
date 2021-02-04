@@ -92,11 +92,13 @@ const utilStats = {
     let dateArr = utilFunctions.datesArr()
     let distance = {}
     let weekOfExercises = data.exercises;
+    console.log(dateArr, data)
     /////ADD DAY OF TO SEED!!!!!!!!!
     for (const [key, value] of Object.entries(weekOfExercises)) {
       if (value.type === 'Cardio') {
         !distance[value.dayOf] ? distance[value.dayOf] = value.distance : distance[value.dayOf] += value.distance;
       }
+      console.log(distance)
     }
     // console.log(dateArr) date array needs to come from function that is at top of populate chart
     for (const [key, value] of Object.entries(distance)) {

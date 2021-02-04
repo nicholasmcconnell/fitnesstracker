@@ -4,6 +4,8 @@ const utilFunctions = require('./modelUtils/modelFunctions.js');
 const d = new Date();
 const Schema = mongoose.Schema;
 
+console.log(`${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`)
+
 const workoutSchema = new Schema({
   date: { type: Date, default: () => new Date() },
   weekOf: {
