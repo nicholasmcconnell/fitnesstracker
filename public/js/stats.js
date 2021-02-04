@@ -74,7 +74,6 @@ const populateChart = (data) => {
 
   let titleFontSize = '14';
 
-
   lineChart = new Chart(line, {
     type: "line",
     data: {
@@ -236,8 +235,8 @@ nextButton.addEventListener('click', async () => {
   }
 });
 
-seedButton.addEventListener('click', () => {
-  // localStorage.setItem('weeksPastKey', 2)
-  utilStats.seedFunction()
-  location.reload();
-});
+// seedButton.addEventListener('click', () => {
+//   // localStorage.setItem('weeksPastKey', 2)
+//   utilStats.seedFunction()
+//   location.reload();
+// });

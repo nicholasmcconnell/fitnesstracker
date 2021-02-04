@@ -54,6 +54,10 @@ const utilFunctions = {
 
     !displayWeek ? datesArr = utilFunctions.formatDate() : datesArr = weeksPast[weeksPastKey];
     return datesArr;
+  },
+  todaysDate: () => {
+    let d = new Date();
+    return `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
   }
 };
 

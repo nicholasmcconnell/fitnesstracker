@@ -1,10 +1,11 @@
 ////////////THIS FILE IS FOR ADDING NEW EXERCISES TO DATABASE/////////////////
 
 const workoutTypeSelect = document.querySelector("#type");
+const exerciseName = document.querySelector('#resistance-name')
 const cardioForm = document.querySelector(".cardio-form");
 const resistanceForm = document.querySelector(".resistance-form");
 const cardioNameInput = document.querySelector("#cardio-name");
-const nameInput = document.querySelector("#name");
+const resistanceNameInput = document.querySelector("#resistance-name");
 const weightInput = document.querySelector("#weight");
 const setsInput = document.querySelector("#sets");
 const repsInput = document.querySelector("#reps");
@@ -15,6 +16,7 @@ const completeButton = document.querySelector("button.complete");
 const addButton = document.querySelector("button.add-another");
 const toast = document.querySelector("#toast");
 const newWorkout = document.querySelector(".new-workout");
+
 
 let workoutType = null;
 let shouldNavigateAway = false;
@@ -55,7 +57,9 @@ function validateInputs() {
   let isValid = true;
 
   if (workoutType === "Resistance") {
-    if (nameInput.value.trim() === "") {
+    console.log(1)
+    if (resistanceNameInput.value.trim() === "" || resistanceNameInput.value.trim() === "Select Type") {
+      console.log(2)
       isValid = false;
     }
 
@@ -90,13 +94,10 @@ function validateInputs() {
 
   if (isValid) {
     completeButton.removeAttribute("disabled");
-    // addButton.removeAttribute("disabled");
     return true;
   } else {
     completeButton.setAttribute("disabled", true);
-    // addButton.setAttribute("disabled", true);
     return false;
-    //through error toast here
   }
 }
 
@@ -113,7 +114,7 @@ async function handleFormSubmit(event) {
     workoutData.duration = Number(durationInput.value.trim());
   } else if (workoutType === "Resistance") {
     workoutData.type = "Resistance";
-    workoutData.name = nameInput.value.trim();
+    workoutData.name = resistanceNameInput.value.trim();
     workoutData.weight = Number(weightInput.value.trim());
     workoutData.sets = Number(setsInput.value.trim());
     workoutData.reps = Number(repsInput.value.trim());
@@ -133,7 +134,7 @@ function handleToastAnimationEnd() {
 
 function clearInputs() {
   cardioNameInput.value = "";
-  nameInput.value = "";
+  resistanceNameInput.value = "";
   setsInput.value = "";
   distanceInput.value = "";
   durationInput.value = "";
@@ -154,6 +155,12 @@ if (completeButton) {
 
 toast.addEventListener("animationend", handleToastAnimationEnd);
 
-document
-  .querySelectorAll("input")
+// if (exerciseName && exerciseName !== 'Select Type') {
+//   exerciseName.addEventListener("change",)
+// }
+
+document.querySelectorAll("input")
   .forEach(element => element.addEventListener("input", validateInputs));
+
+[document.querySelector('#resistance-name'), document.querySelector('#cardio-name')].forEach(name => name.addEventListener("change", validateInputs))
+  // svzuq

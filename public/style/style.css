@@ -1,11 +1,23 @@
 /* ELEMENTS  */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
 }
 
-html, body {
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: rgb(85, 84, 84);
+}
+
+html,
+body {
   height: 100%;
   min-height: 100%;
 }
@@ -33,7 +45,10 @@ nav {
   font-size: 1.2rem;
 }
 
-a, a:hover, a:active, a:visited {
+a,
+a:hover,
+a:active,
+a:visited {
   text-decoration: none;
   color: inherit;
 }
@@ -51,11 +66,15 @@ header h1 {
   font-size: 5vh;
 }
 
+p {
+  font-size: 17px;
+}
+
 /* MODAL */
 
 .modal {
   width: 100%;
-  height: 100%;  
+  height: 100%;
   z-index: 1;
   background-color: rgba(59, 59, 59, 0.5);
   position: absolute;
@@ -66,28 +85,29 @@ header h1 {
   margin: 0 auto;
   text-align: center;
 }
-.modal-header{
+.modal-header {
   overflow: auto;
 }
 .modal-content {
   border-radius: 5px;
-  background-color: white ;
-  padding: 0 10px 25px 10px; 
-  margin: auto; 
-  width: 75%;  
+  background-color: white;
+  padding: 0 10px 25px 10px;
+  margin: auto;
+  width: 75%;
+  max-width: 500px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
-  animation-duration: 0.4s
+  animation-duration: 0.4s;
 }
 .close-btn {
-  float:right; 
+  float: right;
   border: white;
   background-color: rgb(236, 236, 236);
   border-radius: 5px;
-  color: rgb(184, 184, 184); 
-  font-size: 25px;  
+  color: rgb(184, 184, 184);
+  font-size: 25px;
   padding: 5px;
   padding-top: 0;
   padding-bottom: 0;
@@ -99,18 +119,31 @@ header h1 {
   color: darkgray;
 }
 @-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 @keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 /* CANVAS */
 
 canvas {
-  max-height: 250px
+  max-height: 300px;
+  min-height: 200px;
 }
 
 /* FORM */
@@ -125,23 +158,31 @@ select {
   border: 1px solid #aaa;
   width: 80%;
   padding: 10px;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"),
+    linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
+}
+
+form select #cardio-name {
+  border-color: 1px solid #aaa;
+  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
 }
 
 select::-ms-expand {
   display: none;
 }
 
-select, input:hover {
-  border-color: rgba(59, 153, 252, 0.7);
+select:focus {
+  outline-color: rgb(179, 161, 161);
+  box-shadow: 0 0 0 3px -moz-mac-focusring;
 }
 
-select:focus {
+select:hover,
+input:hover {
   border-color: #aaa;
-  box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+  box-shadow: 0 0 1px 2px rgba(59, 153, 252, 0.7);
   box-shadow: 0 0 0 3px -moz-mac-focusring;
   color: #222;
   outline: none;
@@ -152,7 +193,9 @@ form .workout-type select option {
   width: 30%;
 }
 
-.workout-type, form .cardio-form div, form .resistance-form div {
+.workout-type,
+form .cardio-form div,
+form .resistance-form div {
   display: flex;
   margin-top: 30px;
 }
@@ -167,7 +210,9 @@ form::after {
   display: none;
 }
 
-form .workout-type, form .cardio-form div, form .resistance-form div {
+form .workout-type,
+form .cardio-form div,
+form .resistance-form div {
   display: flex;
   margin-top: 30px;
 }
@@ -182,7 +227,9 @@ form::after {
   display: none !important;
 }
 
-form .workout-type, form .cardio-form div, form .resistance-form div {
+form .workout-type,
+form .cardio-form div,
+form .resistance-form div {
   display: flex;
   margin-top: 0;
   padding: 20px;
@@ -197,7 +244,20 @@ form label {
   min-width: 95px;
   margin-top: -8px;
   font-size: 15px;
+  font-weight: 700;
   padding-right: 5px;
+  color: rgb(85, 84, 84);
+}
+
+/* #cardio-name,
+#resistance-name {
+  width: 70%;
+} */
+
+#resistance-name,
+#cardio-name,
+#type {
+  width: 50%;
 }
 
 form input {
@@ -208,7 +268,7 @@ form input {
   font-size: 1rem;
   border-radius: 6px;
   border: 1px solid #aaa;
-  width: 80%;
+  width: 50%;
   height: 40px;
   margin-top: -20px;
   padding-left: 10px;
@@ -260,6 +320,7 @@ form::after {
   margin: 0 auto;
   width: 50%;
   min-width: 350px;
+  max-width: 825px;
   height: auto;
   max-height: 100%;
   text-align: center;
@@ -290,29 +351,38 @@ form::after {
   display: none;
 }
 
-.prev-workout .buttons .stats.seed.ui.button {
+/* .prev-workout .buttons .stats.seed.ui.button {
   width: 30%;
   background-color: rgb(23, 212, 105);
   margin-top: 0px;
   margin-bottom: 15px;
   min-width: 135px;
   padding-top: 12px;
-}
+} */
 
+.buttons-stats {
+  justify-content: space-between;
+}
 .prev-workout .buttons .stats.ui.button {
   width: 30%;
-  margin-top: 5px;
-  min-width: 135px;
-  height: 45px;
-  padding-top: 14px;
+  /* margin-top: 5px; */
+  min-width: 100px;
+  max-width: 170px;
+  height: 35px;
+  margin: 0 2% 0 2%;
+  padding: 0 0 2px 0;
+  background-color: #9fc3e4;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+  font-size: 15px;
 }
 
 .buttons .ui.button {
   margin-top: 20px;
-  width: 45%;
+  width: 20%;
   height: 100%;
   min-width: 190px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
 @keyframes toast {
@@ -324,4 +394,30 @@ form::after {
     opacity: 0;
     right: -320px;
   }
+}
+
+@media (max-width: 414px) {
+  /* .prev-workout {
+    width: 30%;
+    background-color: red;
+  } */
+  /* #index-card {
+    width: 50%;
+  } */
+  .ui.raised.card.m-auto {
+    /* width: %; */
+  }
+}
+
+@media (max-width: 414px) {
+  /* .prev-workout {
+    width: 30%;
+    background-color: red;
+  } */
+  /* #index-card {
+    width: 50%;
+  } */
+  /* .ui.raised.card.m-auto {
+    width: 50%;
+  } */
 }

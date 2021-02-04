@@ -33,8 +33,18 @@
           </div>
           <div class="cardio-form d-none">
             <div class="cardio-name">
-              <label for="cardio-name">Name:</label>
-              <input type="text" name="cardio-name" id="cardio-name" placeholder="Running" />
+              <!-- <label for="cardio-name">Name:</label>
+              <input type="text" name="cardio-name" id="cardio-name" placeholder="Running" /> -->
+              <label class="exType" for="type">Name:</label>
+
+              <select name="type" id="cardio-name" class="exercise-name">
+                <option disabled selected>Select Type</option>
+                <option value="Run">Run</option>
+                <option value="Walk">Walk</option>
+                <option value="Jog">Jog</option>
+                <option value="Swim">Swim</option>
+                <option value="Bike">Bike</option>
+              </select>
             </div>
             <div class="distance">
               <label for="distance">Distance (mi):</label>
@@ -47,8 +57,18 @@
           </div>
           <div class="resistance-form d-none">
             <div class="exercise">
-              <label for="name">Name:</label>
-              <input type="text" name="name" id="name" placeholder="Bench Press" />
+              <!-- <label for="name">Name:</label>
+              <input type="text" name="name" id="resistance-name" placeholder="Bench Press" /> -->
+              <label class="exType" for="type">Name:</label>
+
+              <select name="type" id="resistance-name" class="exercise-name">
+                <option disabled selected>Select Type</option>
+                <option value="Bench Press">Bench Press</option>
+                <option value="Bicep Curls">Bicep Curls</option>
+                <option value="Dips">Dips</option>
+                <option value="Military Press">Military Press</option>
+                <option value="Tricep Pushdown">Tricep Pushdown</option>
+              </select>
             </div>
             <div class="weight">
               <label for="weight">Weight (lbs):</label>

@@ -1,3 +1,4 @@
+// const utilFunctions = require("../../models/modelUtils/modelFunctions");
 
 const utilStats = {
   getRandomRgb: () => {
@@ -92,13 +93,13 @@ const utilStats = {
     let dateArr = utilFunctions.datesArr()
     let distance = {}
     let weekOfExercises = data.exercises;
-    /////ADD DAY OF TO SEED!!!!!!!!!
+
     for (const [key, value] of Object.entries(weekOfExercises)) {
       if (value.type === 'Cardio') {
         !distance[value.dayOf] ? distance[value.dayOf] = value.distance : distance[value.dayOf] += value.distance;
       }
     }
-    // console.log(dateArr) date array needs to come from function that is at top of populate chart
+
     for (const [key, value] of Object.entries(distance)) {
       let index = dateArr.indexOf(key);
       totalsArr[index] = value;
@@ -337,7 +338,15 @@ const utilStats = {
         ]
       },
     ]
-    console.log(data)
+
+    let currentWeekExercises = data[2].exercises;
+
+    for (const [key, value] of Object.entries(data[2].exercises)) {
+      if (value.dayOf === utilFunctions.todaysDate()) {
+        currentWeekExercises.splice(key, currentWeekExercises.length - 1)
+      }
+    }
+
     API.insertCollection(data)
       .then(res => console.log(res))
       .catch(err => console.log(err))
