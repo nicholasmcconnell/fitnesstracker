@@ -1,51 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
-
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" /> -->
-  <link rel="stylesheet" href="/style/style.css" />
-  <title>Fitness Tracker</title>
-</head>
-<nav>
-  <a href="/">Fitness Tracker | </a>
-  <a href="/exercise">Exercise</a>
-</nav>
+    <link rel="stylesheet" href="/style/style.css" />
+    <title>Fitness Tracker</title>
+  </head>
+  <nav>
+    <a href="/">Fitness Tracker | </a>
+    <a href="/exercise">Exercise</a>
+  </nav>
 
-<body>
-  <div class="wrapper">
-    <header>
-      <h1>Weekly Stats</h1>
-    </header>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Workout Stats</h1>
+      </header>
       <div class="ui raised card m-auto">
         <div class="prev-workout">
           <div class="buttons">
-            <h2>Click Seed to Preview Stats Features</h2>
-            <button class="stats seed huge ui button">Seed</button>
-            <hr>
-          </div>
-          <div class="buttons">
-            <button class="stats previous huge ui button">Previous</button>
-            <button class="stats next huge ui button">Next</button>
             <h2 class="weekOfDisplay"></h2>
+            <div class="buttons-stats">
+              <button class="stats previous huge ui button">Previous</button>
+              <button class="stats next huge ui button">Next</button>
+            </div>
           </div>
-            <canvas id="canvas"></canvas>
-            <canvas id="canvas2"></canvas>
-            <canvas id="canvas3"></canvas>
-            <canvas id="canvas4"></canvas>
+          <canvas id="canvas"></canvas>
+          <canvas id="canvas2"></canvas>
+          <canvas id="canvas3"></canvas>
+          <canvas id="canvas4"></canvas>
         </div>
       </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  <script src="/utils/utilAPI.js"></script>
-  <script src="/utils/utilStats.js"></script>
-  <script src="/utils/utilFunctions.js"></script>
-  <script src="/js/stats.js"></script>
-</body>
-
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="/utils/utilAPI.js"></script>
+    <script src="/utils/utilStats.js"></script>
+    <script src="/utils/utilFunctions.js"></script>
+    <script src="/js/stats.js"></script>
+  </body>
 </html>

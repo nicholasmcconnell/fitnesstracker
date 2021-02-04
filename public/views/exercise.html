@@ -33,8 +33,15 @@
           </div>
           <div class="cardio-form d-none">
             <div class="cardio-name">
-              <label for="cardio-name">Name:</label>
-              <input type="text" name="cardio-name" id="cardio-name" placeholder="Running" />
+              <!-- <label for="cardio-name">Name:</label>
+              <input type="text" name="cardio-name" id="cardio-name" placeholder="Running" /> -->
+              <label class="exType" for="type">Name:</label>
+
+              <select name="type" id="cardio-name">
+                <option disabled selected>Select Type</option>
+                <option value="Resistance">Resistance</option>
+                <option value="Cardio">Cardio</option>
+              </select>
             </div>
             <div class="distance">
               <label for="distance">Distance (mi):</label>
@@ -48,7 +55,7 @@
           <div class="resistance-form d-none">
             <div class="exercise">
               <label for="name">Name:</label>
-              <input type="text" name="name" id="name" placeholder="Bench Press" />
+              <input type="text" name="name" id="resistance-name" placeholder="Bench Press" />
             </div>
             <div class="weight">
               <label for="weight">Weight (lbs):</label>

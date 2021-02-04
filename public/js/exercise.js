@@ -4,7 +4,7 @@ const workoutTypeSelect = document.querySelector("#type");
 const cardioForm = document.querySelector(".cardio-form");
 const resistanceForm = document.querySelector(".resistance-form");
 const cardioNameInput = document.querySelector("#cardio-name");
-const nameInput = document.querySelector("#name");
+const resistanceNameInput = document.querySelector("#resistance-name");
 const weightInput = document.querySelector("#weight");
 const setsInput = document.querySelector("#sets");
 const repsInput = document.querySelector("#reps");
@@ -55,7 +55,7 @@ function validateInputs() {
   let isValid = true;
 
   if (workoutType === "Resistance") {
-    if (nameInput.value.trim() === "") {
+    if (resistanceNameInput.value.trim() === "") {
       isValid = false;
     }
 
@@ -90,13 +90,10 @@ function validateInputs() {
 
   if (isValid) {
     completeButton.removeAttribute("disabled");
-    // addButton.removeAttribute("disabled");
     return true;
   } else {
     completeButton.setAttribute("disabled", true);
-    // addButton.setAttribute("disabled", true);
     return false;
-    //through error toast here
   }
 }
 
@@ -133,7 +130,7 @@ function handleToastAnimationEnd() {
 
 function clearInputs() {
   cardioNameInput.value = "";
-  nameInput.value = "";
+  resistanceNameInput.value = "";
   setsInput.value = "";
   distanceInput.value = "";
   durationInput.value = "";
