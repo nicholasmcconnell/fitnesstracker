@@ -7,6 +7,15 @@
   padding: 0;
 }
 
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: rgb(85, 84, 84);
+}
+
 html,
 body {
   height: 100%;
@@ -57,6 +66,10 @@ header h1 {
   font-size: 5vh;
 }
 
+p {
+  font-size: 17px;
+}
+
 /* MODAL */
 
 .modal {
@@ -81,6 +94,7 @@ header h1 {
   padding: 0 10px 25px 10px;
   margin: auto;
   width: 75%;
+  max-width: 500px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
@@ -164,11 +178,6 @@ select:focus {
   box-shadow: 0 0 0 3px -moz-mac-focusring;
 }
 
-/* select, */
-/* input:hover {
-  border-color: rgba(59, 153, 252, 0.7);
-} */
-
 select:hover,
 input:hover {
   border-color: #aaa;
@@ -234,7 +243,14 @@ form label {
   min-width: 95px;
   margin-top: -8px;
   font-size: 15px;
+  font-weight: 700;
   padding-right: 5px;
+  color: rgb(85, 84, 84);
+}
+
+#cardio-name,
+#resistance-name {
+  width: 70%;
 }
 
 form input {
@@ -245,7 +261,7 @@ form input {
   font-size: 1rem;
   border-radius: 6px;
   border: 1px solid #aaa;
-  width: 80%;
+  width: 70%;
   height: 40px;
   margin-top: -20px;
   padding-left: 10px;
@@ -297,6 +313,7 @@ form::after {
   margin: 0 auto;
   width: 50%;
   min-width: 350px;
+  max-width: 825px;
   height: auto;
   max-height: 100%;
   text-align: center;
@@ -341,11 +358,12 @@ form::after {
 }
 .prev-workout .buttons .stats.ui.button {
   width: 30%;
-  margin-top: 5px;
+  /* margin-top: 5px; */
   min-width: 100px;
   max-width: 170px;
   height: 35px;
-  /* padding-top: 14px; */
+  margin: 0 2% 0 2%;
+  padding: 0 0 2px 0;
   background-color: #9fc3e4;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
   font-size: 15px;
@@ -369,4 +387,30 @@ form::after {
     opacity: 0;
     right: -320px;
   }
+}
+
+@media (max-width: 414px) {
+  /* .prev-workout {
+    width: 30%;
+    background-color: red;
+  } */
+  /* #index-card {
+    width: 50%;
+  } */
+  .ui.raised.card.m-auto {
+    /* width: %; */
+  }
+}
+
+@media (max-width: 414px) {
+  /* .prev-workout {
+    width: 30%;
+    background-color: red;
+  } */
+  /* #index-card {
+    width: 50%;
+  } */
+  /* .ui.raised.card.m-auto {
+    width: 50%;
+  } */
 }

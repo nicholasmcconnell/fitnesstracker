@@ -74,10 +74,6 @@ const populateChart = (data) => {
 
   let titleFontSize = '14';
 
-  let d = new Date();
-  console.log(`${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`)
-  console.log(datesArr, distance)
-
   lineChart = new Chart(line, {
     type: "line",
     data: {

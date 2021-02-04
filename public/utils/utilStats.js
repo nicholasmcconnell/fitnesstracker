@@ -340,17 +340,13 @@ const utilStats = {
     ]
 
     let currentWeekExercises = data[2].exercises;
-    console.log(currentWeekExercises)
 
     for (const [key, value] of Object.entries(data[2].exercises)) {
       if (value.dayOf === utilFunctions.todaysDate()) {
         currentWeekExercises.splice(key, currentWeekExercises.length - 1)
       }
-
     }
-    console.log(currentWeekExercises)
 
-    console.log(data)
     API.insertCollection(data)
       .then(res => console.log(res))
       .catch(err => console.log(err))
