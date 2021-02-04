@@ -110,7 +110,7 @@ async function handleFormSubmit(event) {
     workoutData.duration = Number(durationInput.value.trim());
   } else if (workoutType === "Resistance") {
     workoutData.type = "Resistance";
-    workoutData.name = nameInput.value.trim();
+    workoutData.name = resistanceNameInput.value.trim();
     workoutData.weight = Number(weightInput.value.trim());
     workoutData.sets = Number(setsInput.value.trim());
     workoutData.reps = Number(repsInput.value.trim());
@@ -154,3 +154,4 @@ toast.addEventListener("animationend", handleToastAnimationEnd);
 document
   .querySelectorAll("input")
   .forEach(element => element.addEventListener("input", validateInputs));
+  // svzuq
