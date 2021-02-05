@@ -78,7 +78,7 @@ const populateChart = (data) => {
   for (const [key, value] of Object.entries(distance)) {
     datasetsArr.push(
       {
-        label: `${key} Distance (miles)`,
+        label: `${key}`,
         backgroundColor: utilStats.getRandomRgb(),
         borderColor: utilStats.getRandomRgb(),
         data: value,
@@ -98,7 +98,7 @@ const populateChart = (data) => {
       // responsive: true,
       title: {
         display: true,
-        text: "Distance Covered",
+        text: "Distance Covered (mi)",
         fontSize: titleFontSize
 
       },
@@ -140,7 +140,7 @@ const populateChart = (data) => {
     options: {
       title: {
         display: true,
-        text: "Pounds Lifted",
+        text: "Pounds Lifted (lbs)",
         fontSize: titleFontSize
       },
       scales: {
@@ -174,7 +174,7 @@ const populateChart = (data) => {
       maintainAspectRatio: false,
       title: {
         display: true,
-        text: !chartArraysHash.Cardio.durations.length ? 'No Cardio Minutes Logged' : "Cardio Performed (minutes)",
+        text: !chartArraysHash.Cardio.durations.length ? 'No Cardio Minutes Logged' : "Cardio Performed (min)",
         fontColor: !chartArraysHash.Cardio.durations.length ? 'Red' : '',
         fontSize: titleFontSize
       }
@@ -197,7 +197,7 @@ const populateChart = (data) => {
       maintainAspectRatio: false,
       title: {
         display: true,
-        text: !chartArraysHash.Resistance.durations.length ? 'No Resistance Minutes Logged' : "Resistance Performed (minutes)",
+        text: !chartArraysHash.Resistance.durations.length ? 'No Resistance Minutes Logged' : "Resistance Performed (min)",
         fontColor: !chartArraysHash.Resistance.durations.length ? 'red' : "",
         fontSize: titleFontSize
 

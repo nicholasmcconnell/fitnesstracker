@@ -162,7 +162,7 @@ const utilStats = {
             type: "Resistance",
             name: "Dips",
             duration: 25,
-            weight: 185,
+            weight: 75,
             reps: 8,
             sets: 4
           },
@@ -171,7 +171,7 @@ const utilStats = {
             type: "Cardio",
             name: "Run",
             duration: 25,
-            distance: 4
+            distance: 4.3
           },
           {
             dayOf: weeksObj[0][3],
@@ -187,7 +187,7 @@ const utilStats = {
             type: "Resistance",
             name: "Bicep Curls",
             duration: 30,
-            weight: 300,
+            weight: 45,
             reps: 10,
             sets: 4
           },
@@ -196,7 +196,7 @@ const utilStats = {
             type: "Resistance",
             name: "Bench Press",
             duration: 20,
-            weight: 300,
+            weight: 185,
             reps: 10,
             sets: 4
           },
@@ -205,7 +205,7 @@ const utilStats = {
             type: "Resistance",
             name: "Military Press",
             duration: 30,
-            weight: 300,
+            weight: 111,
             reps: 10,
             sets: 4
           },
@@ -228,7 +228,7 @@ const utilStats = {
             type: "Resistance",
             name: "Bench Press",
             duration: 20,
-            weight: 300,
+            weight: 205,
             reps: 10,
             sets: 4
           },
@@ -237,7 +237,7 @@ const utilStats = {
             type: "Resistance",
             name: "Military Press",
             duration: 20,
-            weight: 300,
+            weight: 90,
             reps: 10,
             sets: 4
           },
@@ -254,7 +254,7 @@ const utilStats = {
             type: "Resistance",
             name: "Bicep Curl",
             duration: 20,
-            weight: 100,
+            weight: 45,
             reps: 10,
             sets: 4
           },
@@ -286,7 +286,7 @@ const utilStats = {
             type: "Resistance",
             name: "Bicep Curls",
             duration: 25,
-            weight: 185,
+            weight: 30,
             reps: 8,
             sets: 4
           },
@@ -302,7 +302,7 @@ const utilStats = {
             type: "Resistance",
             name: "Bench Press",
             duration: 20,
-            weight: 285,
+            weight: 170,
             reps: 10,
             sets: 4
           },
@@ -318,7 +318,7 @@ const utilStats = {
             type: "Resistance",
             name: "Bench Press",
             duration: 30,
-            weight: 300,
+            weight: 210,
             reps: 10,
             sets: 4
           },
@@ -327,7 +327,7 @@ const utilStats = {
             type: "Resistance",
             name: "Military Press",
             duration: 20,
-            weight: 300,
+            weight: 115,
             reps: 10,
             sets: 4
           },
@@ -343,7 +343,7 @@ const utilStats = {
             type: "Resistance",
             name: "Dips",
             duration: 20,
-            weight: 225,
+            weight: 75,
             reps: 10,
             sets: 3
           }
