@@ -148,7 +148,7 @@ const utilStats = {
           {
             dayOf: weeksObj[0][1],
             type: "Resistance",
-            name: "Push Press",
+            name: "Dips",
             duration: 25,
             weight: 185,
             reps: 8,
@@ -157,7 +157,7 @@ const utilStats = {
           {
             dayOf: weeksObj[0][1],
             type: "Cardio",
-            name: "Running",
+            name: "Run",
             duration: 25,
             distance: 4
           },
@@ -173,7 +173,7 @@ const utilStats = {
           {
             dayOf: weeksObj[0][3],
             type: "Resistance",
-            name: "Quad Press",
+            name: "Bicep Curls",
             duration: 30,
             weight: 300,
             reps: 10,
@@ -191,7 +191,7 @@ const utilStats = {
           {
             dayOf: weeksObj[0][4],
             type: "Resistance",
-            name: "Quad Press",
+            name: "Military Press",
             duration: 30,
             weight: 300,
             reps: 10,
@@ -214,7 +214,7 @@ const utilStats = {
           {
             dayOf: weeksObj[1][1],
             type: "Resistance",
-            name: "Lateral Pull",
+            name: "Bench Press",
             duration: 20,
             weight: 300,
             reps: 10,
@@ -232,7 +232,7 @@ const utilStats = {
           {
             dayOf: weeksObj[1][3],
             type: "Cardio",
-            name: "Running",
+            name: "Run",
             duration: 25,
             distance: 2.2
           },
@@ -249,7 +249,7 @@ const utilStats = {
           {
             dayOf: weeksObj[1][5],
             type: "Resistance",
-            name: "tricep Curl",
+            name: "Tricep Pushdown",
             duration: 20,
             weight: 50,
             reps: 10,
@@ -258,7 +258,7 @@ const utilStats = {
           {
             dayOf: weeksObj[1][6],
             type: "Cardio",
-            name: "Jogging",
+            name: "Jog",
             duration: 30,
             distance: 3.7
           },
@@ -272,7 +272,7 @@ const utilStats = {
           {
             dayOf: weeksObj[2][1],
             type: "Resistance",
-            name: "Push Press",
+            name: "Bicep Curls",
             duration: 25,
             weight: 185,
             reps: 8,
@@ -281,7 +281,7 @@ const utilStats = {
           {
             dayOf: weeksObj[2][1],
             type: "Cardio",
-            name: "Running",
+            name: "Swim",
             duration: 60,
             distance: 4.3
           },
@@ -297,14 +297,14 @@ const utilStats = {
           {
             dayOf: weeksObj[2][3],
             type: "Cardio",
-            name: "Dog Run",
+            name: "Bike",
             duration: 25,
             distance: 2.5
           },
           {
             dayOf: weeksObj[2][4],
             type: "Resistance",
-            name: "Quad Press",
+            name: "Bench Press",
             duration: 30,
             weight: 300,
             reps: 10,
@@ -322,14 +322,14 @@ const utilStats = {
           {
             dayOf: weeksObj[2][6],
             type: "Cardio",
-            name: "Hike",
+            name: "Jog",
             duration: 60,
             distance: 3.25
           },
           {
             dayOf: weeksObj[2][6],
             type: "Resistance",
-            name: "Squats",
+            name: "Dips",
             duration: 20,
             weight: 225,
             reps: 10,

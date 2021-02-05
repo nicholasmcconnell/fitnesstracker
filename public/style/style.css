@@ -426,3 +426,13 @@ form::after {
     width: 50%;
   } */
 }
+
+@media (max-width: 330px) {
+  /* .prev-workout {
+    width: 30%;
+    background-color: red;
+  } */
+  /* #index-card {
+    width: 50%;
+  } */
+}
