@@ -13,7 +13,7 @@ h2,
 h3,
 h4,
 h5 {
-  color: rgb(85, 84, 84);
+  color: rgb(88, 87, 87);
 }
 
 html,
@@ -39,9 +39,9 @@ body {
 nav {
   background-color: #5793fd;
   color: #ffffff;
-  height: 80px;
-  padding: 10px;
-  line-height: 3;
+  height: 55px;
+  padding-left: 10px;
+  line-height: 55px;
   font-size: 1.2rem;
 }
 
@@ -410,6 +410,11 @@ form::after {
 }
 
 @media (max-width: 414px) {
+  nav {
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+  }
   /* .prev-workout {
     width: 30%;
     background-color: red;
