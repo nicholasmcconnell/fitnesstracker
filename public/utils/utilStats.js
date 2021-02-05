@@ -342,7 +342,7 @@ const utilStats = {
     let currentWeekExercises = data[2].exercises;
 
     for (const [key, value] of Object.entries(data[2].exercises)) {
-      if (value.dayOf === utilFunctions.todaysDate()) {
+      if (value.dayOf > utilFunctions.todaysDate()) {
         currentWeekExercises.splice(key, currentWeekExercises.length - 1)
       }
     }

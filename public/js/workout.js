@@ -11,8 +11,6 @@ const control = async () => {
 
 control();
 
-console.log(localStorage.getItem('modalBtnClick'))
-
 let modalBtn = document.getElementById("modal-btn")
 let modal = document.querySelector(".modal");
 let closeBtn = document.querySelector(".close-btn");
@@ -30,7 +28,7 @@ seedBtn.onclick = async () => {
   await utilStats.seedFunction();
   modal.style.display = "none"
   localStorage.setItem('modalBtnClick', 'true')
-  window.location.reload();
+  // window.location.reload();
 
 }
 clearBtn.onclick = async () => {
