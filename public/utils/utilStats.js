@@ -94,21 +94,12 @@ const utilStats = {
     totalsObj = {}
     let distance = {}
     let weekOfExercises = data.exercises;
-    console.log(weekOfExercises)
-
-    // for (const [key, value] of Object.entries(weekOfExercises)) {
-    //   if (value.type === 'Cardio') {
-    //     !distance[value.dayOf] ? distance[value.dayOf] = value.distance : distance[value.dayOf] += value.distance;
-    //   }
-    // }
 
     for (const [key, value] of Object.entries(weekOfExercises)) {
       if (value.type === 'Cardio') {
         if (!distance[value.name]) {
           distance[value.name] = {};
-          !distance[value.name][value.dayOf] ?
-            distance[value.name][value.dayOf] = value.distance :
-            distance[value.name][value.dayOf] += value.distance;
+          distance[value.name][value.dayOf] = value.distance;
         } else if (distance[value.name]) {
           !distance[value.name][value.dayOf] ?
             distance[value.name][value.dayOf] = value.distance :
@@ -117,20 +108,10 @@ const utilStats = {
       }
     }
 
-    console.log(distance)
-
-    // for (const [key, value] of Object.entries(distance)) {
-    //   let index = dateArr.indexOf(key);
-    //   totalsArr[index] = value;
-    // }
-    // console.log(totalsArr)
-    // return (totalsArr);
     for (const [k, v] of Object.entries(distance)) {
       totalsObj[k] = new Array(7).fill(0)
-      console.log(totalsObj)
 
       for (const [key, value] of Object.entries(v)) {
-        console.log(key, value)
         let index = dateArr.indexOf(key);
         totalsObj[k][index] = value;
       }

@@ -123,8 +123,6 @@ const populateChart = (data) => {
     }
   });
 
-
-
   barChart = new Chart(bar, {
     type: "bar",
     data: {
