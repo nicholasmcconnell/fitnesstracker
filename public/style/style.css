@@ -363,6 +363,10 @@ form::after {
 .buttons-stats {
   justify-content: space-between;
 }
+
+.huge.ui.positive.button.clear-btn {
+  background-color: rgb(204, 48, 48);
+}
 .prev-workout .buttons .stats.ui.button {
   width: 30%;
   /* margin-top: 5px; */

@@ -15,14 +15,18 @@ let modalBtn = document.getElementById("modal-btn")
 let modal = document.querySelector(".modal")
 let closeBtn = document.querySelector(".close-btn")
 let seedBtn = document.querySelector('.seed-btn')
+let clearBtn = document.querySelector('.clear-btn')
 
-seedBtn.onclick = () => {
-  utilStats.seedFunction()
+seedBtn.onclick = async () => {
+  await utilStats.seedFunction();
+  modal.style.display = "none"
+  window.location.reload();
+}
+clearBtn.onclick = async () => {
+  console.log('click')
+  API.deleteCollection();
   modal.style.display = "none"
 }
-// modalBtn.onclick = function () {
-//   modal.style.display = "block"
-// }
 closeBtn.onclick = function () {
   console.log('click')
   modal.style.display = "none"
