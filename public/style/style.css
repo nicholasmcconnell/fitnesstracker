@@ -75,6 +75,17 @@ p {
   font-size: 17px;
 }
 
+/* STATS */
+.stats-scroll {
+  overflow-y: auto;
+  max-height: 450px;
+  position: relative;
+}
+
+.graph {
+  display: flex;
+}
+
 /* MODAL */
 
 .modal {
