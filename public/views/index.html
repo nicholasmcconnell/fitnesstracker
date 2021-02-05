@@ -9,6 +9,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
     />
     <link rel="stylesheet" href="style/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Fitness Tracker</title>
   </head>
 
@@ -33,9 +34,13 @@
             Fitness Tracker is an exercise logging application recording and
             tracking weekly workouts.
           </h3>
-          <h4>View Fitness Tracker's stats feature by Seeding the database.</h4>
+          <h4>
+            View Fitness Tracker's stats feature by Seeding the database or
+            Clear and begin as a new user.
+          </h4>
           <div class="buttons">
             <a class="huge ui positive button seed-btn">Seed</a>
+            <a class="huge ui positive button clear-btn">Clear</a>
           </div>
         </div>
       </div>
@@ -52,7 +57,7 @@
         <div class="prev-workout">
           <div>
             <h3 id="weekStatsTitle">This Weeks Stats</h3>
-            <div class="weekOfStats"></div>
+            <div class="weekOfStats" id="weekOfReload"></div>
             <h3>Last Workout</h3>
             <div class="dayOfStats"></div>
           </div>
@@ -66,8 +71,8 @@
       </div>
     </div>
     <div id="toast">Workout Added Successfully!</div>
-    <script src="/utils/utilAPI.js"></script>
     <script src="/utils/utilFunctions.js"></script>
+    <script src="/utils/utilAPI.js"></script>
     <script src="/utils/utilWorkout.js"></script>
     <script src="/utils/utilStats.js"></script>
     <script src="/js/workout.js"></script>

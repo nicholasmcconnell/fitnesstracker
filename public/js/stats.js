@@ -74,19 +74,24 @@ const populateChart = (data) => {
 
   let titleFontSize = '14';
 
+  let datasetsArr = [];
+  for (const [key, value] of Object.entries(distance)) {
+    datasetsArr.push(
+      {
+        label: `${key} Distance (miles)`,
+        backgroundColor: utilStats.getRandomRgb(),
+        borderColor: utilStats.getRandomRgb(),
+        data: value,
+        fill: true
+      }
+    )
+  }
+
   lineChart = new Chart(line, {
     type: "line",
     data: {
       labels: datesArr,
-      datasets: [
-        {
-          label: "Workout Distance (miles)",
-          backgroundColor: utilStats.getRandomRgb(),
-          borderColor: utilStats.getRandomRgb(),
-          data: distance,
-          fill: true
-        }
-      ]
+      datasets: datasetsArr,
     },
     options: {
       maintainAspectRatio: false,
@@ -117,8 +122,6 @@ const populateChart = (data) => {
       }
     }
   });
-
-
 
   barChart = new Chart(bar, {
     type: "bar",

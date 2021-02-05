@@ -12,17 +12,31 @@ const control = async () => {
 control();
 
 let modalBtn = document.getElementById("modal-btn")
-let modal = document.querySelector(".modal")
-let closeBtn = document.querySelector(".close-btn")
-let seedBtn = document.querySelector('.seed-btn')
+let modal = document.querySelector(".modal");
+let closeBtn = document.querySelector(".close-btn");
+let seedBtn = document.querySelector('.seed-btn');
+let clearBtn = document.querySelector('.clear-btn');
+let statsDisplay = document.getElementsByClassName('prev-workout');
+statsDisplay.innerHtml = ''
 
-seedBtn.onclick = () => {
-  utilStats.seedFunction()
-  modal.style.display = "none"
+if (localStorage.getItem('modalBtnClick') === 'true') {
+  modal.style.display = 'none';
+  localStorage.setItem('modalBtnClick', '')
 }
-// modalBtn.onclick = function () {
-//   modal.style.display = "block"
-// }
+
+seedBtn.onclick = async () => {
+  await utilStats.seedFunction();
+  modal.style.display = "none"
+  localStorage.setItem('modalBtnClick', 'true')
+  window.location.reload();
+
+}
+clearBtn.onclick = async () => {
+  API.deleteCollection();
+  modal.style.display = "none"
+  localStorage.setItem('modalBtnClick', 'true')
+  window.location.reload()
+}
 closeBtn.onclick = function () {
   console.log('click')
   modal.style.display = "none"
@@ -141,7 +155,7 @@ function renderWorkoutSummary(summary, lastWorkoutWeek) {
     for (const [key, value] of Object.entries(v)) {
       const p = document.createElement("p");
       const strong = document.createElement("strong");
-
+      p.setAttribute('class', 'stats-display')
       strong.textContent = workoutKeyMap[k][key];
       const textNode = document.createTextNode(`: ${summary[k][key]}`);
       p.appendChild(strong);
