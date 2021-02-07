@@ -287,8 +287,8 @@ form::after {
   width: 200px;
   min-height: 60px;
   position: fixed;
-  /* bottom: 10px; */
   right: -320px;
+  top: 10%;
   margin-right: 5%;
   opacity: 0;
   z-index: 1;

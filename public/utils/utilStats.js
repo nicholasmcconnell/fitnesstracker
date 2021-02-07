@@ -1,4 +1,3 @@
-// const utilFunctions = require("../../models/modelUtils/modelFunctions");
 
 const utilStats = {
   getRandomRgb: () => {
@@ -89,7 +88,6 @@ const utilStats = {
   },
 
   distancePerDay: (data) => {
-    let totalsArr = new Array(7).fill(0);
     let dateArr = utilFunctions.datesArr()
     totalsObj = {}
     let distance = {}

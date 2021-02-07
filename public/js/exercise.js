@@ -9,7 +9,7 @@ const resistanceNameInput = document.querySelector("#resistance-name");
 const weightInput = document.querySelector("#weight");
 const setsInput = document.querySelector("#sets");
 const repsInput = document.querySelector("#reps");
-const durationInput = document.querySelector("#duration");
+const cardioDurationInput = document.querySelector("#cardio-duration");
 const resistanceDurationInput = document.querySelector("#resistance-duration");
 const distanceInput = document.querySelector("#distance");
 const completeButton = document.querySelector("button.complete");
@@ -79,11 +79,11 @@ function validateInputs() {
       isValid = false;
     }
   } else if (workoutType === "Cardio") {
-    if (cardioNameInput.value.trim() === "") {
+    if (cardioNameInput.value.trim() === "" || cardioNameInput.value.trim() === "Select Type") {
       isValid = false;
     }
 
-    if (durationInput.value.trim() === "") {
+    if (cardioDurationInput.value.trim() === "") {
       isValid = false;
     }
 
@@ -111,7 +111,7 @@ async function handleFormSubmit(event) {
     workoutData.type = "Cardio";
     workoutData.name = cardioNameInput.value.trim();
     workoutData.distance = Number(distanceInput.value.trim());
-    workoutData.duration = Number(durationInput.value.trim());
+    workoutData.duration = Number(cardioDurationInput.value.trim());
   } else if (workoutType === "Resistance") {
     workoutData.type = "Resistance";
     workoutData.name = resistanceNameInput.value.trim();
@@ -137,7 +137,7 @@ function clearInputs() {
   resistanceNameInput.value = "";
   setsInput.value = "";
   distanceInput.value = "";
-  durationInput.value = "";
+  cardioDurationInput.value = "";
   repsInput.value = "";
   resistanceDurationInput.value = "";
   weightInput.value = "";
