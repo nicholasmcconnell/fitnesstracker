@@ -76,7 +76,6 @@ const utilStats = {
           break;
       }
     }
-    console.log(nameDurationHash)
     for (let [k, v] of Object.entries(nameDurationHash)) {
       for (let [key, value] of Object.entries(v)) {
         arrHash[k]['names'].push(key);
@@ -143,7 +142,6 @@ const utilStats = {
         totalsObj[k][index] = value;
       }
     }
-    console.log(totalsObj)
     return totalsObj;
   },
   seedFunction: async () => {
