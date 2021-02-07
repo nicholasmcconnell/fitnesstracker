@@ -1,6 +1,6 @@
 const utilFunctions = {
   formatDate: () => {
-    //shows only the dates for the current week
+    //returns the dates for the current week
     let d = new Date();
 
     let datesArr = new Array();
@@ -43,6 +43,7 @@ const utilFunctions = {
       weeksObj[i] = weekArr;
       weeksInDays -= 7;
     }
+    console.log(weeksObj)
     return weeksObj;
   },
 
@@ -55,10 +56,9 @@ const utilFunctions = {
     !displayWeek ? datesArr = utilFunctions.formatDate() : datesArr = weeksPast[weeksPastKey];
     return datesArr;
   },
+
   todaysDate: () => {
     let d = new Date();
     return `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
   }
 };
-
-// module.exports = utilFunctions;

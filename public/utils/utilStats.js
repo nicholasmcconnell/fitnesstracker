@@ -1,4 +1,3 @@
-// const utilFunctions = require("../../models/modelUtils/modelFunctions");
 
 const utilStats = {
   getRandomRgb: () => {
@@ -77,7 +76,7 @@ const utilStats = {
           break;
       }
     }
-
+    console.log(nameDurationHash)
     for (let [k, v] of Object.entries(nameDurationHash)) {
       for (let [key, value] of Object.entries(v)) {
         arrHash[k]['names'].push(key);
@@ -89,7 +88,6 @@ const utilStats = {
   },
 
   distancePerDay: (data) => {
-    let totalsArr = new Array(7).fill(0);
     let dateArr = utilFunctions.datesArr()
     totalsObj = {}
     let distance = {}
@@ -282,6 +280,13 @@ const utilStats = {
         weekOf: weeksObj[2][0],
         exercises: [
           {
+            dayOf: weeksObj[2][0],
+            type: "Cardio",
+            name: "Swim",
+            duration: 25,
+            distance: .75
+          },
+          {
             dayOf: weeksObj[2][1],
             type: "Resistance",
             name: "Bicep Curls",
@@ -352,10 +357,12 @@ const utilStats = {
     ]
 
     let currentWeekExercises = data[2].exercises;
+    let thisWeeksDatesArr = utilFunctions.formatDate();
 
     for (const [key, value] of Object.entries(data[2].exercises)) {
-      if (value.dayOf > utilFunctions.todaysDate()) {
-        currentWeekExercises.splice(key, currentWeekExercises.length - 1)
+      if (thisWeeksDatesArr.indexOf(value.dayOf) > thisWeeksDatesArr.indexOf(utilFunctions.todaysDate())) {
+        currentWeekExercises.splice(key, currentWeekExercises.length)
+        break;
       }
     }
 
