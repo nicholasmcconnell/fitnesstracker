@@ -116,7 +116,6 @@ const utilStats = {
     }
     return totalsObj;
   },
-
   weightPerDay: (data) => {
     ///////DOES NOT ACCOUNT FOR REPS AND SETS IN TOTAL.  JUST THE WEIGHT USED DURING THE EXERCISE
     let totalsArr = new Array(7).fill(0);
@@ -137,7 +136,6 @@ const utilStats = {
 
     return totalsArr;
   },
-
   seedFunction: async () => {
 
     localStorage.setItem('weeksPastKey', 2)

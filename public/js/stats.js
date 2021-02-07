@@ -60,7 +60,6 @@ const populateChart = (data) => {
 
   let datesArr = utilFunctions.datesArr();
 
-  let distance = utilStats.distancePerDay(data);
   let pounds = utilStats.weightPerDay(data);
   let chartArraysHash = utilStats.durations(data);
   let colors = utilStats.generatePalette(chartArraysHash);
@@ -72,24 +71,29 @@ const populateChart = (data) => {
 
   let titleFontSize = '14';
 
-  let datasetsArr = [];
-  for (const [key, value] of Object.entries(distance)) {
-    datasetsArr.push(
-      {
-        label: `${key}`,
-        backgroundColor: utilStats.getRandomRgb(),
-        borderColor: utilStats.getRandomRgb(),
-        data: value,
-        fill: true
-      }
-    )
-  }
+  const lineChartDataset = () => {
+    let distance = utilStats.distancePerDay(data);
+    let datasetsArr = [];
 
+    for (const [key, value] of Object.entries(distance)) {
+      datasetsArr.push(
+        {
+          label: `${key}`,
+          backgroundColor: utilStats.getRandomRgb(),
+          borderColor: utilStats.getRandomRgb(),
+          data: value,
+          fill: true
+        }
+      )
+    }
+    return datasetsArr;
+  }
+  //////// CHARTS ///////
   lineChart = new Chart(line, {
     type: "line",
     data: {
       labels: datesArr,
-      datasets: datasetsArr,
+      datasets: lineChartDataset(),
     },
     options: {
       maintainAspectRatio: false,
