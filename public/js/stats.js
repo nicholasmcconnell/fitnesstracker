@@ -15,8 +15,6 @@ API.getWorkoutsInRange()
       h2.style.color = 'red';
       container.prepend(h2)
       return res;
-      ////Then should display previous weeks and be able to scroll through them
-      //may need to have api retrieve all workouts so stats for previous weeks can be viewed
     } else {
       return res;
     }
@@ -95,7 +93,6 @@ const populateChart = (data) => {
     },
     options: {
       maintainAspectRatio: false,
-      // responsive: true,
       title: {
         display: true,
         text: "Distance Covered (mi)",
@@ -152,7 +149,6 @@ const populateChart = (data) => {
           }
         ]
       },
-      // responsive: true, 
       maintainAspectRatio: false
     },
 
@@ -214,7 +210,9 @@ previousButton.addEventListener('click', async () => {
 
   for (let [key, value] of Object.entries(weeksPast)) {
     if (displayWeek === value[0]) {
-      ((key - 1) < 0) ? weeksPastKey = 0 : weeksPastKey = (key - 1);
+      ((key - 1) < 0) ?
+        weeksPastKey = 0 :
+        weeksPastKey = (key - 1);
       localStorage.setItem('weeksPastKey', weeksPastKey)
       populateChart(allWorkouts[weeksPastKey])
     }
@@ -230,16 +228,16 @@ nextButton.addEventListener('click', async () => {
 
   for (let [key, value] of Object.entries(weeksPast)) {
     if (displayWeek === value[0]) {
-      ((key + 1) > weeksPastLength - 1) ? weeksPastKey = weeksPastLength - 1 : weeksPastKey = key += 1;
-      (weeksPastKey.length > 1) ? weeksPastKey = weeksPastKey.substring(1) : weeksPastKey;
+      ((key + 1) > weeksPastLength - 1) ?
+        weeksPastKey = weeksPastLength - 1 :
+        weeksPastKey = key += 1;
+
+      (weeksPastKey.length > 1) ?
+        weeksPastKey = weeksPastKey.substring(1) :
+        weeksPastKey;
+
       localStorage.setItem('weeksPastKey', weeksPastKey)
       populateChart(allWorkouts[weeksPastKey])
     }
   }
 });
-
-// seedButton.addEventListener('click', () => {
-//   // localStorage.setItem('weeksPastKey', 2)
-//   utilStats.seedFunction()
-//   location.reload();
-// });

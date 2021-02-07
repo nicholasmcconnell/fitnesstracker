@@ -155,10 +155,6 @@ if (completeButton) {
 
 toast.addEventListener("animationend", handleToastAnimationEnd);
 
-// if (exerciseName && exerciseName !== 'Select Type') {
-//   exerciseName.addEventListener("change",)
-// }
-
 document.querySelectorAll("input")
   .forEach(element => element.addEventListener("input", validateInputs));
 

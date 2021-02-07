@@ -287,14 +287,16 @@ form::after {
   width: 200px;
   min-height: 60px;
   position: fixed;
-  bottom: 10px;
+  /* bottom: 10px; */
   right: -320px;
+  margin-right: 5%;
   opacity: 0;
+  z-index: 1;
 }
 
 #toast.success {
   animation-name: toast;
-  animation-duration: 3s;
+  animation-duration: 4s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-in-out;
 }
