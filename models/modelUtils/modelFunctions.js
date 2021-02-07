@@ -1,6 +1,6 @@
-const utilFunctions = {
+const utilModelFunctions = {
   formatDate: function () {
-    //shows only the dates for the current week
+    //shows dates for the current week
     let d = new Date();
 
     let datesArr = new Array();
@@ -15,4 +15,4 @@ const utilFunctions = {
   }
 };
 
-module.exports = utilFunctions;
+module.exports = utilModelFunctions;

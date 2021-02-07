@@ -1,5 +1,4 @@
 const db = require('../models');
-console.log('db', db)
 
 module.exports = {
     findAllWorkouts: function (req, res) {
@@ -52,15 +51,15 @@ module.exports = {
                 res.json(dbWorkout.deletedCount);
             })
             .catch(err => {
-                console.log('err in controller', err);
+                console.log(err);
             })
     },
 
     insertCollection: function (req, res) {
         console.log('86 eq body', req.body)
-        db.Workout.collection.insertMany(req.body, function (error, doc) {
-            if (error) {
-                console.log(error);
+        db.Workout.collection.insertMany(req.body, function (err, doc) {
+            if (err) {
+                console.log(err);
             } else {
                 console.log('Documents succesfully inserted!');
                 res.json('Documents succesfully inserted!')
