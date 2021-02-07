@@ -163,4 +163,3 @@ document.querySelectorAll("input")
   .forEach(element => element.addEventListener("input", validateInputs));
 
 [document.querySelector('#resistance-name'), document.querySelector('#cardio-name')].forEach(name => name.addEventListener("change", validateInputs))
-  // svzuq
