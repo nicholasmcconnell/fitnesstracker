@@ -76,6 +76,7 @@ p {
 }
 
 /* STATS */
+
 .stats-scroll {
   overflow-y: auto;
   max-height: 450px;
@@ -112,11 +113,8 @@ p {
   width: 75%;
   max-width: 500px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s;
 }
+
 .close-btn {
   float: right;
   border: white;
@@ -133,26 +131,6 @@ p {
 }
 .close-btn:hover {
   color: darkgray;
-}
-@-webkit-keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-  to {
-    top: 0;
-    opacity: 1;
-  }
-}
-@keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-  to {
-    top: 0;
-    opacity: 1;
-  }
 }
 
 /* CANVAS */
@@ -265,11 +243,6 @@ form label {
   color: rgb(85, 84, 84);
 }
 
-/* #cardio-name,
-#resistance-name {
-  width: 70%;
-} */
-
 #resistance-name,
 #cardio-name,
 #type {
@@ -305,9 +278,9 @@ form::after {
 
 #toast {
   border-radius: 4px;
-  border-width: 1px;
-  font-size: 20px;
-  /* line-height: 19.5px; */
+  background-color: hsl(94, 40%, 86%, 0.7);
+  color: hsl(94, 90%, 16%);
+  font-size: 30px;
   margin: 0px 0px 16px;
   padding: 40px;
   text-align: center;
@@ -317,12 +290,9 @@ form::after {
   bottom: 10px;
   right: -320px;
   opacity: 0;
-  /* transition: all 1s; */
 }
 
 #toast.success {
-  background-color: hsl(94, 40%, 86%);
-  color: hsl(94, 90%, 16%);
   animation-name: toast;
   animation-duration: 3s;
   animation-fill-mode: forwards;
@@ -367,15 +337,6 @@ form::after {
   display: none;
 }
 
-/* .prev-workout .buttons .stats.seed.ui.button {
-  width: 30%;
-  background-color: rgb(23, 212, 105);
-  margin-top: 0px;
-  margin-bottom: 15px;
-  min-width: 135px;
-  padding-top: 12px;
-} */
-
 .buttons-stats {
   justify-content: space-between;
 }
@@ -385,7 +346,6 @@ form::after {
 }
 .prev-workout .buttons .stats.ui.button {
   width: 30%;
-  /* margin-top: 5px; */
   min-width: 100px;
   max-width: 170px;
   height: 35px;
@@ -417,42 +377,9 @@ form::after {
 }
 
 @media (max-width: 414px) {
-  /* .prev-workout {
-    width: 30%;
-    background-color: red;
-  } */
-  /* #index-card {
-    width: 50%;
-  } */
-  .ui.raised.card.m-auto {
-    /* width: %; */
-  }
-}
-
-@media (max-width: 414px) {
   nav {
     text-align: center;
     height: 50px;
     line-height: 50px;
   }
-  /* .prev-workout {
-    width: 30%;
-    background-color: red;
-  } */
-  /* #index-card {
-    width: 50%;
-  } */
-  /* .ui.raised.card.m-auto {
-    width: 50%;
-  } */
-}
-
-@media (max-width: 330px) {
-  /* .prev-workout {
-    width: 30%;
-    background-color: red;
-  } */
-  /* #index-card {
-    width: 50%;
-  } */
 }
