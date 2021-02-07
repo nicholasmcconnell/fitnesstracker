@@ -317,16 +317,16 @@ form::after {
   bottom: 10px;
   right: -320px;
   opacity: 0;
-  transition: all 1s;
+  /* transition: all 1s; */
 }
 
 #toast.success {
   background-color: hsl(94, 40%, 86%);
   color: hsl(94, 90%, 16%);
   animation-name: toast;
-  animation-duration: 2s;
+  animation-duration: 3s;
   animation-fill-mode: forwards;
-  animation-timing-function: linear;
+  animation-timing-function: ease-in-out;
 }
 
 /* CARD */
