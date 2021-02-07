@@ -11,13 +11,12 @@ const control = async () => {
 
 control();
 
+//////////// MODAL CODE /////////////////
 let modalBtn = document.getElementById("modal-btn")
 let modal = document.querySelector(".modal");
 let closeBtn = document.querySelector(".close-btn");
 let seedBtn = document.querySelector('.seed-btn');
 let clearBtn = document.querySelector('.clear-btn');
-let statsDisplay = document.getElementsByClassName('prev-workout');
-statsDisplay.innerHtml = ''
 
 if (localStorage.getItem('modalBtnClick') === 'true') {
   modal.style.display = 'none';
