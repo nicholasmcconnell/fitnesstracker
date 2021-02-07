@@ -76,7 +76,6 @@ const utilStats = {
           break;
       }
     }
-    console.log(nameDurationHash)
     for (let [k, v] of Object.entries(nameDurationHash)) {
       for (let [key, value] of Object.entries(v)) {
         arrHash[k]['names'].push(key);
@@ -86,10 +85,9 @@ const utilStats = {
     }
     return arrHash;
   },
-
   distancePerDay: (data) => {
-    let dateArr = utilFunctions.datesArr()
-    totalsObj = {}
+    let dateArr = utilFunctions.datesArr();
+    let totalsObj = {}
     let distance = {}
     let weekOfExercises = data.exercises;
 
@@ -116,28 +114,36 @@ const utilStats = {
     }
     return totalsObj;
   },
-
   weightPerDay: (data) => {
-    ///////DOES NOT ACCOUNT FOR REPS AND SETS IN TOTAL.  JUST THE WEIGHT USED DURING THE EXERCISE
-    let totalsArr = new Array(7).fill(0);
+    // This function is the same as distancePerDay.  They have been kept seperate despite their redundancy because future implimentations will will require different uses for each exerscise types data. :)
     let dateArr = utilFunctions.datesArr();
-    let weight = {};
+    let totalsObj = {}
+    let weight = {}
     let weekOfExercises = data.exercises;
 
     for (const [key, value] of Object.entries(weekOfExercises)) {
       if (value.type === 'Resistance') {
-        !weight[value.dayOf] ? weight[value.dayOf] = value.weight : weight[value.dayOf] += value.weight;
+        if (!weight[value.name]) {
+          weight[value.name] = {};
+          weight[value.name][value.dayOf] = value.weight;
+        } else if (weight[value.name]) {
+          !weight[value.name][value.dayOf] ?
+            weight[value.name][value.dayOf] = value.weight :
+            weight[value.name][value.dayOf] += value.weight;
+        }
       }
     }
 
-    for (const [key, value] of Object.entries(weight)) {
-      let index = dateArr.indexOf(key);
-      totalsArr[index] = value;
+    for (const [k, v] of Object.entries(weight)) {
+      totalsObj[k] = new Array(7).fill(0)
+
+      for (const [key, value] of Object.entries(v)) {
+        let index = dateArr.indexOf(key);
+        totalsObj[k][index] = value;
+      }
     }
-
-    return totalsArr;
+    return totalsObj;
   },
-
   seedFunction: async () => {
 
     localStorage.setItem('weeksPastKey', 2)

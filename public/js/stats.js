@@ -59,9 +59,9 @@ const populateChart = (data) => {
   }
 
   let datesArr = utilFunctions.datesArr();
-
+  let weight = utilStats.weightPerDay(data);
   let distance = utilStats.distancePerDay(data);
-  let pounds = utilStats.weightPerDay(data);
+
   let chartArraysHash = utilStats.durations(data);
   let colors = utilStats.generatePalette(chartArraysHash);
 
@@ -72,24 +72,29 @@ const populateChart = (data) => {
 
   let titleFontSize = '14';
 
-  let datasetsArr = [];
-  for (const [key, value] of Object.entries(distance)) {
-    datasetsArr.push(
-      {
-        label: `${key}`,
-        backgroundColor: utilStats.getRandomRgb(),
-        borderColor: utilStats.getRandomRgb(),
-        data: value,
-        fill: true
-      }
-    )
+  const lineAndBarChartDataset = (type) => {
+    let datasetsArr = [];
+
+    for (const [key, value] of Object.entries(type)) {
+      datasetsArr.push(
+        {
+          label: `${key}`,
+          backgroundColor: utilStats.getRandomRgb(),
+          borderColor: utilStats.getRandomRgb(),
+          data: value,
+          fill: true
+        }
+      )
+    }
+    return datasetsArr;
   }
 
+  //////////////////// CHARTS /////////////////
   lineChart = new Chart(line, {
     type: "line",
     data: {
       labels: datesArr,
-      datasets: datasetsArr,
+      datasets: lineAndBarChartDataset(distance),
     },
     options: {
       maintainAspectRatio: false,
@@ -124,15 +129,7 @@ const populateChart = (data) => {
     type: "bar",
     data: {
       labels: datesArr,
-      datasets: [
-        {
-          label: `Week of ${utilFunctions.datesArr()[0]}`,
-          data: pounds,
-          backgroundColor: utilStats.barChartColors(),
-          borderColor: utilStats.barChartColors(),
-          borderWidth: 1
-        }
-      ]
+      datasets: lineAndBarChartDataset(weight),
     },
     options: {
       title: {

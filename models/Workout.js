@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const utilFunctions = require('./modelUtils/modelFunctions.js');
+const utilModelFunctions = require('./modelUtils/modelFunctions.js');
 
 const d = new Date();
 const Schema = mongoose.Schema;
@@ -9,7 +9,7 @@ console.log(`${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`)
 const workoutSchema = new Schema({
   date: { type: Date, default: () => new Date() },
   weekOf: {
-    type: String, default: utilFunctions.formatDate()[0],
+    type: String, default: utilModelFunctions.formatDate()[0],
   },
   exercises: [{
     dayOf: {
