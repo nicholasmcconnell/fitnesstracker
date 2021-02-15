@@ -20,10 +20,11 @@ Cardio exercises for the week are displayed via a line chart (distance) and a pi
 
 ## Tech used
 
+- ES6 Javascript
+- Vanilla Javascript
 - HTML
 - CSS
 - JS Date Object
-- Javascript
 - NodeJS
 - Express
 - MongoDB
