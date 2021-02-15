@@ -13,8 +13,10 @@ Fitness Tracker is a full stack, MongoDB application to view and track daily wor
   - View multiple the combined weight of multiple exercises on the stats page.
 
 ## Demonstration
-![homepage](public/img/homepage.png "homepage")
-![stats](public/img/stats.png "stats")
+<p align="center">
+<img src="https://github.com/nicholasmcconnell/fitnesstracker/blob/master/public/img/addworkout.gif" width="500" height="300"> 
+  <img src="https://github.com/nicholasmcconnell/fitnesstracker/blob/master/public/img/stats.gif" width="500" height="300"> 
+  </p>
 
 
 ## Tech used
