@@ -60,7 +60,8 @@ const utilStats = {
         }
         if (!nameDurationHash[value.type][value.name]) {
           nameDurationHash[value.type][value.name] = value.duration;
-        } else {
+        }
+        else {
           nameDurationHash[value.type][value.name] += value.duration;
         }
       }
