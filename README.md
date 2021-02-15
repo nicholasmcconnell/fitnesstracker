@@ -10,10 +10,7 @@ Cardio exercises for the week are displayed via a line chart (distance) and a pi
 
 - Experience the deployed app on Heroku: [Here](https://nmcconnell-fitnesstracker.herokuapp.com/ "Here")
 - When the user loads the page, they are given the option to log a new workout.
- - The user is able to:
-  - Add an exercise.
-  - Successfully adding the work out renders the stats page which displays workouts for the current week.  
-      - Here, users may also render previous weeks exercises via the 'previous' and 'next' buttons.
+ - The user is able to add a workout and view successfully added workouts via the stats page which displays workouts for the current week.  Here, users may also render past weeks exercises via the 'previous' and 'next' buttons.
       
 ## Demonstration
 <p align="center">
