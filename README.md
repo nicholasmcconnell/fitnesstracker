@@ -14,8 +14,8 @@ Fitness Tracker is a full stack, MongoDB application to view and track daily wor
 
 ## Demonstration
 <p align="center">
-<img src="https://github.com/nicholasmcconnell/fitnesstracker/blob/master/public/img/addworkout.gif" width="500" height="300"> 
-  <img src="https://github.com/nicholasmcconnell/fitnesstracker/blob/master/public/img/stats.gif" width="500" height="300"> 
+<img src="https://github.com/nicholasmcconnell/fitnesstracker/blob/master/public/img/addworkout.gif" width="650" height="400"> 
+  <img src="https://github.com/nicholasmcconnell/fitnesstracker/blob/master/public/img/stats.gif" width="650" height="400"> 
   </p>
 
 
