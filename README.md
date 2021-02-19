@@ -2,15 +2,14 @@
 
 ## Overview
 
-Fitness Tracker is a full stack application where users may enter, view, and track workouts. The database stores workout details such as: date, number of reps, sets, distance, and elapsed time. The data sets vary depending on whether the exercise is a cardio or resistance training exercse.  With ChartJS and algorithms using JS's Date Object, workouts for the current week are displayed according to the date of their completion.
+Fitness Tracker is a full stack application where users may enter, view, and track workouts. The database stores workout details such as: date, number of reps, sets, distance, and elapsed time. The data sets vary depending on the exercise type.  With ChartJS and algorithms incoporating JS's Date Object, workouts for the current week are displayed according to the date of their completion.
 
-Cardio exercises for the week are displayed via a line chart (distance) and a pie chart (exercise duration).  Resistance exercises are displayed via a barchart (pounds lifted) and a pie chart (exercise duration).  Additionaly, users are able to recall  exercise statisics from previous weeks.  This app is built using a Mongo database with a Mongoose schema, Express route handling, ChartJS, Vanilla and ES6 Javascript.  Exercises are associated with a partiuclar date using Javascript's Date Object. 
-
+Cardio exercises for the week are displayed via a line chart (distance) and a pie chart (exercise duration).  Resistance exercises are displayed via a barchart (pounds lifted) and a pie chart (exercise duration).  Additionaly, users are able to recall  exercise statisics from previous weeks.  This app is built using a Mongo database with a Mongoose schema, Express route handling, ChartJS, Vanilla and ES6 Javascript.
 ## Utilizing the App
 
 - Experience the deployed app on Heroku: [Here](https://nmcconnell-fitnesstracker.herokuapp.com/ "Here")
 - When the user loads the page, they are given the option to log a new workout.
- - The user is able to add a workout and view successfully added workouts via the stats page which displays workouts for the current week.  Here, users may also render past weeks exercises via the 'previous' and 'next' buttons.
+ - The user is able to add a workout and view successfully added workouts via the stats page displaying workouts for the current week.  Here, users may also render past weeks exercises via the 'previous' and 'next' buttons.
       
 ## Demonstration
 <p align="center">
