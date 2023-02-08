@@ -30,6 +30,7 @@ API.getWorkoutsInRange()
 const control = (data) => {
   populateChart(data);
 }
+
 let lineChart;
 let barChart;
 let cardioPieChart;
@@ -86,6 +87,7 @@ const populateChart = (data) => {
         }
       )
     }
+    console.log('datasetsasrr', datasetsArr);
     return datasetsArr;
   }
 
